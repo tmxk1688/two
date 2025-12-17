@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>天马行空创意网 - TianMa Creative Network</title>
+    <link rel="icon" href="photo/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 美化header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            margin-right: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-main {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .slogan {
+            font-size: 16px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .auth-icon {
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-icon:hover {
+            transform: scale(1.1);
+            color: #ffd700;
+        }
+        
+        /* 响应式调整header */
+        @media (max-width: 480px) {
+            .header-content {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .logo {
+                order: 1;
+            }
+            
+            .slogan {
+                order: 3;
+                width: 100%;
+            }
+            
+            .auth-icons {
+                order: 2;
+            }
+        }
+        
+        /* 美化导航 */
+        .mobile-nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-list {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 15px;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .nav-item {
+            flex-shrink: 0;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 15px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: #667eea;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+        
+        /* 美化banner */
+        .banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .banner h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .banner p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .banner-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .banner-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 美化section */
+        section {
+            margin: 40px 0;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+        
+        /* 团队简介 */
+        .intro-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .team-photo {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 12px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-photo:hover {
+            transform: scale(1.05);
+        }
+        
+        .intro-text h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .intro-text p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        /* 新闻列表 */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .news-item {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .news-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: #e8f0fe;
+        }
+        
+        .news-content h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .news-source {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* 服务专栏 */
+        .columns-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .column-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .column-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .column-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .column-item h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .column-item p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        /* 新春晚会横幅 */
+        .newyear-banner {
+            margin: 40px 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .newyear-banner img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .newyear-banner img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* 关注我们 */
+        .follow-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .follow-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .follow-item:hover {
+            background: #e8f0fe;
+            transform: translateY(-2px);
+        }
+        
+        .follow-item h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .qrcode {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        
+        .social-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .douyin:hover {
+            color: #fe2c55;
+        }
+        
+        .bilibili:hover {
+            color: #00a1d6;
+        }
+        
+        .follow-item p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* 支持我们 */
+        .donate-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .donate-qrcode {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 美化footer */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .disclaimer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .disclaimer h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .disclaimer p {
+            font-size: 12px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 480px) {
+            section {
+                padding: 20px;
+            }
+            
+            .columns-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .follow-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 新年装饰样式 */
+        
+        /* 雪花样式 */
+        .snowflake {
+            position: fixed;
+            color: #fff;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* 灯笼样式 */
+        .lantern {
+            position: fixed;
+            top: 80px;
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(180deg, #ff4444 0%, #cc0000 100%);
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.5);
+            z-index: 1000;
+            animation: sway 2s ease-in-out infinite alternate;
+        }
+        
+        .lantern::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 12px;
+            width: 16px;
+            height: 16px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+        
+        .lantern::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 15px;
+            width: 10px;
+            height: 15px;
+            background: #ffd700;
+            border-radius: 5px;
+        }
+        
+        .lantern.left {
+            left: 10px;
+        }
+        
+        .lantern.right {
+            right: 10px;
+        }
+        
+        @keyframes sway {
+            0% {
+                transform: rotate(-5deg);
+            }
+            100% {
+                transform: rotate(5deg);
+            }
+        }
+        
+        /* 春联样式 */
+        .couplet {
+            position: fixed;
+            top: 150px;
+            width: 60px;
+            height: 200px;
+            background: linear-gradient(180deg, #cc0000 0%, #8b0000 100%);
+            color: #ffd700;
+            font-family: 'SimHei', sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 30px;
+            padding: 20px 5px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(204, 0, 0, 0.5);
+        }
+        
+        .couplet.left {
+            left: 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .couplet.right {
+            right: 0;
+            border-radius: 10px 0 0 10px;
+        }
+        
+        /* 福字样式 */
+        .fu-character {
+            position: fixed;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 60px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
+            z-index: 1000;
+            animation: rotate 5s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: translateX(-50%) rotate(0deg);
+            }
+            100% {
+                transform: translateX(-50%) rotate(360deg);
+            }
+        }
+        
+        /* 倒计时样式 */
+        .countdown-container {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.5);
+        }
+        
+        .countdown-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffd700;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 10px;
+            border-radius: 10px;
+            min-width: 70px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .countdown-number {
+            font-size: 32px;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+        
+        /* 新年装饰动画 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .new-year-decoration {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* 广告弹窗样式 */
+        .ad-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .ad-popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .ad-content {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: popupSlideIn 0.5s ease-out;
+        }
+        
+        @keyframes popupSlideIn {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .ad-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: #f0f0f0;
+        }
+        
+        .ad-close:hover {
+            background: #ff4444;
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .ad-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .ad-header h2 {
+            font-size: 24px;
+            color: #dc143c;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .ad-header p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .ad-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .ad-info {
+            margin-bottom: 20px;
+        }
+        
+        .ad-info p {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .ad-cta {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .ad-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        /* 新春晚会入口样式 */
+        .newyear-entrance {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(255, 68, 68, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .newyear-entrance h3 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .newyear-entrance p {
+            color: white;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .newyear-entrance .cta-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: #cc0000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .newyear-entrance .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- 广告弹窗 -->
+    <div class="ad-popup" id="adPopup">
+        <div class="ad-content">
+            <div class="ad-close" id="adClose">&times;</div>
+            <div class="ad-header">
+                <h2>🎭 2026新春晚会</h2>
+                <p>天马行空-马到成功</p>
+            </div>
+            <img src="photo/横幅.jpg" alt="新春晚会宣传图" class="ad-image">
+            <div class="ad-info">
+                <p>2026年2月10日 20:00</p>
+                <p>线上直播，诚邀您的参与！</p>
+                <p>精彩节目，惊喜不断，千万不要错过！</p>
+            </div>
+            <a href="newyear-special.html" class="ad-cta">立即报名参与</a>
+        </div>
+    </div>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="photo/logo.png" alt="Logo">
+                <div class="logo-text">
+                    <div class="logo-main">天马行空创意网</div>
+                    <div class="logo-sub">TianMa Creative Network</div>
+                </div>
+            </div>
+            <div class="slogan">拥抱创意 点亮人生</div>
+            <div class="auth-icons">
+                <a href="login.html" class="auth-icon">🔑</a>
+                <a href="register.html" class="auth-icon">📱</a>
+            </div>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">首页</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">关于我们</a></li>
+            <li class="nav-item"><a href="team-info.html" class="nav-link">团队查询</a></li>
+            <li class="nav-item"><a href="download-materials.html" class="nav-link">资料下载</a></li>
+            <li class="nav-item"><a href="download-software.html" class="nav-link">软件下载</a></li>
+            <li class="nav-item"><a href="video.html" class="nav-link">视频区</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 新年装饰元素 -->
+    <div class="lantern left"></div>
+    <div class="lantern right"></div>
+    
+    <div class="banner">
+        <div class="banner-slider">
+            <div class="banner-slide active" style="background-image: url('banners/banner1.jpg');">
+                <div class="container banner-content">
+                    <h1>天马行空创意网</h1>
+                    <p>天马行空创意网打造更实用的资源和内容</p>
+                    <a href="about.html" class="banner-btn">了解我们</a>
+                </div>
+            </div>
+            <div class="banner-slide" style="background-image: url('banners/banner2.jpg');">
+                <div class="container banner-content">
+                    <h1>创意无限</h1>
+                    <p>探索创意的无限可能</p>
+                    <a href="about.html" class="banner-btn">了解我们</a>
+                </div>
+            </div>
+            <div class="banner-slide" style="background-image: url('banners/banner3.jpg');">
+                <div class="container banner-content">
+                    <h1>合作共赢</h1>
+                    <p>与我们一起创造美好未来</p>
+                    <a href="about.html" class="banner-btn">了解我们</a>
+                </div>
+            </div>
+            <div class="banner-slide" style="background-image: url('banners/banner4.png');">
+                <div class="container banner-content">
+                    <h1>2026年天马行空创意团队新春晚会</h1>
+                    <p>天马行空-马到成功</p>
+                    <a href="newyear-special.html" class="banner-btn">了解更多</a>
+                </div>
+            </div>
+        </div>
+        <div class="banner-controls">
+            <button class="banner-prev" onclick="changeSlide(-1)">←</button>
+            <button class="banner-next" onclick="changeSlide(1)">→</button>
+        </div>
+        <div class="banner-indicators">
+            <span class="indicator active" onclick="goToSlide(0)"></span>
+            <span class="indicator" onclick="goToSlide(1)"></span>
+            <span class="indicator" onclick="goToSlide(2)"></span>
+            <span class="indicator" onclick="goToSlide(3)"></span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- 跨年倒计时 -->
+        <div class="countdown-container" id="countdown"></div>
+        <!-- 团队简介 -->
+        <section class="team-intro">
+            <h2 class="section-title">团队简介</h2>
+            <div class="intro-content">
+                <img src="photo/team-photo.jpg" alt="团队照片" class="team-photo">
+                <div class="intro-text">
+                    <h3>天马行空创意团队</h3>
+                    <p>天马行空创意团队成立于2019年，由最初的八逗笑乐团队改为天马行空创意团队，最先是由张生智、李锦华、陈兵组合的一支小众精英的团队，团队共生共荣，风格主要以创意、创新为主，自媒体团队现团队有16名成员。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 新春晚会入口 -->
+        <div class="newyear-entrance">
+            <h3>🎉 2026年新春晚会</h3>
+            <p>天马行空-马到成功</p>
+            <p>时间：2026年2月10日 20:00</p>
+            <p>地点：线上直播</p>
+            <a href="newyear-special.html" class="cta-btn">立即报名参与</a>
+        </div>
+        
+        <!-- 团队热点 -->
+        <section class="news">
+            <h2 class="section-title">团队热点</h2>
+            <div class="news-list">
+                <a href="news-detail1.html" class="news-item">
+                    <div class="news-content">
+                        <h3>天马行空创意团队2025年举办普通专业技能联合测考试圆满结束！</h3>
+                        <div class="news-source">今日头条 · 官方报道</div>
+                    </div>
+                </a>
+                
+                <a href="news-detail2.html" class="news-item">
+                    <div class="news-content">
+                        <h3>极简设备，极致表达 —— 天马行空创意团队《人生道路之反转》圆满杀青！</h3>
+                        <div class="news-source">团队动态 · 2024-12-15</div>
+                    </div>
+                </a>
+                
+                <a href="news-detail3.html" class="news-item">
+                    <div class="news-content">
+                        <h3>微电影《绝意人生》1 月 23 日定档 张生智献唱主题曲《我》诠释拼搏力量</h3>
+                        <div class="news-source">团队动态 · 2025-01-20</div>
+                    </div>
+                </a>
+                
+                <a href="newyear-special.html" class="news-item">
+                    <div class="news-content">
+                        <h3>2026年新春晚会 - 天马行空-马到成功</h3>
+                        <div class="news-source">2026年2月10日 20:00 线上直播</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- 专栏 -->
+        <section class="columns">
+            <h2 class="section-title">服务专栏</h2>
+            <div class="columns-grid">
+                <a href="script-writing.html" class="column-item">
+                    <div class="column-icon">📝</div>
+                    <h3>剧本创作</h3>
+                    <p>进入剧本创作编辑器</p>
+                </a>
+                
+                <a href="online-tools.html" class="column-item">
+                    <div class="column-icon">🔧</div>
+                    <h3>在线工具</h3>
+                    <p>访问各种实用在线工具</p>
+                </a>
+                
+                <a href="download-materials.html" class="column-item">
+                    <div class="column-icon">📚</div>
+                    <h3>资料下载</h3>
+                    <p>下载团队资料</p>
+                </a>
+                
+                <a href="video.html" class="column-item">
+                    <div class="column-icon">🎬</div>
+                    <h3>视频专区</h3>
+                    <p>观看团队视频作品</p>
+                </a>
+                
+                <a href="https://www.kaoshixing.com/login/account/login/625432?nextUrl=https%3A%2F%2Fv.kaoshixing.com%2Fexam%2FaiInterview%2Fpc%2F%23%2Flist" class="column-item">
+                    <div class="column-icon">📋</div>
+                    <h3>考核系统</h3>
+                    <p>进入团队考核系统</p>
+                </a>
+                
+                <a href="https://tmxkcytd.feishu.cn/drive/home/" class="column-item">
+                    <div class="column-icon">📅</div>
+                    <h3>服务台</h3>
+                    <p>进入服务台</p>
+                </a>
+            </div>
+        </section>
+        
+        <!-- 新春晚会宣传 -->
+        <section class="newyear-banner" style="margin: 30px 0; text-align: center;">
+            <a href="newyear-special.html" style="display: block; text-decoration: none;">
+                <img src="photo/横幅.jpg" alt="2026年天马行空创意团队新春晚会" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+            </a>
+        </section>
+        
+        <!-- 关注我们 -->
+        <section class="follow-us">
+            <h2 class="section-title">关注我们</h2>
+            <div class="follow-grid">
+                <div class="follow-item">
+                    <h3>微信公众号</h3>
+                    <img src="photo/gzh.jpg" alt="微信公众号" class="qrcode">
+                    <p>扫码关注获取更多创意内容</p>
+                </div>
+                
+                <div class="follow-item">
+                    <h3>抖音</h3>
+                    <a href="https://www.douyin.com/user/MS4wLjABAAAAP6ezeyxVFiKKdbqG_w3CrjNnFLSycenlG86g3XwMybQ" target="_blank">
+                        <div class="social-icon douyin">🎵</div>
+                    </a>
+                    <p>关注抖音获取更多精彩视频</p>
+                </div>
+                
+                <div class="follow-item">
+                    <h3>哔哩哔哩</h3>
+                    <a href="https://space.bilibili.com/1889102228?spm_id_from=333.337.0.0" target="_blank">
+                        <div class="social-icon bilibili">📺</div>
+                    </a>
+                    <p>关注B站获取更多创意内容</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 支持我们 -->
+        <section class="donate">
+            <h2 class="section-title">支持我们</h2>
+            <div class="donate-content">
+                <img src="photo/zsm.jpg" alt="赞赏码" class="donate-qrcode">
+                <p>如果你喜欢我们的内容，不妨支持一下我们！</p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top" title="回到顶部">↑</button>
+    
+    <footer>
+        <div class="container">
+            <p>© 2024 天马行空创意网. 保留所有权利.</p>
+            <p><a href="https://tmxkcy.xyz" class="desktop-link" style="color: white; text-decoration: none; font-weight: bold; background-color: #ffc107; padding: 8px 16px; border-radius: 20px; display: inline-block; margin: 10px 0;">电脑版</a></p>
+            <div class="disclaimer">
+                <h3>免责声明</h3>
+                <p>本网站尚未进行ICP备案，仅供学习和交流使用。网站内容仅代表作者个人观点，不代表任何官方立场。</p>
+                <p>本网站提供的信息仅供参考，不构成任何投资建议或其他建议。使用本网站信息所造成的任何后果，本网站不承担任何责任。</p>
+                <p>本网站可能包含外部链接，对于这些链接指向的网站内容，本网站不承担任何责任。</p>
+                <p>如有侵权，请联系我们删除相关内容。联系方式：tmxkcytd@foxmail.com</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/script.js"></script>
+    <script>
+        // 回到顶部按钮功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            // 滚动事件监听
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            
+            // 点击回到顶部
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 雪花飘落动画
+        function createSnowflakes() {
+            const snowflakesContainer = document.createElement('div');
+            snowflakesContainer.style.position = 'fixed';
+            snowflakesContainer.style.top = '0';
+            snowflakesContainer.style.left = '0';
+            snowflakesContainer.style.width = '100%';
+            snowflakesContainer.style.height = '100%';
+            snowflakesContainer.style.pointerEvents = 'none';
+            snowflakesContainer.style.zIndex = '9999';
+            document.body.appendChild(snowflakesContainer);
+            
+            function createSnowflake() {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = '❄';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                snowflake.style.animationDelay = Math.random() * 2 + 's';
+                snowflake.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                snowflake.style.opacity = Math.random() * 0.8 + 0.2;
+                
+                snowflakesContainer.appendChild(snowflake);
+                
+                setTimeout(() => {
+                    snowflake.remove();
+                }, 5000);
+            }
+            
+            setInterval(createSnowflake, 100);
+        }
+        
+        // 跨年倒计时功能
+        function initCountdown() {
+            const countdownContainer = document.getElementById('countdown');
+            if (!countdownContainer) return;
+            
+            const targetDate = new Date('2026-01-01T00:00:00').getTime();
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    countdownContainer.innerHTML = `
+                        <div class="countdown-title">新年快乐！</div>
+                        <p style="font-size: 20px; color: #ffd700;">2026年已经到来！</p>
+                    `;
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                countdownContainer.innerHTML = `
+                    <div class="countdown-title">距离2026年还有</div>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number">${days}</span>
+                            <span class="countdown-label">天</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number">${hours}</span>
+                            <span class="countdown-label">时</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number">${minutes}</span>
+                            <span class="countdown-label">分</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number">${seconds}</span>
+                            <span class="countdown-label">秒</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+        
+        // 广告弹窗功能
+        function initAdPopup() {
+            const adPopup = document.getElementById('adPopup');
+            const adClose = document.getElementById('adClose');
+            
+            if (!adPopup || !adClose) return;
+            
+            // 页面加载后3秒显示广告弹窗
+            setTimeout(() => {
+                adPopup.classList.add('show');
+            }, 3000);
+            
+            // 点击关闭按钮关闭广告弹窗
+            adClose.addEventListener('click', () => {
+                adPopup.classList.remove('show');
+            });
+            
+            // 点击弹窗外部关闭广告弹窗
+            adPopup.addEventListener('click', (e) => {
+                if (e.target === adPopup) {
+                    adPopup.classList.remove('show');
+                }
+            });
+        }
+        
+        // 初始化新年效果
+        document.addEventListener('DOMContentLoaded', function() {
+            createSnowflakes();
+            initCountdown();
+            initAdPopup();
+        });
+    </script>
+</body>
+</html>

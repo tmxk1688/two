@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>资料下载 - 天马行空创意网</title>
+    <link rel="icon" href="photo/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="photo/logo.png" alt="Logo">
+                <div class="logo-text">
+                    <div class="logo-main">天马行空创意网</div>
+                    <div class="logo-sub">TianMa Creative Network</div>
+                </div>
+            </div>
+            <div class="slogan">拥抱创意 点亮人生</div>
+            <div class="auth-icons">
+                <a href="login.html" class="auth-icon">🔑</a>
+                <a href="register.html" class="auth-icon">📱</a>
+            </div>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">首页</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">关于我们</a></li>
+            <li class="nav-item"><a href="team-info.html" class="nav-link">团队查询</a></li>
+            <li class="nav-item"><a href="download-materials.html" class="nav-link">资料下载</a></li>
+            <li class="nav-item"><a href="download-software.html" class="nav-link">软件下载</a></li>
+            <li class="nav-item"><a href="video.html" class="nav-link">视频区</a></li>
+        </ul>
+    </nav>
+    
+    <div class="banner">
+        <div class="container banner-content">
+            <h1>资料下载</h1>
+            <p>提供团队相关资料下载服务</p>
+            <a href="#" class="banner-btn">了解更多</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="content-section">
+            <h2>资料下载</h2>
+            <p>本专区提供团队相关的各种资料下载，包括策划方案、设计模板、培训资料等。</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>资料列表</h2>
+            <div class="download-condition" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <h3 style="color: #4facfe; margin-bottom: 10px;">📌 下载说明</h3>
+                <p>为了支持我们团队的发展，下载资料需要：</p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li>1. 关注我们的微信公众号</li>
+                    <li>2. 在公众号内回复 <strong>权限码</strong> 获取下载权限码</li>
+                </ul>
+                <div style="display: flex; gap: 15px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                    <button class="download-btn" onclick="showWechatQrcode()" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 10px 20px; border: none; border-radius: 4px; color: white; cursor: pointer; margin-bottom: 10px;">📱 查看公众号二维码</button>
+                    <button class="download-btn" onclick="showAppreciationCode()" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 10px 20px; border: none; border-radius: 4px; color: white; cursor: pointer; margin-bottom: 10px;">💰 支持我们（打赏）</button>
+                </div>
+                <p style="color: #666; font-size: 14px; margin-top: 15px; text-align: center;">获取权限码后，输入下方输入框即可下载</p>
+            </div>
+            
+            <!-- 公众号二维码弹窗 -->
+            <div id="wechatModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+                <div style="background-color: white; margin: 15% auto; padding: 20px; border-radius: 10px; width: 90%; max-width: 300px; text-align: center; position: relative; box-shadow: 0 8px 30px rgba(0,0,0,0.3);">
+                    <span class="close" onclick="closeModal('wechatModal')" style="position: absolute; right: 15px; top: 10px; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+                    <h3 style="color: #4facfe; margin-bottom: 20px;">关注公众号获取权限码</h3>
+                    <div style="margin: 0 auto 20px; width: 200px; height: 200px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; border: 1px solid #ddd; border-radius: 8px;">
+                        <!-- 公众号二维码图片 -->
+                        <img src="photo/gzh.jpg" alt="公众号二维码" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <p style="margin-bottom: 20px; color: #666;">扫码关注后，回复 <strong>权限码</strong> 获取下载权限码</p>
+                    <button class="download-btn" onclick="closeModal('wechatModal')" style="padding: 10px 20px; background-color: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer;">我已关注</button>
+                </div>
+            </div>
+            
+            <!-- 赞赏码弹窗 -->
+            <div id="appreciationModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+                <div style="background-color: white; margin: 15% auto; padding: 20px; border-radius: 10px; width: 90%; max-width: 300px; text-align: center; position: relative; box-shadow: 0 8px 30px rgba(0,0,0,0.3);">
+                    <span class="close" onclick="closeModal('appreciationModal')" style="position: absolute; right: 15px; top: 10px; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+                    <h3 style="color: #fa709a; margin-bottom: 20px;">支持我们</h3>
+                    <p style="margin-bottom: 20px; color: #666;">感谢您的支持！您的打赏将用于团队发展和内容更新。</p>
+                    <div style="margin: 0 auto 20px; width: 200px; height: 200px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; border: 1px solid #ddd; border-radius: 8px;">
+                        <!-- 赞赏码图片 -->
+                        <img src="photo/zsm.jpg" alt="赞赏码" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
+                    </div>
+                    <button class="download-btn" onclick="closeModal('appreciationModal')" style="padding: 10px 20px; background-color: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer;">关闭</button>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 15px; flex-wrap: wrap;">
+                    <input type="text" placeholder="请输入下载权限码" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px; flex: 1; min-width: 200px;" id="downloadCode">
+                    <button class="download-btn" onclick="verifyDownload()" style="padding: 10px 20px; background-color: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer;">验证权限</button>
+                </div>
+                <p id="verificationStatus" style="color: #666; font-size: 14px;"></p>
+            </div>
+            
+            <ul class="download-list" style="list-style: none; margin-top: 20px;">
+                <li class="download-item" style="border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 5px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                    <div class="download-info" style="flex: 1;">
+                        <h4 style="color: #0066cc; margin-bottom: 5px; font-size: 16px;">天马行空创意团队升职考核试卷（剪辑师、策划员、配音员）</h4>
+                        <p style="font-size: 14px; color: #666;">文件类型：DOCX | 上传时间：2024-06-01 | 下载次数：45</p>
+                    </div>
+                    <a href="资料下载/天马行空创意团队升职考核试卷（剪辑师、策划员、配音员）.docx" class="download-btn" download onclick="return checkPermission()" style="padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 4px; align-self: center;">下载</a>
+                </li>
+                
+                <li class="download-item" style="border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 5px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                    <div class="download-info" style="flex: 1;">
+                        <h4 style="color: #0066cc; margin-bottom: 5px; font-size: 16px;">天马行空创意团队微短片《人生道路之反转》剧本</h4>
+                        <p style="font-size: 14px; color: #666;">文件类型：DOCX | 上传时间：2024-06-05 | 下载次数：32</p>
+                    </div>
+                    <a href="资料下载/天马行空创意团队微短片《人生道路之反转》剧本.docx" class="download-btn" download onclick="return checkPermission()" style="padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 4px; align-self: center;">下载</a>
+                </li>
+                
+                <li class="download-item" style="border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 5px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                    <div class="download-info" style="flex: 1;">
+                        <h4 style="color: #0066cc; margin-bottom: 5px; font-size: 16px;">天马行空创意团队离职退团业务办理表</h4>
+                        <p style="font-size: 14px; color: #666;">文件类型：DOCX | 上传时间：2024-05-20 | 下载次数：18</p>
+                    </div>
+                    <a href="资料下载/天马行空创意团队离职退团业务办理表.docx" class="download-btn" download onclick="return checkPermission()" style="padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 4px; align-self: center;">下载</a>
+                </li>
+                
+                <li class="download-item" style="border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 5px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                    <div class="download-info" style="flex: 1;">
+                        <h4 style="color: #0066cc; margin-bottom: 5px; font-size: 16px;">微电影作品发行协议书</h4>
+                        <p style="font-size: 14px; color: #666;">文件类型：DOCX | 上传时间：2024-05-15 | 下载次数：27</p>
+                    </div>
+                    <a href="资料下载/微电影作品发行协议书.docx" class="download-btn" download onclick="return checkPermission()" style="padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 4px; align-self: center;">下载</a>
+                </li>
+                
+                <li class="download-item" style="border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 5px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                    <div class="download-info" style="flex: 1;">
+                        <h4 style="color: #0066cc; margin-bottom: 5px; font-size: 16px;">演职人员信息表</h4>
+                        <p style="font-size: 14px; color: #666;">文件类型：DOCX | 上传时间：2024-05-10 | 下载次数：56</p>
+                    </div>
+                    <a href="资料下载/演职人员信息表.docx" class="download-btn" download onclick="return checkPermission()" style="padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 4px; align-self: center;">下载</a>
+                </li>
+            </ul>
+        </div>
+        
+        <script>
+            // 下载权限状态
+            let isPermissionVerified = false;
+            
+            // 显示公众号二维码弹窗
+            function showWechatQrcode() {
+                document.getElementById('wechatModal').style.display = 'block';
+            }
+            
+            // 显示赞赏码弹窗
+            function showAppreciationCode() {
+                document.getElementById('appreciationModal').style.display = 'block';
+            }
+            
+            // 关闭弹窗
+            function closeModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+            
+            // 点击弹窗外部关闭弹窗
+            window.onclick = function(event) {
+                if (event.target.className === 'modal') {
+                    event.target.style.display = 'none';
+                }
+            }
+            
+            // 验证下载权限
+            function verifyDownload() {
+                const codeInput = document.getElementById('downloadCode');
+                const code = codeInput.value.trim();
+                const statusElement = document.getElementById('verificationStatus');
+                
+                
+                if (code === 'tmxk2025') {
+                    // 验证通过
+                    isPermissionVerified = true;
+                    statusElement.innerHTML = '<span style="color: #28a745;">✓ 权限验证通过，可以下载所有资料</span>';
+                } else {
+                    // 验证失败
+                    isPermissionVerified = false;
+                    statusElement.innerHTML = '<span style="color: #dc3545;">✗ 权限码错误，请关注公众号并回复"权限码"获取正确的权限码</span>';
+                }
+            }
+            
+            // 检查下载权限
+            function checkPermission() {
+                if (!isPermissionVerified) {
+                    alert('请先输入下载权限码并验证通过后再下载！');
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </div>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top" title="回到顶部">↑</button>
+    
+    <footer>
+        <div class="container">
+            <p>© 2024 天马行空创意网. 保留所有权利.</p>
+            <p><a href="https://tmxkcy.xyz" class="desktop-link" style="color: white; text-decoration: none; font-weight: bold; background-color: #ffc107; padding: 8px 16px; border-radius: 20px; display: inline-block; margin: 10px 0;">电脑版</a></p>
+            <div class="disclaimer">
+                <h3>免责声明</h3>
+                <p>本网站尚未进行ICP备案，仅供学习和交流使用。网站内容仅代表作者个人观点，不代表任何官方立场。</p>
+                <p>本网站提供的信息仅供参考，不构成任何投资建议或其他建议。使用本网站信息所造成的任何后果，本网站不承担任何责任。</p>
+                <p>本网站可能包含外部链接，对于这些链接指向的网站内容，本网站不承担任何责任。</p>
+                <p>如有侵权，请联系我们删除相关内容。联系方式：tmxkcytd@foxmail.com</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/script.js"></script>
+    <script>
+        // 回到顶部按钮功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            // 滚动事件监听
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            
+            // 点击回到顶部
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <!-- 新年主题样式 -->
+    <link rel="stylesheet" href="css/newyear.css">
+    <!-- 新年主题脚本 -->
+    <script src="js/newyear.js"></script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>关于我们 - 天马行空创意网</title>
+    <link rel="icon" href="photo/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 美化header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            margin-right: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-main {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .slogan {
+            font-size: 16px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .auth-icon {
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-icon:hover {
+            transform: scale(1.1);
+            color: #ffd700;
+        }
+        
+        /* 响应式调整header */
+        @media (max-width: 480px) {
+            .header-content {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .logo {
+                order: 1;
+            }
+            
+            .slogan {
+                order: 3;
+                width: 100%;
+            }
+            
+            .auth-icons {
+                order: 2;
+            }
+        }
+        
+        /* 美化导航 */
+        .mobile-nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-list {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 15px;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .nav-item {
+            flex-shrink: 0;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 15px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: #667eea;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+        
+        /* 美化banner */
+        .banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .banner h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .banner p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .banner-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .banner-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 美化section */
+        section {
+            margin: 40px 0;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+        
+        /* 团队简介 */
+        .about-content {
+            line-height: 1.7;
+            color: #666;
+        }
+        
+        .about-content h3 {
+            font-size: 18px;
+            color: #333;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+        
+        .about-content p {
+            margin-bottom: 15px;
+        }
+        
+        .about-content img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 美化footer */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .disclaimer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .disclaimer h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .disclaimer p {
+            font-size: 12px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+        
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="photo/logo.png" alt="Logo">
+                <div class="logo-text">
+                    <div class="logo-main">天马行空创意网</div>
+                    <div class="logo-sub">TianMa Creative Network</div>
+                </div>
+            </div>
+            <div class="slogan">拥抱创意 点亮人生</div>
+            <div class="auth-icons">
+                <a href="login.html" class="auth-icon">🔑</a>
+                <a href="register.html" class="auth-icon">📱</a>
+            </div>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">首页</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link active">关于我们</a></li>
+            <li class="nav-item"><a href="team-info.html" class="nav-link">团队查询</a></li>
+            <li class="nav-item"><a href="download-materials.html" class="nav-link">资料下载</a></li>
+            <li class="nav-item"><a href="download-software.html" class="nav-link">软件下载</a></li>
+            <li class="nav-item"><a href="video.html" class="nav-link">视频区</a></li>
+        </ul>
+    </nav>
+    
+    <div class="banner">
+        <div class="container banner-content">
+            <h1>关于我们</h1>
+            <p>了解天马行空创意团队的发展历程、文化理念和核心优势</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <section class="team-intro">
+            <h2 class="section-title">团队简介</h2>
+            <div class="intro-content">
+                <img src="photo/team-photo.jpg" alt="团队照片" class="team-photo">
+                <div class="intro-text">
+                    <h3>天马行空创意团队</h3>
+                    <p>天马行空创意团队是一支活跃的创意团队，致力于多种创意项目，包括微电影、短片和社交媒体内容。我们始终保持着对创意的热爱和追求，不断探索新的创作领域和表现形式，为观众带来优质的创意内容。</p>
+                    <p>团队成员充满活力和创意，他们来自不同的专业背景，拥有丰富的行业经验和专业技能。在天马行空，每个人都能充分发挥自己的创意才华，共同为客户创造价值。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h2 class="section-title">发展历程</h2>
+            <div class="about-content">
+                <h3>2019年 - 团队成立</h3>
+                <p>团队最初由张生智、李锦华、陈兵三人组建，成立时名为"八逗笑乐团队"，开始涉足创意内容创作领域。</p>
+                
+                <h3>2023年 - 品牌升级</h3>
+                <p>正式更名为"天马行空创意团队"，确立了以创意为核心的发展方向，业务范围逐渐扩展到微电影、短片和社交媒体内容等多个领域。</p>
+                
+                <h3>至今 - 持续发展</h3>
+                <p>团队专注于创意领域，稳扎稳打，不断提升创作能力，推出了一系列创意作品，在行业内积累了一定的经验和认可。</p>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h2 class="section-title">团队活动</h2>
+            <div class="about-content">
+                <h3>2025年普通专业技能联合测考试</h3>
+                <p>最近，天马行空创意团队举办了2025年普通专业技能联合测考试，所有成员参与了线上线下结合的考试形式。考试内容涵盖团队合作、自媒体运营、拍摄与后期等多项技能，旨在提升团队整体专业水平和协作能力。</p>
+                
+                <h3>微电影《绝意人生》</h3>
+                <p>团队制作了微电影《绝意人生》，尝试了影视创作领域的探索，在剧本创作、拍摄和后期制作等方面积累了宝贵经验。</p>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h2 class="section-title">团队文化</h2>
+            <div class="about-content">
+                <h3>核心理念</h3>
+                <p>拥抱创意，点亮人生</p>
+                
+                <h3>团队精神</h3>
+                <p>团结、创新、专注、务实</p>
+                
+                <h3>服务宗旨</h3>
+                <p>以创意为核心，以质量为基础</p>
+                
+                <h3>发展目标</h3>
+                <p>专注影视创意领域，成为具有影响力的影视创意团队</p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top" title="回到顶部">↑</button>
+    
+    <footer>
+        <div class="container">
+            <p>© 2024 天马行空创意网. 保留所有权利.</p>
+            <p><a href="https://tmxkcy.xyz" class="desktop-link" style="color: white; text-decoration: none; font-weight: bold; background-color: #ffc107; padding: 8px 16px; border-radius: 20px; display: inline-block; margin: 10px 0;">电脑版</a></p>
+            <div class="disclaimer">
+                <h3>免责声明</h3>
+                <p>本网站尚未进行ICP备案，仅供学习和交流使用。网站内容仅代表作者个人观点，不代表任何官方立场。</p>
+                <p>本网站提供的信息仅供参考，不构成任何投资建议或其他建议。使用本网站信息所造成的任何后果，本网站不承担任何责任。</p>
+                <p>本网站可能包含外部链接，对于这些链接指向的网站内容，本网站不承担任何责任。</p>
+                <p>如有侵权，请联系我们删除相关内容。联系方式：tmxkcytd@foxmail.com</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/script.js"></script>
+    <script>
+        // 回到顶部按钮功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            // 滚动事件监听
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            
+            // 点击回到顶部
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <!-- 新年主题样式 -->
+    <link rel="stylesheet" href="css/newyear.css">
+    <!-- 新年主题脚本 -->
+    <script src="js/newyear.js"></script>
+</body>
+</html>

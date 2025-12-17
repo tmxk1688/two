@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>新闻动态 - 天马行空创意网 - TianMa Creative Network</title>
+    <link rel="icon" href="photo/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fdf5e6;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 美化header */
+        .header {
+            background: linear-gradient(135deg, #dc143c 0%, #b22222 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            margin-right: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-main {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: normal;
+        }
+        
+        .slogan {
+            font-size: 16px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 响应式调整header */
+        @media (max-width: 480px) {
+            .header-content {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .logo {
+                order: 1;
+            }
+            
+            .slogan {
+                order: 3;
+                width: 100%;
+            }
+        }
+        
+        /* 美化导航 */
+        .mobile-nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-list {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 15px;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .nav-item {
+            flex-shrink: 0;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 15px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: #dc143c;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, #dc143c 0%, #b22222 100%);
+            border-radius: 3px;
+        }
+        
+        /* 新闻banner */
+        .banner {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.2"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.2"/><circle cx="60" cy="80" r="2" fill="white" opacity="0.2"/><circle cx="40" cy="60" r="1" fill="white" opacity="0.2"/><circle cx="90" cy="20" r="1.5" fill="white" opacity="0.2"/></svg>');
+            background-size: 200px 200px;
+            animation: float 15s infinite linear;
+            transition: all 0.5s ease;
+        }
+        
+        @keyframes float {
+            from { transform: translateX(0) translateY(0); }
+            to { transform: translateX(-200px) translateY(-200px); }
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .banner h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-shadow: 0 6px 16px rgba(0,0,0,0.35);
+            font-weight: 800;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, #ffffff 0%, #f0f9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+        
+        .banner p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            color: rgba(255,255,255,0.98);
+            font-weight: 400;
+            background: rgba(0,0,0,0.3);
+            padding: 15px 30px;
+            border-radius: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+        
+        /* 主内容区域 */
+        .content {
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(220, 20, 60, 0.1);
+            margin: 20px 0;
+        }
+        
+        /* 新闻列表样式 */
+        .news-list {
+            list-style: none;
+        }
+        
+        .news-item {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe6e9 100%);
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #dc143c;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 为不同的新闻项添加不同的动画延迟 */
+        .news-item:nth-child(1) { animation-delay: 0.2s; }
+        .news-item:nth-child(2) { animation-delay: 0.4s; }
+        .news-item:nth-child(3) { animation-delay: 0.6s; }
+        
+        .news-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+        
+        .news-item h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .news-item h3 a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .news-item h3 a:hover {
+            color: #dc143c;
+        }
+        
+        .news-meta {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .news-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .news-read-more {
+            display: inline-block;
+            padding: 8px 15px;
+            background: linear-gradient(135deg, #dc143c 0%, #b22222 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(220, 20, 60, 0.2);
+        }
+        
+        .news-read-more:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(220, 20, 60, 0.3);
+        }
+        
+        /* 侧边栏样式 */
+        .sidebar {
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-section {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe6e9 100%);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(220, 20, 60, 0.1);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-section h3 {
+            color: #dc143c;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            background: linear-gradient(135deg, #dc143c 0%, #b22222 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(220, 20, 60, 0.2);
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .login-form input:focus {
+            outline: none;
+            border-color: #dc143c;
+            box-shadow: 0 4px 12px rgba(220, 20, 60, 0.15);
+        }
+        
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #dc143c 0%, #b22222 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(220, 20, 60, 0.2);
+        }
+        
+        .login-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(220, 20, 60, 0.3);
+        }
+        
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .login-options a {
+            color: #dc143c;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .login-options a:hover {
+            color: #b22222;
+        }
+        
+        .sidebar-links {
+            list-style: none;
+        }
+        
+        .sidebar-links li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-links li a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            background: white;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(220, 20, 60, 0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .sidebar-links li a:hover {
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe6e9 100%);
+            color: #dc143c;
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(220, 20, 60, 0.15);
+        }
+        
+        /* 赞赏码广告位 */
+        .sidebar-section.ad-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            text-align: center;
+        }
+        
+        .ad-section h3 {
+            color: #fa709a;
+        }
+        
+        .ad-section p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .ad-section img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            margin: 0 auto 10px;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .ad-section .ad-text {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .ad-section .ad-text p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        /* 美化footer */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .disclaimer {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .disclaimer h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .disclaimer p {
+            font-size: 12px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 480px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .sidebar-section {
+                padding: 18px;
+            }
+            
+            .banner h1 {
+                font-size: 24px;
+            }
+            
+            .banner p {
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+    <!-- 新年主题样式 -->
+    <link rel="stylesheet" href="css/newyear.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="photo/logo.png" alt="Logo">
+                <div class="logo-text">
+                    <div class="logo-main">天马行空创意网</div>
+                    <div class="logo-sub">TianMa Creative Network</div>
+                </div>
+            </div>
+            <div class="slogan">拥抱创意 点亮人生</div>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">首页</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">关于我们</a></li>
+            <li class="nav-item"><a href="team-info.html" class="nav-link">团队查询</a></li>
+            <li class="nav-item"><a href="download-materials.html" class="nav-link">资料下载</a></li>
+            <li class="nav-item"><a href="download-software.html" class="nav-link">软件下载</a></li>
+            <li class="nav-item"><a href="video.html" class="nav-link">视频区</a></li>
+        </ul>
+    </nav>
+    
+    <div class="banner">
+        <div class="container banner-content">
+            <h1>新闻动态</h1>
+            <p>了解天马行空创意团队的最新动态和活动</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- 侧边栏内容放在上方 -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3>服务登录</h3>
+                <form class="login-form">
+                    <input type="text" placeholder="请输入账号/手机">
+                    <input type="password" placeholder="密码">
+                    <button type="submit">登录</button>
+                    <div class="login-options">
+                        <a href="#">手机快捷登录</a>
+                        <a href="register.html">注册</a>
+                    </div>
+                    <div class="other-login">
+                        <!-- 可以添加第三方登录图标 -->
+                    </div>
+                </form>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>服务范围</h3>
+                <ul class="sidebar-links">
+                    <li><a href="contribute.html">投稿</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>新闻动态</h3>
+                <ul class="sidebar-links">
+                    <li><a href="news.html">MORE+</a></li>
+                </ul>
+            </div>
+            
+            <!-- 赞赏码广告位 -->
+            <div class="sidebar-section ad-section">
+                <h3>💖 支持我们</h3>
+                <p>如果你喜欢我们的内容，不妨支持一下我们！</p>
+                <img src="photo/zsm.jpg" alt="赞赏码">
+                <p style="font-size: 12px; color: #999;">扫码支持我们的创作</p>
+                <div class="ad-text">
+                    <p>关注公众号获取更多精彩内容</p>
+                    <p>回复「权限码」获取下载权限</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容放在下方 -->
+        <main class="content">
+            <div class="content-section">
+                <h2>最新新闻</h2>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <h3><a href="news-detail1.html">天马行空创意团队2025年举办普通专业技能联合测考试圆满结束！</a></h3>
+                        <div class="news-meta">
+                            <span>📅 2025-06-17</span>
+                            <span>👁️ 阅读：128</span>
+                        </div>
+                        <div class="news-excerpt">
+                            6月16日，天马行空创意团队举办2025年普通专业综合技能联合考试，团队所有成员参加！考试形式线上线下结合，涵盖团队合作、自媒体运营、拍摄与后期等多个领域，考试时间60分钟，满分100分...
+                        </div>
+                        <a href="news-detail1.html" class="news-read-more">阅读更多</a>
+                    </li>
+                    
+                    <li class="news-item">
+                        <h3><a href="news-detail2.html">极简设备，极致表达 —— 天马行空创意团队《人生道路之反转》圆满杀青！</a></h3>
+                        <div class="news-meta">
+                            <span>📅 2024-06-10</span>
+                            <span>👁️ 阅读：96</span>
+                        </div>
+                        <div class="news-excerpt">
+                            当最后一段剪辑素材导出成功，天马行空创意团队凭借两部手机、一个三脚架与一台剪辑电脑，历时数日完成了微短片《人生道路之反转》的全部拍摄与前期制作！没有专业道具加持，没有复杂设备支撑...
+                        </div>
+                        <a href="news-detail2.html" class="news-read-more">阅读更多</a>
+                    </li>
+                    
+                    <li class="news-item">
+                        <h3><a href="news-detail3.html">微电影《绝意人生》1 月 23 日定档 张生智献唱主题曲《我》诠释拼搏力量</a></h3>
+                        <div class="news-meta">
+                            <span>📅 2023-01-16</span>
+                            <span>👁️ 阅读：156</span>
+                        </div>
+                        <div class="news-excerpt">
+                            聚焦人生困境与自我救赎的微电影《绝意人生》正式官宣定档 1 月 23 日，同步释出由音乐人张生智倾力打造并献唱的主题曲《我》，以激昂旋律与深刻歌词，提前揭开影片中关于坚持与成长的动人篇章...
+                        </div>
+                        <a href="news-detail3.html" class="news-read-more">阅读更多</a>
+                    </li>
+                    
+                    <!-- 添加新年特别活动新闻 -->
+                    <li class="news-item">
+                        <h3><a href="newyear-special.html">2026年新春晚会 - 天马行空-马到成功</a></h3>
+                        <div class="news-meta">
+                            <span>📅 2026-02-10</span>
+                            <span>👁️ 阅读：234</span>
+                        </div>
+                        <div class="news-excerpt">
+                            2026年2月10日20:00，天马行空创意团队将举办"天马行空-马到成功"新年晚会在线直播，汇聚团队成员的精彩表演，包括乐队表演、舞蹈等多种形式，展现团队的创意与活力...
+                        </div>
+                        <a href="newyear-special.html" class="news-read-more">阅读更多</a>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2024 天马行空创意网. 保留所有权利.</p>
+            <p><a href="https://tmxkcy.xyz" class="desktop-link" style="color: white; text-decoration: none; font-weight: bold; background-color: #ffc107; padding: 8px 16px; border-radius: 20px; display: inline-block; margin: 10px 0;">电脑版</a></p>
+            <div class="disclaimer">
+                <h3>免责声明</h3>
+                <p>本网站尚未进行ICP备案，仅供学习和交流使用。网站内容仅代表作者个人观点，不代表任何官方立场。</p>
+                <p>本网站提供的信息仅供参考，不构成任何投资建议或其他建议。使用本网站信息所造成的任何后果，本网站不承担任何责任。</p>
+                <p>本网站可能包含外部链接，对于这些链接指向的网站内容，本网站不承担任何责任。</p>
+                <p>如有侵权，请联系我们删除相关内容。联系方式：tmxkcytd@foxmail.com</p>
+            </div>
+        </div>
+    </footer>
+    <!--Start of Gullchat.com Script-->
+    <script id="gullchat-widget-js" src="https://code.gullchat.com/widget.js?mode=production&wid=693ea57a0ee55c23ceff491f&pid=693ea2fc328f7e8be297b5dc&fm=normal&lt=default"></script>
+    <!--End of Gullchat.com Script-->
+</body>
+</html>

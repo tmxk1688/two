@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>考试预约 - 天马行空创意网</title>
+    <link rel="icon" href="photo/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fdf5e6;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 美化header */
+        .header {
+            background: linear-gradient(135deg, #dc143c 0%, #b22222 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            margin-right: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-main {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: normal;
+        }
+        
+        .slogan {
+            font-size: 16px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 响应式调整header */
+        @media (max-width: 480px) {
+            .header-content {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .logo {
+                order: 1;
+            }
+            
+            .slogan {
+                order: 3;
+                width: 100%;
+            }
+        }
+        
+        /* 美化导航 */
+        .mobile-nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-list {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 15px;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .nav-item {
+            flex-shrink: 0;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 15px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: #dc143c;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, #dc143c 0%, #b22222 100%);
+            border-radius: 3px;
+        }
+        
+        /* 页面内容 */
+        .banner {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .banner p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        /* 考试列表 */
+        .exam-list {
+            list-style: none;
+        }
+        
+        .exam-item {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .exam-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .exam-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .exam-info {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .exam-info span {
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .exam-date {
+            color: #dc143c;
+            font-weight: 500;
+        }
+        
+        .exam-time {
+            color: #0066cc;
+        }
+        
+        .exam-location {
+            color: #4caf50;
+        }
+        
+        .appointment-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,102,204,0.3);
+        }
+        
+        .appointment-btn:hover {
+            background-color: #0052a3;
+            box-shadow: 0 4px 12px rgba(0,102,204,0.4);
+            transform: translateY(-1px);
+        }
+        
+        /* 美化footer */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+            font-size: 13px;
+        }
+        
+        .disclaimer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .disclaimer h3 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .disclaimer p {
+            font-size: 11px;
+            margin-bottom: 6px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="photo/logo.png" alt="Logo">
+                <div class="logo-text">
+                    <div class="logo-main">天马行空创意网</div>
+                    <div class="logo-sub">TianMa Creative Network</div>
+                </div>
+            </div>
+            <div class="slogan">拥抱创意 点亮人生</div>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">首页</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">关于我们</a></li>
+            <li class="nav-item"><a href="team-info.html" class="nav-link">团队查询</a></li>
+            <li class="nav-item"><a href="download-materials.html" class="nav-link">资料下载</a></li>
+            <li class="nav-item"><a href="download-software.html" class="nav-link">软件下载</a></li>
+            <li class="nav-item"><a href="video.html" class="nav-link">视频区</a></li>
+        </ul>
+    </nav>
+    
+    <div class="banner">
+        <div class="container">
+            <h1>📅 考试预约</h1>
+            <p>预约团队考核考试，提升专业技能</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="main-content">
+            <h2 style="font-size: 18px; color: #dc143c; margin-bottom: 15px; font-weight: 700; text-align: center;">考试预约表单</h2>
+            
+            <form class="appointment-form">
+                <!-- 考试名称 -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 6px;">考试名称</label>
+                    <select style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: all 0.3s ease; background-color: #fafafa;" required>
+                        <option value="">请选择考试名称</option>
+                        <option value="team-skill" selected>团队综合技能考核</option>
+                    </select>
+                </div>
+                
+                <!-- 姓名 -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 6px;">姓名</label>
+                    <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: all 0.3s ease; background-color: #fafafa;" required>
+                </div>
+                
+                <!-- 身份卡号 -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 6px;">身份卡号</label>
+                    <input type="text" placeholder="请输入您的身份卡号" style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: all 0.3s ease; background-color: #fafafa;" required>
+                </div>
+                
+                <!-- 选择考试日期 -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 6px;">选择考试日期</label>
+                    <input type="date" style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: all 0.3s ease; background-color: #fafafa;" required>
+                </div>
+                
+                <!-- 选择考点 -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 6px;">选择考点</label>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #333;">
+                            <input type="radio" name="exam-location" value="online" style="width: 16px; height: 16px; accent-color: #dc143c;" required>
+                            <span>线上学习中心</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #333;">
+                            <input type="radio" name="exam-location" value="offline" style="width: 16px; height: 16px; accent-color: #dc143c;" required>
+                            <span>线下纸质</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- 验证码 -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 6px;">验证码</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="captcha-input" placeholder="请输入验证码" style="flex: 1; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: all 0.3s ease; background-color: #fafafa;" required>
+                        <canvas id="captcha-canvas" width="100" height="44" style="border-radius: 8px; cursor: pointer; background-color: #f0f0f0;"></canvas>
+                    </div>
+                    <p style="font-size: 12px; color: #666; margin-top: 5px;">点击验证码图片可刷新</p>
+                </div>
+                
+                <!-- 温馨提示 -->
+                <div style="margin-bottom: 20px; padding: 15px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px;">
+                    <h3 style="font-size: 14px; font-weight: 600; color: #856404; margin-bottom: 10px;">温馨提示</h3>
+                    <p style="font-size: 12px; color: #856404; line-height: 1.5;">需要将预约图片发送到邮箱：zsz@tmxkcy.xyz里面，否则无效</p>
+                </div>
+                
+                <!-- 提交按钮 -->
+                <button type="submit" style="width: 100%; padding: 14px; background-color: #dc143c; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(220,20,60,0.3);">提交预约</button>
+            </form>
+        </div>
+        
+        <div class="main-content">
+            <h2 style="font-size: 18px; color: #dc143c; margin-bottom: 15px; font-weight: 700;">考试须知</h2>
+            <div style="font-size: 13px; color: #666; line-height: 1.6;">
+                <p>1. 请在考试前30分钟登录系统，进行设备测试和身份验证。</p>
+                <p>2. 考试过程中请保持网络稳定，避免中途中断。</p>
+                <p>3. 考试期间请勿切换窗口或使用其他设备，否则将视为作弊。</p>
+                <p>4. 考试结束后，系统将自动提交答卷，请勿提前关闭浏览器。</p>
+                <p>5. 考试成绩将在考试结束后3个工作日内公布。</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2024 天马行空创意网. 保留所有权利.</p>
+            <p><a href="https://tmxkcy.xyz" style="color: white; text-decoration: none; font-weight: bold; background-color: #ffc107; padding: 6px 12px; border-radius: 15px; display: inline-block; margin: 10px 0; font-size: 12px;">电脑版</a></p>
+            <div class="disclaimer">
+                <h3>免责声明</h3>
+                <p>本网站尚未进行ICP备案，仅供学习和交流使用。</p>
+                <p>网站内容仅代表作者个人观点，不代表任何官方立场。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 验证码生成函数
+        function generateCaptcha() {
+            const canvas = document.getElementById('captcha-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 清空画布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 生成随机背景色
+            const bgColor = `rgba(${Math.floor(Math.random() * 100) + 155}, ${Math.floor(Math.random() * 100) + 155}, ${Math.floor(Math.random() * 100) + 155}, 0.2)`;
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 生成随机验证码
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            for (let i = 0; i < 4; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            // 保存验证码到canvas元素的dataset中
+            canvas.dataset.captcha = captcha;
+            
+            // 绘制验证码
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // 添加随机颜色和旋转
+            for (let i = 0; i < captcha.length; i++) {
+                const x = 20 + i * 20;
+                const y = canvas.height / 2;
+                const angle = (Math.random() - 0.5) * 0.4; // 随机旋转角度
+                const color = `rgb(${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)})`;
+                
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(angle);
+                ctx.fillStyle = color;
+                ctx.fillText(captcha[i], 0, 0);
+                ctx.restore();
+            }
+            
+            // 添加干扰线
+            ctx.strokeStyle = `rgba(${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, 0.5)`;
+            ctx.lineWidth = 1;
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.stroke();
+            }
+            
+            // 添加噪点
+            for (let i = 0; i < 30; i++) {
+                ctx.fillStyle = `rgba(${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, 0.5)`;
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1, 1);
+            }
+        }
+        
+        // 生成简单的二维码图案（不依赖外部库）
+        function drawSimpleQRCode(ctx, x, y, size, data) {
+            // 创建一个简单的二维码图案，使用固定的矩阵
+            const qrMatrix = [
+                [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1],
+                [1,0,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1],
+                [1,0,1,1,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1],
+                [1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1],
+                [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
+                [0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0],
+                [1,1,1,1,1,1,1,0,1,1,1,0,1,0,1,1,0,1,1,1,0],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,1,0],
+                [1,0,1,1,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,1,0],
+                [1,0,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1,1,0],
+                [1,0,1,1,1,0,1,0,1,0,0,0,0,0,1,0,1,1,0,1,0],
+                [1,0,0,0,0,0,1,0,1,0,1,1,1,0,1,0,0,1,1,1,0],
+                [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,1,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+                [1,0,1,1,1,0,1,0,1,1,0,0,1,0,1,0,1,1,1,1,1],
+                [1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1],
+                [1,0,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,1,1,0,1],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,1],
+                [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1]
+            ];
+            
+            // 绘制二维码
+            const cellSize = size / qrMatrix.length;
+            ctx.fillStyle = '#000000';
+            
+            for (let i = 0; i < qrMatrix.length; i++) {
+                for (let j = 0; j < qrMatrix[i].length; j++) {
+                    if (qrMatrix[i][j] === 1) {
+                        ctx.fillRect(x + j * cellSize, y + i * cellSize, cellSize, cellSize);
+                    }
+                }
+            }
+        }
+        
+        // 页面加载时生成验证码
+        window.onload = function() {
+            generateCaptcha();
+            
+            // 点击验证码刷新
+            const canvas = document.getElementById('captcha-canvas');
+            canvas.addEventListener('click', generateCaptcha);
+            
+            // 表单提交处理
+            const form = document.querySelector('.appointment-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 验证验证码
+                const userInput = document.getElementById('captcha-input').value;
+                const actualCaptcha = canvas.dataset.captcha;
+                
+                if (userInput.toLowerCase() !== actualCaptcha.toLowerCase()) {
+                    alert('验证码错误，请重新输入');
+                    generateCaptcha();
+                    return;
+                }
+                
+                // 获取表单数据
+                const formData = {
+                    examName: form.querySelector('select').value,
+                    name: form.querySelector('input[type="text"]').value,
+                    idCard: form.querySelectorAll('input[type="text"]')[1].value,
+                    date: form.querySelector('input[type="date"]').value,
+                    location: form.querySelector('input[name="exam-location"]:checked').value === 'online' ? '线上学习中心' : '线下纸质'
+                };
+                
+                // 生成预约图片
+                generateAppointmentImage(formData);
+            });
+        };
+        
+        // 生成预约图片函数
+        function generateAppointmentImage(formData) {
+            // 创建一个新的canvas用于生成预约图片
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 设置canvas大小
+            canvas.width = 400;
+            canvas.height = 500;
+            
+            // 绘制背景
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 添加边框
+            ctx.strokeStyle = '#dc143c';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+            
+            // 添加标题
+            ctx.fillStyle = '#dc143c';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('考试预约凭证', canvas.width / 2, 50);
+            
+            // 添加分隔线
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(30, 70);
+            ctx.lineTo(canvas.width - 30, 70);
+            ctx.stroke();
+            
+            // 添加logo
+            const logo = new Image();
+            logo.onload = function() {
+                ctx.drawImage(logo, 30, 20, 40, 40);
+                
+                // 添加表单数据
+                const data = [
+                    { label: '考试名称', value: formData.examName },
+                    { label: '姓名', value: formData.name },
+                    { label: '身份卡号', value: formData.idCard },
+                    { label: '考试日期', value: formData.date },
+                    { label: '考点', value: formData.location }
+                ];
+                
+                ctx.fillStyle = '#333333';
+                ctx.font = '16px Arial';
+                ctx.textAlign = 'left';
+                
+                let y = 110;
+                data.forEach(item => {
+                    ctx.fillStyle = '#666666';
+                    ctx.fillText(item.label + '：', 50, y);
+                    
+                    ctx.fillStyle = '#333333';
+                    ctx.fillText(item.value, 150, y);
+                    
+                    y += 40;
+                });
+                
+                // 添加生成时间
+                const now = new Date();
+                const timeString = now.toLocaleString();
+                ctx.fillStyle = '#666666';
+                ctx.font = '12px Arial';
+                ctx.fillText('生成时间：' + timeString, 50, y + 20);
+                
+                // 绘制简单的二维码图案
+                drawSimpleQRCode(ctx, canvas.width - 150, y - 100, 100, JSON.stringify(formData));
+                
+                // 添加二维码文字说明
+                ctx.fillStyle = '#666666';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('预约二维码', canvas.width - 100, y + 20);
+                
+                // 添加提示信息
+                ctx.fillStyle = '#856404';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'left';
+                ctx.fillText('温馨提示：请将此图片发送至邮箱 zsz@tmxkcy.xyz 完成预约', 50, canvas.height - 50);
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '考试预约凭证.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                
+                // 提示用户保存成功
+                alert('预约成功！请保存生成的图片并发送至指定邮箱。');
+            };
+            logo.src = 'photo/logo.png';
+        }
+    </script>
+</body>
+</html>

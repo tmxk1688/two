@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026年新春晚会演职人员申请 - 天马行空创意网</title>
+    <link rel="icon" href="photo/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fdf5e6;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 美化header */
+        .header {
+            background: linear-gradient(135deg, #dc143c 0%, #b22222 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            margin-right: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-main {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: normal;
+        }
+        
+        .slogan {
+            font-size: 16px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 响应式调整header */
+        @media (max-width: 480px) {
+            .header-content {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .logo {
+                order: 1;
+            }
+            
+            .slogan {
+                order: 3;
+                width: 100%;
+            }
+        }
+        
+
+        
+        /* 页面内容 */
+        .banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .banner p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        /* 申请表格 */
+        .application-form {
+            width: 100%;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #dc143c;
+            box-shadow: 0 2px 8px rgba(220,20,60,0.2);
+            background-color: white;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: #dc143c;
+            box-shadow: 0 2px 8px rgba(220,20,60,0.2);
+            background-color: white;
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 100px;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+            font-family: inherit;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #dc143c;
+            box-shadow: 0 2px 8px rgba(220,20,60,0.2);
+            background-color: white;
+        }
+        
+        /* 提交按钮 */
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #dc143c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(220,20,60,0.3);
+        }
+        
+        .submit-btn:hover {
+            background-color: #b22222;
+            box-shadow: 0 6px 16px rgba(220,20,60,0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* 表单提示信息 */
+        .form-note {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+        
+        /* 联系方式组 */
+        .contact-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        /* 验证码容器 */
+        .captcha-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        /* 验证码画布 */
+        #captcha-canvas {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+        
+        /* 签署确认书 */
+        .agreement-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .agreement-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #dc143c;
+            margin-bottom: 10px;
+        }
+        
+        .agreement-content {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        .agreement-content p {
+            margin-bottom: 8px;
+        }
+        
+        .agreement-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #333;
+        }
+        
+        .agreement-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #dc143c;
+        }
+        
+        /* 温馨提示 */
+        .warm-tip {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+        }
+        
+        .warm-tip h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .warm-tip p {
+            font-size: 12px;
+            color: #856404;
+            line-height: 1.5;
+        }
+        
+        /* 美化footer */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+            font-size: 13px;
+        }
+        
+        .disclaimer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .disclaimer h3 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .disclaimer p {
+            font-size: 11px;
+            margin-bottom: 6px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="photo/logo.png" alt="Logo">
+                <div class="logo-text">
+                    <div class="logo-main">天马行空创意网</div>
+                    <div class="logo-sub">TianMa Creative Network</div>
+                </div>
+            </div>
+            <div class="slogan">拥抱创意 点亮人生</div>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">首页</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">关于我们</a></li>
+            <li class="nav-item"><a href="team-info.html" class="nav-link">团队查询</a></li>
+            <li class="nav-item"><a href="download-materials.html" class="nav-link">资料下载</a></li>
+            <li class="nav-item"><a href="download-software.html" class="nav-link">软件下载</a></li>
+            <li class="nav-item"><a href="video.html" class="nav-link">视频区</a></li>
+        </ul>
+    </nav>
+    
+    <div class="banner">
+        <div class="container">
+            <h1>🎭 2026年新春晚会演职人员申请</h1>
+            <p>天马行空-马到成功</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="main-content">
+            <h2 style="font-size: 18px; color: #dc143c; margin-bottom: 15px; font-weight: 700;">申请信息</h2>
+            
+            <!-- 温馨提示 -->
+            <div class="warm-tip">
+                <h3>温馨提示</h3>
+                <p>请认真填写以下信息，提交申请后将自动生成申请凭证图片，请保存并妥善保管。</p>
+                <p>请将生成的申请凭证图片发送至邮箱：zsz@tmxkcy.xyz，否则申请无效。</p>
+            </div>
+            
+            <form class="application-form">
+                <!-- 基本信息 -->
+                <h3 style="font-size: 16px; color: #dc143c; margin-bottom: 15px; font-weight: 600;">基本信息</h3>
+                
+                <div class="form-group">
+                    <label class="form-label" for="name">姓名</label>
+                    <input type="text" id="name" class="form-input" placeholder="请输入您的姓名" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="gender">性别</label>
+                    <select id="gender" class="form-select" required>
+                        <option value="">请选择性别</option>
+                        <option value="male">男</option>
+                        <option value="female">女</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="avatar">头像</label>
+                    <input type="file" id="avatar" class="form-input" accept="image/*">
+                    <p class="form-note">请上传您的个人照片（可选）</p>
+                </div>
+                
+                <!-- 联系方式 -->
+                <h3 style="font-size: 16px; color: #dc143c; margin-bottom: 15px; font-weight: 600;">联系方式</h3>
+                <p class="form-note" style="margin-bottom: 10px;">请至少填写一种联系方式</p>
+                
+                <div class="contact-group">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" for="qq">QQ</label>
+                        <input type="text" id="qq" class="form-input" placeholder="请输入您的QQ号码">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" for="wechat">微信</label>
+                        <input type="text" id="wechat" class="form-input" placeholder="请输入您的微信号">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" for="email">邮箱</label>
+                        <input type="email" id="email" class="form-input" placeholder="请输入您的邮箱地址">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" for="phone">联系电话</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="请输入您的手机号码">
+                    </div>
+                </div>
+                
+                <!-- 团队和分组选择 -->
+                <h3 style="font-size: 16px; color: #dc143c; margin-bottom: 15px; font-weight: 600;">团队和分组选择</h3>
+                
+                <div class="form-group">
+                    <label class="form-label" for="team-group">选择团队和分组</label>
+                    <select id="team-group" class="form-select" required>
+                        <option value="">请选择团队和分组</option>
+                        <option value="director">导演组</option>
+                        <option value="assistant-director">副导演组</option>
+                        <option value="photography">摄影组</option>
+                        <option value="actor-dance">演员组-舞蹈</option>
+                        <option value="actor-music">演员组-音乐</option>
+                        <option value="actor-crosstalk">演员组-相声</option>
+                        <option value="actor-sketch">演员组-小品</option>
+                        <option value="actor-short">演员组-短片</option>
+                        <option value="actor-magic">演员组-魔术</option>
+                        <option value="actor-microfilm">演员组-微电影</option>
+                        <option value="poster-design">后期组-平面设计</option>
+                        <option value="program-packaging">后期组-节目包装</option>
+                        <option value="video-editing">后期组-视频剪辑</option>
+                        <option value="special-effects">后期组-特效制作</option>
+                        <option value="host">主持人组</option>
+                    </select>
+                </div>
+                
+                <!-- 签署确认书 -->
+                <div class="agreement-section">
+                    <h3>《2026年天马行空创意团队“天马行空-马到成功”新春晚会节目演职人员确认签署书》</h3>
+                    <div class="agreement-content">
+                        <p>本人确认自愿参加2026年天马行空创意团队“天马行空-马到成功”新春晚会的演职工作，承诺遵守团队纪律，按时参加排练和演出，服从导演组安排，认真完成各项任务。</p>
+                        <p>本节目为团队自行组织并进行收录的类型节目。</p>
+                        <p>本签署书已经确认本人的肖像权，可以进行节目录制并上传其网络。</p>
+                        <p>本人保证所提供的所有信息真实有效，如有虚假，愿意承担相应责任。</p>
+                        <p>晚会时间：2026年2月10日 20:00</p>
+                        <p>晚会地点：线上直播</p>
+                        <p>签署人：____________________</p>
+                        <p>签署日期：____________________</p>
+                    </div>
+                    <div class="agreement-checkbox">
+                        <input type="checkbox" id="agreement" required>
+                        <label for="agreement">我已阅读并同意上述条款</label>
+                    </div>
+                </div>
+                
+                <!-- 验证码 -->
+                <div class="form-group">
+                    <label class="form-label" for="captcha-input">验证码</label>
+                    <div class="captcha-container">
+                        <input type="text" id="captcha-input" class="form-input" placeholder="请输入验证码" required>
+                        <canvas id="captcha-canvas" width="100" height="44"></canvas>
+                    </div>
+                    <p class="form-note">点击验证码图片可刷新</p>
+                </div>
+                
+                <button type="submit" class="submit-btn">提交申请</button>
+            </form>
+        </div>
+        
+        <div class="main-content">
+            <h2 style="font-size: 18px; color: #dc143c; margin-bottom: 15px; font-weight: 700;">申请须知</h2>
+            <div style="font-size: 13px; color: #666; line-height: 1.6;">
+                <p>1. 请确保填写的信息真实有效，我们将根据您的申请信息进行审核。</p>
+                <p>2. 申请提交后，我们将在3个工作日内与您联系，请保持联系方式畅通。</p>
+                <p>3. 晚会时间：2026年2月10日 20:00，地点：线上直播。</p>
+                <p>4. 如有疑问，请发送邮件至：tmxkcytd@foxmail.com</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2024 天马行空创意网. 保留所有权利.</p>
+            <p><a href="https://tmxkcy.xyz" style="color: white; text-decoration: none; font-weight: bold; background-color: #ffc107; padding: 6px 12px; border-radius: 15px; display: inline-block; margin: 10px 0; font-size: 12px;">电脑版</a></p>
+            <div class="disclaimer">
+                <h3>免责声明</h3>
+                <p>本网站尚未进行ICP备案，仅供学习和交流使用。</p>
+                <p>网站内容仅代表作者个人观点，不代表任何官方立场。</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 验证码生成函数
+        function generateCaptcha() {
+            const canvas = document.getElementById('captcha-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 清空画布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 生成随机背景色
+            const bgColor = `rgba(${Math.floor(Math.random() * 100) + 155}, ${Math.floor(Math.random() * 100) + 155}, ${Math.floor(Math.random() * 100) + 155}, 0.2)`;
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 生成随机验证码
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            for (let i = 0; i < 4; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            // 保存验证码到canvas元素的dataset中
+            canvas.dataset.captcha = captcha;
+            
+            // 绘制验证码
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // 添加随机颜色和旋转
+            for (let i = 0; i < captcha.length; i++) {
+                const x = 20 + i * 20;
+                const y = canvas.height / 2;
+                const angle = (Math.random() - 0.5) * 0.4; // 随机旋转角度
+                const color = `rgb(${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)})`;
+                
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(angle);
+                ctx.fillStyle = color;
+                ctx.fillText(captcha[i], 0, 0);
+                ctx.restore();
+            }
+            
+            // 添加干扰线
+            ctx.strokeStyle = `rgba(${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, 0.5)`;
+            ctx.lineWidth = 1;
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.stroke();
+            }
+            
+            // 添加噪点
+            for (let i = 0; i < 30; i++) {
+                ctx.fillStyle = `rgba(${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, 0.5)`;
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1, 1);
+            }
+        }
+        
+        // 生成简单的二维码图案（不依赖外部库）
+        function drawSimpleQRCode(ctx, x, y, size, data) {
+            // 创建一个简单的二维码图案，使用固定的矩阵
+            const qrMatrix = [
+                [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1],
+                [1,0,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1],
+                [1,0,1,1,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1],
+                [1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1],
+                [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
+                [0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0],
+                [1,1,1,1,1,1,1,0,1,1,1,0,1,0,1,1,0,1,1,1,0],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,1,0],
+                [1,0,1,1,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,1,0],
+                [1,0,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1,1,0],
+                [1,0,1,1,1,0,1,0,1,0,0,0,0,0,1,0,1,1,0,1,0],
+                [1,0,0,0,0,0,1,0,1,0,1,1,1,0,1,0,0,1,1,1,0],
+                [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,1,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+                [1,0,1,1,1,0,1,0,1,1,0,0,1,0,1,0,1,1,1,1,1],
+                [1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1],
+                [1,0,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,1,1,0,1],
+                [1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,1],
+                [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1]
+            ];
+            
+            // 绘制二维码
+            const cellSize = size / qrMatrix.length;
+            ctx.fillStyle = '#000000';
+            
+            for (let i = 0; i < qrMatrix.length; i++) {
+                for (let j = 0; j < qrMatrix[i].length; j++) {
+                    if (qrMatrix[i][j] === 1) {
+                        ctx.fillRect(x + j * cellSize, y + i * cellSize, cellSize, cellSize);
+                    }
+                }
+            }
+        }
+        
+        // 页面加载时生成验证码
+        window.onload = function() {
+            generateCaptcha();
+            
+            // 点击验证码刷新
+            const canvas = document.getElementById('captcha-canvas');
+            canvas.addEventListener('click', generateCaptcha);
+            
+            // 表单提交处理
+            const form = document.querySelector('.application-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // 手动验证所有必填字段
+                    const name = document.getElementById('name').value;
+                    const gender = document.getElementById('gender').value;
+                    const teamGroup = document.getElementById('team-group').value;
+                    const agreement = document.getElementById('agreement').checked;
+                    
+                    if (!name) {
+                        alert('请输入姓名');
+                        return;
+                    }
+                    
+                    if (!gender) {
+                        alert('请选择性别');
+                        return;
+                    }
+                    
+                    if (!teamGroup) {
+                        alert('请选择团队和分组');
+                        return;
+                    }
+                    
+                    if (!agreement) {
+                        alert('请阅读并同意签署书');
+                        return;
+                    }
+                    
+                    // 验证验证码
+                    const userInput = document.getElementById('captcha-input').value;
+                    const actualCaptcha = canvas.dataset.captcha;
+                    
+                    if (userInput.toLowerCase() !== actualCaptcha.toLowerCase()) {
+                        alert('验证码错误，请重新输入');
+                        generateCaptcha();
+                        return;
+                    }
+                    
+                    // 验证至少填写一种联系方式
+                    const qq = document.getElementById('qq').value;
+                    const wechat = document.getElementById('wechat').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    
+                    if (!qq && !wechat && !email && !phone) {
+                        alert('请至少填写一种联系方式');
+                        return;
+                    }
+                    
+                    // 获取头像数据
+                    const avatarFile = document.getElementById('avatar').files[0];
+                    
+                    // 生成唯一申请码
+                    const applicationCode = generateApplicationCode();
+                    
+                    // 获取表单数据
+                    const formData = {
+                        name: name,
+                        gender: gender,
+                        qq: qq,
+                        wechat: wechat,
+                        email: email,
+                        phone: phone,
+                        teamGroup: teamGroup,
+                        applicationCode: applicationCode,
+                        timestamp: new Date().toLocaleString()
+                    };
+                    
+                    // 处理头像并生成申请凭证图片
+                    if (avatarFile) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            formData.avatar = e.target.result;
+                            generateApplicationImage(formData);
+                        };
+                        reader.readAsDataURL(avatarFile);
+                    } else {
+                        // 没有头像，直接生成图片
+                        generateApplicationImage(formData);
+                    }
+                });
+            } else {
+                console.error('未找到表单元素');
+            }
+        };
+        
+        // 生成唯一申请码
+        function generateApplicationCode() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `TM${year}${month}${day}${hours}${minutes}${seconds}${random}`;
+        }
+        
+        // 生成申请凭证图片函数
+        function generateApplicationImage(formData) {
+            // 创建一个新的canvas用于生成申请凭证图片
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 设置canvas大小，增加高度以容纳更多内容
+            canvas.width = 400;
+            canvas.height = 800;
+            
+            // 绘制背景
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 添加边框
+            ctx.strokeStyle = '#dc143c';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+            
+            // 添加标题
+            ctx.fillStyle = '#dc143c';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('2026年新春晚会', canvas.width / 2, 50);
+            ctx.fillText('演职人员申请凭证', canvas.width / 2, 80);
+            
+            // 添加申请码
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(`申请码：${formData.applicationCode}`, canvas.width / 2, 110);
+            
+            // 添加申请状态
+            ctx.fillStyle = '#28a745';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('申请状态：待审核', canvas.width / 2, 135);
+            
+            // 添加分隔线
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(30, 155);
+            ctx.lineTo(canvas.width - 30, 155);
+            ctx.stroke();
+            
+            // 添加头像
+            if (formData.avatar) {
+                const avatar = new Image();
+                avatar.crossOrigin = 'anonymous';
+                avatar.onload = function() {
+                    // 绘制头像圆形边框
+                    ctx.beginPath();
+                    ctx.arc(300, 190, 40, 0, Math.PI * 2);
+                    ctx.fillStyle = '#f0f0f0';
+                    ctx.fill();
+                    ctx.strokeStyle = '#dc143c';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    
+                    // 绘制头像
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(300, 190, 38, 0, Math.PI * 2);
+                    ctx.clip();
+                    ctx.drawImage(avatar, 262, 152, 76, 76);
+                    ctx.restore();
+                    
+                    // 继续绘制其他内容
+                    drawApplicationData();
+                };
+                avatar.onerror = function() {
+                    console.error('头像加载失败');
+                    // 头像加载失败，继续绘制其他内容
+                    drawApplicationData();
+                };
+                avatar.src = formData.avatar;
+            } else {
+                // 没有头像，绘制默认头像
+                ctx.beginPath();
+                ctx.arc(300, 190, 40, 0, Math.PI * 2);
+                ctx.fillStyle = '#f0f0f0';
+                ctx.fill();
+                ctx.strokeStyle = '#dc143c';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // 绘制默认头像文字
+                ctx.fillStyle = '#666666';
+                ctx.font = '24px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(formData.name.charAt(0), 300, 190);
+                
+                // 继续绘制其他内容
+                drawApplicationData();
+            }
+            
+            // 绘制申请数据函数
+            function drawApplicationData() {
+                // 添加申请数据
+                const data = [
+                    { label: '姓名', value: formData.name },
+                    { label: '性别', value: formData.gender === 'male' ? '男' : formData.gender === 'female' ? '女' : '其他' },
+                    { label: 'QQ', value: formData.qq || '未填写' },
+                    { label: '微信', value: formData.wechat || '未填写' },
+                    { label: '邮箱', value: formData.email || '未填写' },
+                    { label: '联系电话', value: formData.phone || '未填写' },
+                    { label: '申请组别', value: getGroupLabel(formData.teamGroup) },
+                    { label: '申请时间', value: formData.timestamp }
+                ];
+                
+                ctx.fillStyle = '#333333';
+                ctx.font = '16px Arial';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = 'alphabetic';
+                
+                let y = 190;
+                data.forEach(item => {
+                    ctx.fillStyle = '#666666';
+                    ctx.fillText(item.label + '：', 50, y);
+                    
+                    ctx.fillStyle = '#333333';
+                    ctx.fillText(item.value, 150, y);
+                    
+                    y += 40;
+                });
+                
+                // 绘制简单的二维码图案
+                drawSimpleQRCode(ctx, canvas.width - 150, y - 150, 100, JSON.stringify(formData));
+                
+                // 添加二维码文字说明
+                ctx.fillStyle = '#666666';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('申请二维码', canvas.width - 100, y);
+                
+                // 添加分隔线
+                y += 20;
+                ctx.strokeStyle = '#e0e0e0';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(30, y);
+                ctx.lineTo(canvas.width - 30, y);
+                ctx.stroke();
+                
+                // 添加签署书
+                y += 20;
+                ctx.fillStyle = '#dc143c';
+                ctx.font = 'bold 14px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('签署书摘要', canvas.width / 2, y);
+                
+                y += 20;
+                ctx.fillStyle = '#666666';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = 'top';
+                
+                const agreementText = [
+                    '本人确认自愿参加2026年天马行空创意团队“天马行空-马到成功”',
+                    '新春晚会的演职工作，承诺遵守团队纪律，按时参加排练和演出，',
+                    '服从导演组安排，认真完成各项任务。',
+                    '',
+                    '本签署书已经确认本人的肖像权，可以进行节目录制并上传其网络。',
+                    '',
+                    '本人保证所提供的所有信息真实有效，如有虚假，愿意承担相应责任。',
+                    '',
+                    '晚会时间：2026年2月10日 20:00',
+                    '晚会地点：线上直播',
+                    '',
+                    `签署人：${formData.name}`,
+                    `签署日期：${formData.timestamp.split(' ')[0]}`
+                ];
+                
+                let lineHeight = 16;
+                agreementText.forEach((line, index) => {
+                    ctx.fillText(line, 50, y + index * lineHeight);
+                });
+                
+                // 添加底部说明
+                y += agreementText.length * lineHeight + 30;
+                ctx.fillStyle = '#856404';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('请保存此凭证，凭此凭证参加晚会相关活动', canvas.width / 2, y);
+                ctx.fillText('请将此凭证发送至邮箱：zsz@tmxkcy.xyz', canvas.width / 2, y + 20);
+                
+                // 添加logo（使用try-catch处理可能的跨域问题）
+                const logo = new Image();
+                logo.crossOrigin = 'anonymous'; // 允许跨域图片
+                logo.onload = function() {
+                    try {
+                        ctx.drawImage(logo, 30, 20, 40, 40);
+                        
+                        // 尝试直接下载图片
+                        downloadImage(canvas);
+                    } catch (error) {
+                        console.error('绘制logo时出错:', error);
+                        // 即使logo绘制失败，也继续生成并下载图片
+                        downloadImage(canvas);
+                    }
+                };
+                logo.onerror = function() {
+                    console.error('logo图片加载失败');
+                    // 即使logo加载失败，也继续生成并下载图片
+                    downloadImage(canvas);
+                };
+                logo.src = 'photo/logo.png';
+            }
+        }
+        
+        // 下载图片函数
+        function downloadImage(canvas) {
+            try {
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '2026年新春晚会演职人员申请凭证.png';
+                
+                // 获取canvas数据URL
+                const dataURL = canvas.toDataURL('image/png');
+                
+                // 使用Blob对象创建下载链接，解决某些浏览器的下载问题
+                const blob = dataURLToBlob(dataURL);
+                const url = URL.createObjectURL(blob);
+                link.href = url;
+                
+                // 添加到文档中并点击下载
+                document.body.appendChild(link);
+                link.click();
+                
+                // 清理
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                }, 100);
+                
+                // 提示用户保存成功
+                alert('申请提交成功！请保存生成的申请凭证图片，并将图片发送至邮箱zsz@tmxkcy.xyz。');
+                alert('请务必将申请凭证图片发送至邮箱：zsz@tmxkcy.xyz，否则申请无效！');
+            } catch (error) {
+                console.error('下载图片时出错:', error);
+                alert('图片生成成功，但下载失败。请手动截图保存图片，并将图片发送至邮箱zsz@tmxkcy.xyz。');
+                
+                // 创建一个临时图片元素，显示给用户手动截图
+                const tempImg = document.createElement('img');
+                tempImg.src = canvas.toDataURL('image/png');
+                tempImg.style.maxWidth = '100%';
+                tempImg.style.border = '1px solid #e0e0e0';
+                
+                // 创建一个模态框显示图片
+                const modal = document.createElement('div');
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+                modal.style.display = 'flex';
+                modal.style.justifyContent = 'center';
+                modal.style.alignItems = 'center';
+                modal.style.zIndex = '10000';
+                
+                const modalContent = document.createElement('div');
+                modalContent.style.backgroundColor = 'white';
+                modalContent.style.padding = '20px';
+                modalContent.style.borderRadius = '10px';
+                modalContent.style.maxWidth = '90%';
+                
+                const modalTitle = document.createElement('h3');
+                modalTitle.textContent = '申请凭证图片';
+                modalTitle.style.marginBottom = '15px';
+                modalTitle.style.color = '#dc143c';
+                
+                const modalText = document.createElement('p');
+                modalText.textContent = '请手动截图保存此图片，并发送至邮箱zsz@tmxkcy.xyz';
+                modalText.style.marginBottom = '15px';
+                modalText.style.fontSize = '14px';
+                
+                const closeBtn = document.createElement('button');
+                closeBtn.textContent = '关闭';
+                closeBtn.style.padding = '10px 20px';
+                closeBtn.style.backgroundColor = '#dc143c';
+                closeBtn.style.color = 'white';
+                closeBtn.style.border = 'none';
+                closeBtn.style.borderRadius = '5px';
+                closeBtn.style.cursor = 'pointer';
+                closeBtn.style.fontSize = '14px';
+                
+                closeBtn.onclick = function() {
+                    document.body.removeChild(modal);
+                };
+                
+                modalContent.appendChild(modalTitle);
+                modalContent.appendChild(tempImg);
+                modalContent.appendChild(modalText);
+                modalContent.appendChild(closeBtn);
+                modal.appendChild(modalContent);
+                
+                document.body.appendChild(modal);
+            }
+        }
+        
+        // 将dataURL转换为Blob对象
+        function dataURLToBlob(dataURL) {
+            const parts = dataURL.split(';base64,');
+            const contentType = parts[0].split(':')[1];
+            const raw = window.atob(parts[1]);
+            const rawLength = raw.length;
+            const uInt8Array = new Uint8Array(rawLength);
+            
+            for (let i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+            
+            return new Blob([uInt8Array], { type: contentType });
+        }
+        
+        // 获取组别标签
+        function getGroupLabel(value) {
+            const groupMap = {
+                'director': '导演组',
+                'assistant-director': '副导演组',
+                'photography': '摄影组',
+                'actor-dance': '演员组-舞蹈',
+                'actor-music': '演员组-音乐',
+                'actor-crosstalk': '演员组-相声',
+                'actor-sketch': '演员组-小品',
+                'actor-short': '演员组-短片',
+                'actor-magic': '演员组-魔术',
+                'actor-microfilm': '演员组-微电影',
+                'poster-design': '后期组-平面设计',
+                'program-packaging': '后期组-节目包装',
+                'video-editing': '后期组-视频剪辑',
+                'special-effects': '后期组-特效制作',
+                'host': '主持人组'
+            };
+            return groupMap[value] || value;
+        }
+    </script>
+</body>
+</html>
