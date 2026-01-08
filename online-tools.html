@@ -18,7 +18,7 @@
         
         /* 美化header */
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -155,13 +155,13 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             border-radius: 3px;
         }
         
         /* 美化banner */
         .banner {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             padding: 40px 0;
             text-align: center;
@@ -232,7 +232,7 @@
             left: 0;
             width: 50px;
             height: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             border-radius: 3px;
         }
         
@@ -389,7 +389,7 @@
             right: 20px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             border: none;
             border-radius: 50%;
@@ -426,7 +426,7 @@
         
         /* 美化footer */
         footer {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             padding: 30px 0;
             text-align: center;
@@ -554,6 +554,427 @@
         .tool-link {
             cursor: pointer;
         }
+        
+        /* AI聊天弹窗样式 - 豆包风格 */
+        .chat-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 2000;
+        }
+        
+        .chat-modal.show {
+            display: flex;
+        }
+        
+        .chat-modal-content {
+            background-color: #f7f8fa;
+            border-radius: 16px 16px 0 0;
+            width: 100%;
+            max-width: 480px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* 聊天头部样式 - 豆包风格 */
+        .chat-header {
+            background: white;
+            color: #333;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chat-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* 机器人头像 */
+        .bot-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        .chat-close-btn {
+            background: #f0f0f0;
+            border: none;
+            color: #666;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 6px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-close-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        /* 聊天消息区域样式 - 豆包风格 */
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background-color: #f7f8fa;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        /* 聊天消息样式 - 豆包风格 */
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            animation: fadeInUp 0.3s ease-out;
+            gap: 10px;
+        }
+        
+        .chat-message.user-message {
+            justify-content: flex-end;
+        }
+        
+        .chat-message.bot-message {
+            justify-content: flex-start;
+        }
+        
+        /* 消息头像 */
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+        
+        .bot-message .message-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .user-message .message-avatar {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            line-height: 1.5;
+            position: relative;
+        }
+        
+        .user-message .message-content {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .bot-message .message-content {
+            background-color: white;
+            color: #333;
+            border: 1px solid #e5e6eb;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .message-content p {
+            margin: 0;
+        }
+        
+        /* 聊天输入区域样式 - 豆包风格 */
+        .chat-input-area {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 16px;
+            background-color: white;
+            border-top: 1px solid #e5e6eb;
+            gap: 8px;
+        }
+        
+        /* 聊天工具栏样式 - 豆包风格 */
+        .chat-input-toolbar {
+            display: flex;
+            gap: 16px;
+            padding: 8px;
+            background-color: #f7f8fa;
+            border-radius: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .chat-tool-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: #666;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 56px;
+        }
+        
+        .tool-btn-icon {
+            font-size: 22px;
+            display: block;
+        }
+        
+        .tool-btn-label {
+            font-size: 12px;
+            font-weight: 500;
+            display: block;
+        }
+        
+        .chat-tool-btn:hover {
+            background-color: rgba(79, 172, 254, 0.1);
+            color: #4facfe;
+        }
+        
+        /* 聊天输入主体样式 - 豆包风格 */
+        .chat-input-main {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+        
+        #chatInput {
+            flex: 1;
+            padding: 10px 16px;
+            border: 1px solid #e5e6eb;
+            border-radius: 20px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            background-color: #f7f8fa;
+            min-height: 40px;
+            max-height: 100px;
+            overflow-y: auto;
+            resize: none;
+        }
+        
+        #chatInput:focus {
+            border-color: #4facfe;
+            background-color: white;
+            box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.1);
+        }
+        
+        .chat-send-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(79, 172, 254, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .chat-send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.4);
+        }
+        
+        /* 图片生成选项样式 - 豆包风格 */
+        .image-generation-options {
+            background-color: white;
+            padding: 16px;
+            border-top: 1px solid #e5e6eb;
+        }
+        
+        .image-generation-options h4 {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .image-option-group {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .image-option-group label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            min-width: 40px;
+        }
+        
+        .image-option-group select {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e5e6eb;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .image-option-group select:focus {
+            border-color: #4facfe;
+            box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.1);
+        }
+        
+        .image-option-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 16px;
+        }
+        
+        .image-generate-btn,
+        .image-cancel-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .image-generate-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .image-generate-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.4);
+        }
+        
+        .image-cancel-btn {
+            background-color: #f7f8fa;
+            color: #666;
+            border: 1px solid #e5e6eb;
+        }
+        
+        .image-cancel-btn:hover {
+            background-color: #eef1f5;
+            transform: translateY(-1px);
+        }
+        
+        /* 图片消息样式 - 豆包风格 */
+        .chat-message img {
+            max-width: 80%;
+            border-radius: 12px;
+            margin: 8px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .chat-message img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* 滚动条样式 - 豆包风格 */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* 消息加载状态 - 豆包风格 */
+        .message-loading {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+        }
+        
+        .loading-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #999;
+            border-radius: 50%;
+            animation: loadingBounce 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loadingBounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1.0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -578,10 +999,12 @@
         <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">首页</a></li>
             <li class="nav-item"><a href="about.html" class="nav-link">关于我们</a></li>
+            <li class="nav-item"><a href="news.html" class="nav-link">新闻动态</a></li>
             <li class="nav-item"><a href="team-info.html" class="nav-link">团队查询</a></li>
             <li class="nav-item"><a href="download-materials.html" class="nav-link">资料下载</a></li>
             <li class="nav-item"><a href="download-software.html" class="nav-link">软件下载</a></li>
             <li class="nav-item"><a href="video.html" class="nav-link">视频区</a></li>
+            <li class="nav-item"><a href="music.html" class="nav-link">音乐区</a></li>
         </ul>
     </nav>
     
@@ -632,6 +1055,30 @@
                         </div>
                         <p>智能AI分析工具，提供图像识别、数据分析等功能。</p>
                         <a href="https://fogsight.ai/" class="tool-link" target="_blank">访问工具</a>
+                    </div>
+                    
+                    <!-- 天马行空创意小助手 -->
+                    <div class="tool-card" data-tool-name="天马行空创意小助手" data-tool-tags="AI,聊天,智能">
+                        <h4>天马行空创意小助手</h4>
+                        <div class="tool-tags">
+                            <span class="tool-tag">AI</span>
+                            <span class="tool-tag">聊天</span>
+                            <span class="tool-tag">智能</span>
+                        </div>
+                        <p>基于先进AI技术的智能聊天工具，提供实时对话、问答等功能。</p>
+                        <button class="tool-link" onclick="openChatModal()">打开聊天</button>
+                    </div>
+                    
+                    <!-- 语音转文本 -->
+                    <div class="tool-card" data-tool-name="语音转文本" data-tool-tags="AI,语音,转文本">
+                        <h4>语音转文本</h4>
+                        <div class="tool-tags">
+                            <span class="tool-tag">AI</span>
+                            <span class="tool-tag">语音</span>
+                            <span class="tool-tag">转文本</span>
+                        </div>
+                        <p>使用GLM-ASR-2512模型将音频文件转录为文本，支持多语言和实时流式转录。</p>
+                        <button class="tool-link" onclick="openSpeechToTextModal()">开始转换</button>
                     </div>
                 </div>
             </div>
@@ -790,86 +1237,897 @@
             }
         });
         
-        // 权限码验证功能
-        let currentToolLink = '';
-        
-        // 正确的权限码（实际应用中应该从服务器获取或使用更安全的验证方式）
-        const CORRECT_PERMISSION_CODE = 'tmxk2025';
-        
-        // 文档加载完成后，修改所有工具链接的点击事件
-        document.addEventListener('DOMContentLoaded', function() {
-            const toolLinks = document.querySelectorAll('.tool-link');
-            
-            toolLinks.forEach(link => {
-                // 保存原始链接
-                const originalHref = link.getAttribute('href');
-                // 移除原始链接属性
-                link.removeAttribute('href');
-                // 添加点击事件
-                link.addEventListener('click', function() {
-                    // 保存当前工具链接
-                    currentToolLink = originalHref;
-                    // 显示权限码验证弹窗
-                    showPermissionModal();
-                });
-            });
-        });
-        
-        // 显示权限码验证弹窗
-        function showPermissionModal() {
-            document.getElementById('permissionModal').classList.add('show');
-            // 聚焦到输入框
-            document.getElementById('permissionCode').focus();
-        }
-        
-        // 关闭权限码验证弹窗
-        function closePermissionModal() {
-            document.getElementById('permissionModal').classList.remove('show');
-            // 清空输入框
-            document.getElementById('permissionCode').value = '';
-            // 重置当前工具链接
-            currentToolLink = '';
-        }
-        
-        // 验证权限码
-        function verifyPermissionCode() {
-            const inputCode = document.getElementById('permissionCode').value.trim();
-            
-            if (!inputCode) {
-                alert('请输入访问权限码！');
-                return;
-            }
-            
-            // 验证权限码
-            if (inputCode === CORRECT_PERMISSION_CODE) {
-                // 验证通过，跳转到工具链接
-                window.open(currentToolLink, '_blank');
-                // 关闭弹窗
-                closePermissionModal();
-            } else {
-                // 验证失败，显示错误提示
-                alert('访问权限码错误，请重新输入！');
-                // 清空输入框并聚焦
-                document.getElementById('permissionCode').value = '';
-                document.getElementById('permissionCode').focus();
-            }
-        }
-        
-        // 点击弹窗外部关闭弹窗
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('permissionModal');
-            if (event.target === modal) {
-                closePermissionModal();
-            }
-        });
+
         
         // 按下ESC键关闭弹窗
         window.addEventListener('keydown', function(event) {
-            const modal = document.getElementById('permissionModal');
-            if (event.key === 'Escape' && modal.classList.contains('show')) {
-                closePermissionModal();
+            const permissionModal = document.getElementById('permissionModal');
+            const chatModal = document.getElementById('chatModal');
+            
+            if (event.key === 'Escape') {
+                if (permissionModal.classList.contains('show')) {
+                    closePermissionModal();
+                } else if (chatModal.classList.contains('show')) {
+                    closeChatModal();
+                }
             }
         });
+        
+        // AI聊天功能
+        // API配置
+        const API_CONFIG = {
+            name: 'glm-4.6v',
+            key: 'b662eeada77a4b7a9e44c00317d9fdc4.yUYvYP5grCYjhEIm',
+            endpoint: 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
+        };
+        
+        // 聊天消息历史
+        let chatHistory = [];
+        
+        // 打开聊天弹窗
+        function openChatModal() {
+            document.getElementById('chatModal').classList.add('show');
+            // 聚焦到输入框
+            document.getElementById('chatInput').focus();
+        }
+        
+        // 关闭聊天弹窗
+        function closeChatModal() {
+            document.getElementById('chatModal').classList.remove('show');
+            // 清空输入框
+            document.getElementById('chatInput').value = '';
+        }
+        
+        // 发送消息
+        async function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            
+            if (!message) {
+                return;
+            }
+            
+            // 添加用户消息到聊天记录
+            addMessageToChat(message, 'user');
+            chatInput.value = '';
+            
+            // 添加到历史记录
+            chatHistory.push({
+                role: 'user',
+                content: message
+            });
+            
+            // 显示加载状态
+            showLoadingState();
+            
+            try {
+                // 调用API获取回复
+                const response = await callChatAPI(message);
+                
+                // 隐藏加载状态
+                hideLoadingState();
+                
+                // 添加AI回复到聊天记录
+                addMessageToChat(response, 'bot');
+                
+                // 添加到历史记录
+                chatHistory.push({
+                    role: 'assistant',
+                    content: response
+                });
+            } catch (error) {
+                // 隐藏加载状态
+                hideLoadingState();
+                
+                // 显示错误消息
+                addMessageToChat('抱歉，我暂时无法回答你的问题，请稍后再试。', 'bot');
+                console.error('AI聊天API调用失败:', error);
+            }
+        }
+        
+        // 调用聊天API
+        async function callChatAPI(message) {
+            // 构建API请求体
+            const requestBody = {
+                model: API_CONFIG.name,
+                messages: [...chatHistory, {
+                    role: 'user',
+                    content: [{
+                        type: 'text',
+                        text: message
+                    }]
+                }],
+                thinking: {
+                    type: 'enabled'
+                },
+                stream: true
+            };
+            
+            // 调用真实API
+            const response = await fetch(API_CONFIG.endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_CONFIG.key}`
+                },
+                body: JSON.stringify(requestBody)
+            });
+            
+            if (!response.ok) {
+                throw new Error(`API请求失败: ${response.status}`);
+            }
+            
+            // 处理流式响应
+            return new Promise((resolve, reject) => {
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullResponse = '';
+                let thinkingContent = '';
+                let isThinkingActive = false;
+                let thinkingMessageElement = null;
+                
+                function createThinkingMessage() {
+                    if (!thinkingMessageElement) {
+                        const chatMessages = document.getElementById('chatMessages');
+                        const thinkingDiv = document.createElement('div');
+                        thinkingDiv.className = 'chat-message bot-message';
+                        thinkingDiv.id = 'thinkingMessage';
+                        
+                        const avatar = document.createElement('div');
+                        avatar.className = 'message-avatar';
+                        avatar.textContent = '🤖';
+                        
+                        const messageContent = document.createElement('div');
+                        messageContent.className = 'message-content';
+                        messageContent.innerHTML = '<strong>思考中...</strong><div class="thinking-content"></div>';
+                        
+                        thinkingDiv.appendChild(avatar);
+                        thinkingDiv.appendChild(messageContent);
+                        chatMessages.appendChild(thinkingDiv);
+                        thinkingMessageElement = thinkingDiv;
+                        scrollToBottom();
+                    }
+                }
+                
+                function updateThinkingContent(content) {
+                    if (thinkingMessageElement) {
+                        const thinkingContentElement = thinkingMessageElement.querySelector('.thinking-content');
+                        if (thinkingContentElement) {
+                            // 直接设置innerHTML，允许显示div等HTML元素
+                            thinkingContentElement.innerHTML = content;
+                            scrollToBottom();
+                        }
+                    }
+                }
+                
+                function removeThinkingMessage() {
+                    if (thinkingMessageElement) {
+                        thinkingMessageElement.remove();
+                        thinkingMessageElement = null;
+                    }
+                }
+                
+                function processChunk(chunk) {
+                    const lines = chunk.split('\n');
+                    
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const dataStr = line.slice(6);
+                            if (dataStr === '[DONE]') {
+                                removeThinkingMessage();
+                                resolve(fullResponse);
+                                return;
+                            }
+                            
+                            try {
+                                const data = JSON.parse(dataStr);
+                                
+                                // 处理思考过程
+                                if (data.choices && data.choices[0].thinking) {
+                                    isThinkingActive = true;
+                                    createThinkingMessage();
+                                    thinkingContent = data.choices[0].thinking;
+                                    updateThinkingContent(thinkingContent);
+                                }
+                                
+                                // 处理最终响应
+                                if (data.choices && data.choices[0].message && data.choices[0].message.content) {
+                                    fullResponse = data.choices[0].message.content;
+                                }
+                            } catch (error) {
+                                console.error('解析流式数据失败:', error);
+                            }
+                        }
+                    }
+                }
+                
+                function readStream() {
+                    reader.read().then(({ done, value }) => {
+                        if (done) {
+                            removeThinkingMessage();
+                            resolve(fullResponse);
+                            return;
+                        }
+                        
+                        const chunk = decoder.decode(value, { stream: true });
+                        processChunk(chunk);
+                        readStream();
+                    }).catch(error => {
+                        removeThinkingMessage();
+                        reject(error);
+                    });
+                }
+                
+                readStream();
+            });
+        }
+        
+        // 添加消息到聊天界面
+        function addMessageToChat(message, sender) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}-message`;
+            
+            // 创建头像
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = sender === 'user' ? '👤' : '🤖';
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            
+            // 直接设置innerHTML以支持HTML标签，包括div元素
+            messageContent.innerHTML = message;
+            
+            // 根据发送者添加头像到消息
+            if (sender === 'bot') {
+                messageDiv.appendChild(avatar);
+                messageDiv.appendChild(messageContent);
+            } else {
+                messageDiv.appendChild(messageContent);
+                messageDiv.appendChild(avatar);
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            
+            // 滚动到最新消息
+            scrollToBottom();
+        }
+        
+        // 滚动到聊天底部
+        function scrollToBottom() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // 显示加载状态
+        function showLoadingState() {
+            const chatMessages = document.getElementById('chatMessages');
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'chat-message bot-message';
+            loadingDiv.id = 'loadingMessage';
+            
+            const loadingContent = document.createElement('div');
+            loadingContent.className = 'message-content';
+            
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.className = 'message-loading';
+            loadingIndicator.innerHTML = `
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            `;
+            
+            loadingContent.appendChild(loadingIndicator);
+            loadingDiv.appendChild(loadingContent);
+            chatMessages.appendChild(loadingDiv);
+            
+            // 滚动到最新消息
+            scrollToBottom();
+        }
+        
+        // 隐藏加载状态
+        function hideLoadingState() {
+            const loadingMessage = document.getElementById('loadingMessage');
+            if (loadingMessage) {
+                loadingMessage.remove();
+            }
+        }
+        
+        // 监听聊天输入框的回车键发送
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+        });
+        
+        // 图片上传功能
+        function triggerImageUpload() {
+            document.getElementById('imageUpload').click();
+        }
+        
+        async function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                return;
+            }
+            
+            // 检查文件类型
+            if (!file.type.startsWith('image/')) {
+                alert('请上传图片文件！');
+                return;
+            }
+            
+            // 检查文件大小（限制为5MB，符合智谱AI API要求）
+            if (file.size > 5 * 1024 * 1024) {
+                alert('图片大小不能超过5MB！');
+                return;
+            }
+            
+            // 显示加载状态
+            addMessageToChat('正在上传图片，请稍候...', 'bot');
+            
+            try {
+                // 调用智谱AI文件上传API
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('purpose', 'agent'); // 用于智能体文件上传
+                
+                const uploadResponse = await fetch('https://open.bigmodel.cn/api/paas/v4/files', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_CONFIG.key}`
+                    },
+                    body: formData
+                });
+                
+                if (!uploadResponse.ok) {
+                    throw new Error(`文件上传失败: ${uploadResponse.status}`);
+                }
+                
+                const uploadData = await uploadResponse.json();
+                
+                // 获取文件ID
+                if (uploadData.id) {
+                    const fileId = uploadData.id;
+                    
+                    // 显示图片预览
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // 添加图片到聊天记录
+                        addImageToChat(e.target.result, 'user');
+                        
+                        // 调用AI分析图片
+                        analyzeImage(fileId, e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    throw new Error('文件上传成功，但未返回文件ID');
+                }
+            } catch (error) {
+                console.error('图片上传失败:', error);
+                addMessageToChat('抱歉，图片上传失败，请稍后再试。\n错误信息：' + error.message, 'bot');
+            } finally {
+                // 清空文件输入
+                event.target.value = '';
+            }
+        }
+        
+        // 调用AI分析图片
+        async function analyzeImage(fileId, imageUrl) {
+            try {
+                // 调用智谱AI聊天API分析图片
+                const chatResponse = await fetch(API_CONFIG.endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_CONFIG.key}`
+                    },
+                    body: JSON.stringify({
+                        model: API_CONFIG.name,
+                        messages: [...chatHistory, {
+                            role: 'user',
+                            content: [
+                                {
+                                    type: 'image_url',
+                                    image_url: {
+                                        url: imageUrl
+                                    }
+                                },
+                                {
+                                    type: 'text',
+                                    text: '请分析这张图片的内容'
+                                }
+                            ]
+                        }],
+                        thinking: {
+                            type: 'enabled'
+                        }
+                    })
+                });
+                
+                if (!chatResponse.ok) {
+                    throw new Error(`图片分析失败: ${chatResponse.status}`);
+                }
+                
+                const chatData = await chatResponse.json();
+                
+                // 获取AI回复
+                if (chatData.choices && chatData.choices.length > 0 && chatData.choices[0].message && chatData.choices[0].message.content) {
+                    const aiResponse = chatData.choices[0].message.content;
+                    addMessageToChat(aiResponse, 'bot');
+                } else {
+                    throw new Error('图片分析成功，但未返回有效回复');
+                }
+            } catch (error) {
+                console.error('图片分析失败:', error);
+                addMessageToChat('抱歉，图片分析失败，请稍后再试。\n错误信息：' + error.message, 'bot');
+            }
+        }
+        
+        function addImageToChat(imageUrl, sender) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}-message`;
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            
+            const imageElement = document.createElement('img');
+            imageElement.src = imageUrl;
+            imageElement.alt = '聊天图片';
+            imageElement.onload = function() {
+                // 图片加载完成后滚动到底部
+                scrollToBottom();
+            };
+            
+            messageContent.appendChild(imageElement);
+            messageDiv.appendChild(messageContent);
+            chatMessages.appendChild(messageDiv);
+            
+            // 滚动到最新消息
+            scrollToBottom();
+        }
+        
+        // 图片生成功能
+        function showImageGenerationOptions() {
+            const optionsDiv = document.getElementById('imageGenerationOptions');
+            optionsDiv.style.display = 'block';
+        }
+        
+        function hideImageGenerationOptions() {
+            const optionsDiv = document.getElementById('imageGenerationOptions');
+            optionsDiv.style.display = 'none';
+        }
+        
+        // 图片生成请求频率控制
+        let lastGenerateImageTime = 0;
+        const GENERATE_IMAGE_COOLDOWN = 30000; // 30秒冷却时间
+        
+        async function generateImage() {
+            // 检查请求频率
+            const now = Date.now();
+            if (now - lastGenerateImageTime < GENERATE_IMAGE_COOLDOWN) {
+                const remainingTime = Math.ceil((GENERATE_IMAGE_COOLDOWN - (now - lastGenerateImageTime)) / 1000);
+                alert(`生成图片需要等待 ${remainingTime} 秒，请稍后再试！`);
+                return;
+            }
+            
+            const prompt = document.getElementById('chatInput').value.trim();
+            if (!prompt) {
+                alert('请输入图片生成描述！');
+                return;
+            }
+            
+            const size = document.getElementById('imageSize').value;
+            
+            // 更新最后请求时间
+            lastGenerateImageTime = now;
+            
+            // 添加用户请求到聊天记录
+            addMessageToChat(`生成图片：${prompt}\n尺寸：${size}`, 'user');
+            
+            // 清空输入框
+            document.getElementById('chatInput').value = '';
+            
+            // 显示生成中消息
+            addMessageToChat('正在生成图片，请稍候...', 'bot');
+            
+            // 隐藏图片生成选项
+            hideImageGenerationOptions();
+            
+            try {
+                // 调用智谱AI图像生成API
+                const response = await fetch('https://open.bigmodel.cn/api/paas/v4/images/generations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_CONFIG.key}`
+                    },
+                    body: JSON.stringify({
+                        model: 'cogview-4',
+                        prompt: prompt,
+                        size: size,
+                        quality: 'standard',
+                        watermark_enabled: true
+                    })
+                });
+                
+                if (!response.ok) {
+                    if (response.status === 429) {
+                        // 请求频率过高
+                        addMessageToChat('抱歉，当前请求过于频繁，请稍后再试。\n建议等待30秒后再次尝试。', 'bot');
+                        return;
+                    } else {
+                        throw new Error(`API请求失败: ${response.status}`);
+                    }
+                }
+                
+                const data = await response.json();
+                
+                // 获取生成的图片URL
+                if (data.data && data.data.length > 0 && data.data[0].url) {
+                    const generatedImageUrl = data.data[0].url;
+                    
+                    // 添加生成的图片到聊天记录
+                    addMessageToChat('图片生成完成！', 'bot');
+                    addImageToChat(generatedImageUrl, 'bot');
+                } else {
+                    throw new Error('API返回数据格式不正确');
+                }
+            } catch (error) {
+                console.error('图片生成失败:', error);
+                addMessageToChat('抱歉，图片生成失败，请稍后再试。\n错误信息：' + error.message, 'bot');
+            }
+        }
+        
+        // 语音转文本功能
+        let audioFile = null;
+        
+        // 打开语音转文本弹窗
+        function openSpeechToTextModal() {
+            document.getElementById('speechToTextModal').classList.add('show');
+        }
+        
+        // 关闭语音转文本弹窗
+        function closeSpeechToTextModal() {
+            document.getElementById('speechToTextModal').classList.remove('show');
+            clearSpeechToText();
+        }
+        
+        // 处理音频文件选择
+        function handleAudioFile(event) {
+            audioFile = event.target.files[0];
+            if (audioFile) {
+                // 检查文件大小（25MB限制）
+                if (audioFile.size > 25 * 1024 * 1024) {
+                    alert('音频文件大小不能超过25MB！');
+                    audioFile = null;
+                    document.getElementById('fileName').textContent = '';
+                    document.getElementById('convertBtn').disabled = true;
+                    document.getElementById('convertBtn').style.opacity = '0.6';
+                    return;
+                }
+                
+                // 检查文件格式
+                const allowedTypes = ['audio/wav', 'audio/mp3'];
+                if (!allowedTypes.includes(audioFile.type)) {
+                    alert('只支持.wav和.mp3格式的音频文件！');
+                    audioFile = null;
+                    document.getElementById('fileName').textContent = '';
+                    document.getElementById('convertBtn').disabled = true;
+                    document.getElementById('convertBtn').style.opacity = '0.6';
+                    return;
+                }
+                
+                document.getElementById('fileName').textContent = `已选择：${audioFile.name}`;
+                document.getElementById('convertBtn').disabled = false;
+                document.getElementById('convertBtn').style.opacity = '1';
+            }
+        }
+        
+        // 清空语音转文本内容
+        function clearSpeechToText() {
+            audioFile = null;
+            document.getElementById('audioFile').value = '';
+            document.getElementById('fileName').textContent = '';
+            document.getElementById('speechResult').textContent = '';
+            document.getElementById('convertBtn').disabled = true;
+            document.getElementById('convertBtn').style.opacity = '0.6';
+        }
+        
+        // 开始语音转文本转换
+        async function startSpeechToText() {
+            if (!audioFile) {
+                alert('请先选择音频文件！');
+                return;
+            }
+            
+            // 显示转换中状态
+            document.getElementById('speechResult').textContent = '正在转换，请稍候...';
+            const convertBtn = document.getElementById('convertBtn');
+            const originalText = convertBtn.textContent;
+            convertBtn.disabled = true;
+            convertBtn.textContent = '⏳ 转换中...';
+            convertBtn.style.opacity = '0.6';
+            
+            try {
+                // 调用智谱AI语音转文本API
+                const result = await callSpeechToTextAPI(audioFile);
+                document.getElementById('speechResult').textContent = result;
+            } catch (error) {
+                console.error('语音转文本失败:', error);
+                document.getElementById('speechResult').textContent = `转换失败：${error.message}`;
+            } finally {
+                // 恢复按钮状态
+                convertBtn.disabled = false;
+                convertBtn.textContent = originalText;
+                convertBtn.style.opacity = '1';
+            }
+        }
+        
+        // 调用智谱AI语音转文本API
+        async function callSpeechToTextAPI(file) {
+            const formData = new FormData();
+            formData.append('model', 'glm-asr-2512');
+            formData.append('file', file);
+            formData.append('stream', 'false');
+            
+            const response = await fetch('https://open.bigmodel.cn/api/paas/v4/audio/transcriptions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${API_CONFIG.key}`
+                },
+                body: formData
+            });
+            
+            if (!response.ok) {
+                throw new Error(`API请求失败: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            return data.text;
+        }
+        
+        // 复制转换结果
+        function copySpeechResult() {
+            const result = document.getElementById('speechResult').textContent;
+            if (!result || result === '正在转换，请稍候...') {
+                alert('没有可复制的内容！');
+                return;
+            }
+            
+            navigator.clipboard.writeText(result).then(() => {
+                alert('复制成功！');
+            }).catch(err => {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制！');
+            });
+        }
+        
+        // 监听ESC键关闭语音转文本弹窗
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const speechToTextModal = document.getElementById('speechToTextModal');
+                if (speechToTextModal.classList.contains('show')) {
+                    closeSpeechToTextModal();
+                }
+            }
+        });
+        
+        // 智能体对话功能
+        let currentAgent = null;
+        let agentChatHistory = [];
+        
+        // 显示智能体选择面板
+        function showAgentSelection() {
+            // 隐藏图片生成选项
+            hideImageGenerationOptions();
+            // 显示智能体选择面板
+            document.getElementById('agentSelectionOptions').style.display = 'block';
+        }
+        
+        // 隐藏智能体选择面板
+        function hideAgentSelection() {
+            document.getElementById('agentSelectionOptions').style.display = 'none';
+        }
+        
+        // 处理智能体选择变化
+        function handleAgentChange() {
+            const agentId = document.getElementById('agentSelect').value;
+            const translationOptions = document.getElementById('translationOptions');
+            
+            // 只有翻译相关智能体才显示翻译设置
+            if (agentId.includes('translation')) {
+                translationOptions.style.display = 'block';
+            } else {
+                translationOptions.style.display = 'none';
+            }
+        }
+        
+        // 开始智能体对话
+        async function startAgentChat() {
+            const agentId = document.getElementById('agentSelect').value;
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            
+            if (!message) {
+                alert('请输入对话内容！');
+                return;
+            }
+            
+            currentAgent = agentId;
+            
+            // 添加用户消息到聊天记录
+            addMessageToChat(message, 'user');
+            chatInput.value = '';
+            
+            // 隐藏智能体选择面板
+            hideAgentSelection();
+            
+            // 显示加载状态
+            showLoadingState();
+            
+            try {
+                // 构建智能体对话请求
+                const requestBody = {
+                    agent_id: agentId,
+                    messages: [...agentChatHistory, {
+                        role: 'user',
+                        content: message
+                    }],
+                    stream: false
+                };
+                
+                // 添加翻译智能体的特殊参数
+                if (agentId.includes('translation')) {
+                    requestBody.custom_variables = {
+                        source_lang: document.getElementById('sourceLang').value,
+                        target_lang: document.getElementById('targetLang').value,
+                        strategy: document.getElementById('translationStrategy').value
+                    };
+                }
+                
+                // 调用智能体API
+                const response = await fetch('https://open.bigmodel.cn/api/v1/agents', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_CONFIG.key}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+                
+                // 先获取响应数据
+                const data = await response.json();
+                
+                // 隐藏加载状态
+                hideLoadingState();
+                
+                // 调试：打印完整响应
+                console.log('智能体API响应:', data);
+                
+                // 检查是否为失败状态
+                if (data.status === 'failed' || !response.ok) {
+                    let errorMsg = '智能体调用失败';
+                    let errorDetails = '';
+                    
+                    // 提取错误信息
+                    if (data.error) {
+                        errorDetails = `${data.error.code} - ${data.error.message}`;
+                        
+                        // 针对不同错误码提供友好提示
+                        if (data.error.code === '1113') {
+                            // 账户余额不足
+                            errorMsg = '智能体调用失败：账户余额不足';
+                            errorDetails = '请前往智谱AI开放平台充值后再试';
+                        } else if (data.error.code === '1114') {
+                            // 接口调用频率限制
+                            errorMsg = '智能体调用失败：调用频率过高';
+                            errorDetails = '请稍后再试';
+                        } else if (data.error.code === '1101') {
+                            // API Key 无效
+                            errorMsg = '智能体调用失败：API密钥无效';
+                            errorDetails = '请检查API密钥配置';
+                        }
+                    } else {
+                        errorDetails = `${response.status} - ${response.statusText}`;
+                    }
+                    
+                    throw new Error(`${errorMsg} - ${errorDetails}`);
+                }
+                
+                // 尝试多种响应格式解析
+                if (data.choices && data.choices.length > 0) {
+                    const choice = data.choices[0];
+                    
+                    // 格式1: choices[0].messages
+                    if (choice.messages && choice.messages.length > 0) {
+                        for (const msg of choice.messages) {
+                            if (msg.content) {
+                                // 处理不同类型的content
+                                let content = '';
+                                if (typeof msg.content === 'string') {
+                                    content = msg.content;
+                                } else if (msg.content.text) {
+                                    content = msg.content.text;
+                                } else if (Array.isArray(msg.content)) {
+                                    // 处理多模态内容
+                                    content = msg.content.map(item => item.text || '').join(' ');
+                                } else {
+                                    content = JSON.stringify(msg.content);
+                                }
+                                addMessageToChat(content, 'bot');
+                                agentChatHistory.push(msg);
+                            }
+                        }
+                        return;
+                    }
+                    
+                    // 格式2: choices[0].message (单个消息)
+                    if (choice.message && choice.message.content) {
+                        const msg = choice.message;
+                        let content = '';
+                        if (typeof msg.content === 'string') {
+                            content = msg.content;
+                        } else if (msg.content.text) {
+                            content = msg.content.text;
+                        } else if (Array.isArray(msg.content)) {
+                            content = msg.content.map(item => item.text || '').join(' ');
+                        } else {
+                            content = JSON.stringify(msg.content);
+                        }
+                        addMessageToChat(content, 'bot');
+                        agentChatHistory.push(msg);
+                        return;
+                    }
+                }
+                
+                // 格式3: 直接返回content
+                if (data.content) {
+                    let content = '';
+                    if (typeof data.content === 'string') {
+                        content = data.content;
+                    } else {
+                        content = JSON.stringify(data.content);
+                    }
+                    addMessageToChat(content, 'bot');
+                    agentChatHistory.push({ role: 'assistant', content: content });
+                    return;
+                }
+                
+                // 格式4: 检查是否有直接的响应消息
+                if (data.message) {
+                    let content = '';
+                    if (typeof data.message === 'string') {
+                        content = data.message;
+                    } else if (data.message.content) {
+                        if (typeof data.message.content === 'string') {
+                            content = data.message.content;
+                        } else {
+                            content = JSON.stringify(data.message.content);
+                        }
+                    } else {
+                        content = JSON.stringify(data.message);
+                    }
+                    addMessageToChat(content, 'bot');
+                    agentChatHistory.push({ role: 'assistant', content: content });
+                    return;
+                }
+                
+                // 如果都不匹配，抛出错误并显示原始响应
+                throw new Error(`智能体响应格式不正确，原始响应：${JSON.stringify(data)}`);
+            } catch (error) {
+                console.error('智能体对话失败:', error);
+                hideLoadingState();
+                addMessageToChat(`智能体对话失败：${error.message}`, 'bot');
+            }
+        }
     </script>
     <!--Start of Gullchat.com Script-->
     <script id="gullchat-widget-js" src="https://code.gullchat.com/widget.js?mode=production&wid=693ea57a0ee55c23ceff491f&pid=693ea2fc328f7e8be297b5dc&fm=normal&lt=default"></script>
@@ -891,6 +2149,187 @@
             <div class="permission-modal-buttons">
                 <button class="btn-primary" onclick="verifyPermissionCode()">验证</button>
                 <button class="btn-cancel" onclick="closePermissionModal()">取消</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AI聊天弹窗 -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-modal-content">
+            <!-- 聊天头部 -->
+            <div class="chat-header">
+                <h3>
+                    <div class="bot-avatar">🤖</div>
+                    天马行空创意小助手
+                </h3>
+                <button class="chat-close-btn" onclick="closeChatModal()">×</button>
+            </div>
+            
+            <!-- 聊天消息区域 -->
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot-message">
+                    <div class="message-content">
+                        <p>你好！我是天马行空创意小助手，有什么可以帮助你的吗？</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 聊天输入区域 -->
+            <div class="chat-input-area">
+                <div class="chat-input-toolbar">
+                    <button class="chat-tool-btn" id="uploadImageBtn" title="上传图片" onclick="triggerImageUpload()">
+                        <span class="tool-btn-icon">📷</span>
+                        <span class="tool-btn-label">上传</span>
+                    </button>
+                    <button class="chat-tool-btn" id="generateImageBtn" title="生成图片" onclick="showImageGenerationOptions()">
+                        <span class="tool-btn-icon">🎨</span>
+                        <span class="tool-btn-label">生成</span>
+                    </button>
+                    <button class="chat-tool-btn" id="agentChatBtn" title="智能体对话" onclick="showAgentSelection()">
+                        <span class="tool-btn-icon">🤖</span>
+                        <span class="tool-btn-label">智能体</span>
+                    </button>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                </div>
+                <div class="chat-input-main">
+                    <input type="text" id="chatInput" placeholder="请输入你的问题..." autocomplete="off">
+                    <button class="chat-send-btn" onclick="sendMessage()">发送</button>
+                </div>
+            </div>
+            
+            <!-- 图片生成选项 -->
+            <div class="image-generation-options" id="imageGenerationOptions" style="display: none;">
+                <h4>图片生成选项</h4>
+                <div class="image-option-group">
+                    <label>风格：</label>
+                    <select id="imageStyle">
+                        <option value="realistic">写实风格</option>
+                        <option value="anime">动漫风格</option>
+                        <option value="cartoon">卡通风格</option>
+                        <option value="abstract">抽象风格</option>
+                    </select>
+                </div>
+                <div class="image-option-group">
+                    <label>尺寸：</label>
+                    <select id="imageSize">
+                        <option value="512x512">512x512</option>
+                        <option value="768x768">768x768</option>
+                        <option value="1024x1024">1024x1024</option>
+                    </select>
+                </div>
+                <div class="image-option-actions">
+                    <button class="image-generate-btn" onclick="generateImage()">生成图片</button>
+                    <button class="image-cancel-btn" onclick="hideImageGenerationOptions()">取消</button>
+                </div>
+            </div>
+            
+            <!-- 智能体选择面板 -->
+            <div class="image-generation-options" id="agentSelectionOptions" style="display: none;">
+                <h4>智能体选择</h4>
+                <div class="image-option-group">
+                    <label>选择智能体：</label>
+                    <select id="agentSelect" onchange="handleAgentChange()">
+                        <option value="general_translation">通用翻译智能体</option>
+                        <option value="slides_glm_agent">幻灯片智能体</option>
+                        <option value="cartoon_generator_agent">卡通生成智能体</option>
+                        <option value="ai_drawing_agent">AI绘画智能体</option>
+                        <option value="receipt_recognition_agent">收据识别智能体</option>
+                        <option value="clothes_recognition_agent">衣物识别智能体</option>
+                        <option value="contract_parser_agent">合同解析智能体</option>
+                        <option value="service_check_agent">服务检查智能体</option>
+                        <option value="subtitle_translation_agent">字幕翻译智能体</option>
+                        <option value="intelligent_education_correction_agent">智能教育批改智能体</option>
+                        <option value="job_matching_agent">职位匹配智能体</option>
+                        <option value="social_translation_agent">社交翻译智能体</option>
+                        <option value="social_literature_translation_agent">社会文献翻译智能体</option>
+                        <option value="intelligent_education_solve_agent">智能教育解题智能体</option>
+                        <option value="vidu_template_agent">Vidu模板智能体</option>
+                        <option value="bidwin_parser_agent">标书解析智能体</option>
+                    </select>
+                </div>
+                <div class="image-option-group" id="translationOptions" style="display: none;">
+                    <h5>翻译设置</h5>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0;">
+                        <div>
+                            <label>源语言：</label>
+                            <select id="sourceLang">
+                                <option value="auto">自动检测</option>
+                                <option value="zh-CN">中文</option>
+                                <option value="en">英语</option>
+                                <option value="ja">日语</option>
+                                <option value="ko">韩语</option>
+                                <option value="fr">法语</option>
+                                <option value="de">德语</option>
+                                <option value="es">西班牙语</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>目标语言：</label>
+                            <select id="targetLang">
+                                <option value="zh-CN">中文</option>
+                                <option value="en">英语</option>
+                                <option value="ja">日语</option>
+                                <option value="ko">韩语</option>
+                                <option value="fr">法语</option>
+                                <option value="de">德语</option>
+                                <option value="es">西班牙语</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label>翻译策略：</label>
+                        <select id="translationStrategy">
+                            <option value="general">通用翻译</option>
+                            <option value="cot">思考链翻译</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="image-option-actions">
+                    <button class="image-generate-btn" onclick="startAgentChat()">开始对话</button>
+                    <button class="image-cancel-btn" onclick="hideAgentSelection()">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 语音转文本弹窗 -->
+    <div class="chat-modal" id="speechToTextModal">
+        <div class="chat-modal-content">
+            <div class="chat-header">
+                <h3><div class="bot-avatar">🎤</div> 语音转文本</h3>
+                <button class="chat-close-btn" onclick="closeSpeechToTextModal()">&times;</button>
+            </div>
+            <div class="chat-messages" id="speechToTextMessages" style="padding: 20px;">
+                <div class="speech-input-section" style="margin-bottom: 20px;">
+                    <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">上传音频文件</h4>
+                    <p style="color: #666; margin-bottom: 15px; font-size: 14px;">支持 .wav / .mp3 格式，文件大小 ≤ 25 MB，音频时长 ≤ 30 秒</p>
+                    <div style="text-align: center; padding: 20px; border: 2px dashed #ccc; border-radius: 8px; margin-bottom: 15px;">
+                        <input type="file" id="audioFile" accept="audio/wav,audio/mp3" style="display: none;" onchange="handleAudioFile(event)">
+                        <button onclick="document.getElementById('audioFile').click()" style="padding: 12px 24px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border: none; border-radius: 20px; cursor: pointer; font-size: 16px; font-weight: 500; transition: all 0.3s ease;">
+                            📁 选择音频文件
+                        </button>
+                        <div id="fileName" style="margin-top: 10px; color: #666; font-size: 14px;"></div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                        <button onclick="startSpeechToText()" id="convertBtn" disabled style="padding: 12px 30px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border: none; border-radius: 20px; cursor: pointer; font-size: 16px; font-weight: 500; transition: all 0.3s ease; opacity: 0.6;">
+                            🔄 开始转换
+                        </button>
+                        <button onclick="clearSpeechToText()" style="padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 20px; cursor: pointer; font-size: 16px; font-weight: 500; transition: all 0.3s ease;">
+                            🗑️ 清空
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="speech-result-section" style="margin-top: 20px;">
+                    <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">转换结果</h4>
+                    <div id="speechResult" style="background-color: #f7f8fa; padding: 15px; border-radius: 8px; min-height: 100px; border: 1px solid #e5e6eb; font-size: 14px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word;"></div>
+                    <div style="margin-top: 10px; text-align: right;">
+                        <button onclick="copySpeechResult()" style="padding: 8px 16px; background: #f0f0f0; color: #333; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; transition: all 0.3s ease;">
+                            📋 复制结果
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

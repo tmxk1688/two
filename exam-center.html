@@ -1,0 +1,2991 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线考试中心 - 天马行空创意网</title>
+    <link rel="icon" href="photo/logo.png" type="image/png">
+    <link rel="shortcut icon" href="photo/logo.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo img {
+            margin-right: 10px;
+            height: 45px;
+            width: 45px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            background: white;
+            padding: 5px;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-main {
+            font-size: 20px;
+            margin-bottom: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: normal;
+        }
+        
+        .search {
+            display: flex;
+            gap: 0;
+            width: 200px;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .search:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search input {
+            padding: 8px 15px;
+            width: 150px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .search input::placeholder {
+            color: #999;
+        }
+        
+        .search button {
+            padding: 8px 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .search button:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-top: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 75px;
+            z-index: 999;
+        }
+        
+        nav::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        nav::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+        
+        nav::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0 10px;
+            margin: 0;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 14px 20px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 8px;
+            margin: 5px 2px;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        nav ul li a.active {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        nav ul li .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            min-width: 180px;
+            z-index: 1000;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            padding: 10px 0;
+        }
+        
+        nav ul li:hover .dropdown {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        nav ul li .dropdown li {
+            display: block;
+        }
+        
+        nav ul li .dropdown li a {
+            padding: 12px 20px;
+            font-size: 14px;
+            margin: 0;
+            border-radius: 0;
+        }
+        
+        nav ul li .dropdown li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(0);
+        }
+        
+        .banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .banner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255,255,255,0.12) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.05), transparent);
+            animation: rotate 25s linear infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+            33% { transform: translateX(20px) translateY(-20px) rotate(120deg); }
+            66% { transform: translateX(-20px) translateY(20px) rotate(240deg); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .banner h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            font-weight: 800;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,0.8));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .banner h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            border-radius: 2px;
+        }
+        
+        .banner p {
+            font-size: 18px;
+            max-width: 100%;
+            margin: 25px auto 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+            font-weight: 500;
+            line-height: 1.8;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            margin-top: 25px;
+            gap: 25px;
+        }
+        
+        .sidebar {
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .sidebar-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sidebar-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+        
+        .sidebar-header h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .sidebar-header p {
+            font-size: 13px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .exam-nav {
+            padding: 15px 0;
+        }
+        
+        .exam-nav-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .exam-nav-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), transparent);
+            transition: width 0.3s ease;
+        }
+        
+        .exam-nav-item:hover::before {
+            width: 100%;
+        }
+        
+        .exam-nav-item:hover {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.15), transparent);
+            border-left-color: #667eea;
+            transform: translateX(5px);
+        }
+        
+        .exam-nav-item.active {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.2), transparent);
+            border-left-color: #667eea;
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        .exam-nav-item .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .exam-nav-item:hover .icon {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .exam-nav-item .icon.driving {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .exam-nav-item .icon.professional {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+        }
+        
+        .exam-nav-item .info {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .exam-nav-item .info h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+        
+        .exam-nav-item .info p {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .content {
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .content:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .content-header {
+            padding: 20px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .content-header h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .content-header p {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .exam-types {
+            padding: 20px 15px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .exam-type-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .exam-type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .exam-type-card:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        
+        .exam-type-card.highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .exam-type-card.highlight::before {
+            background: linear-gradient(90deg, #fff, rgba(255,255,255,0.5));
+        }
+        
+        .exam-type-card .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .exam-type-card.highlight .card-icon {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .exam-type-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .exam-type-card p {
+            font-size: 13px;
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
+        
+        .exam-type-card .stats {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 12px;
+        }
+        
+        .exam-type-card .stats span {
+            padding: 4px 8px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+        
+        .exam-type-card.highlight .stats span {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .exam-type-card .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            text-decoration: none;
+        }
+        
+        .exam-type-card.highlight .btn {
+            background: white;
+            color: #667eea;
+        }
+        
+        .exam-type-card:active .btn {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .driving-categories {
+            padding: 20px 15px;
+            display: none;
+        }
+        
+        .driving-categories.show {
+            display: block;
+        }
+        
+        .category-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .category-tab:active {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        
+        .category-tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: transparent;
+            color: white;
+        }
+        
+        .category-content {
+            display: none;
+        }
+        
+        .category-content.active {
+            display: block;
+        }
+        
+        .exam-rules {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 20px 15px;
+            margin-bottom: 20px;
+        }
+        
+        .exam-rules h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+        
+        .exam-rules ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .exam-rules li {
+            padding: 6px 0;
+            padding-left: 22px;
+            position: relative;
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .exam-rules li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .confirm-section {
+            text-align: center;
+            padding: 20px 15px;
+        }
+        
+        .confirm-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .confirm-btn:active {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+        
+        .confirm-checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #666;
+            flex-wrap: wrap;
+        }
+        
+        .confirm-checkbox input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .exam-interface {
+            display: none;
+            padding: 20px;
+            background: #f5f7fa;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .exam-interface.show {
+            display: block;
+        }
+        
+        /* 真实驾考风格样式 */
+        .exam-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            max-height: calc(100vh - 240px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 考试主内容区域 - 可滚动 */
+        .exam-main-content {
+            flex: 1;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        
+        /* 自定义滚动条样式 */
+        .exam-main-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .exam-main-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        
+        .exam-main-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        
+        .exam-main-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+        
+        /* Firefox滚动条样式 */
+        .exam-main-content {
+            scrollbar-width: thin;
+            scrollbar-color: #667eea #f1f5f9;
+        }
+        
+        /* 考试信息栏 */
+        .exam-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom: none;
+            margin-bottom: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .exam-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .exam-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .exam-timer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .exam-timer .icon {
+            font-size: 20px;
+        }
+        
+        .question-progress {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .current-score {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .current-score .icon {
+            font-size: 20px;
+        }
+        
+        /* 组卷动画样式 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+        
+        .loading-content {
+            text-align: center;
+            background: white;
+            padding: 60px 80px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+        }
+        
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .loading-subtext {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .loading-dots {
+            display: inline-block;
+            animation: dots 1.5s infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+        
+        /* 题目区域 */
+        .question-area {
+            padding: 35px;
+            background: #ffffff;
+        }
+        
+        .question-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .question-num-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 22px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-right: 15px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .question-type {
+            color: #64748b;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .question-content {
+            font-size: 20px;
+            color: #1e293b;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            padding: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* 图片水印容器 */
+        .image-with-watermark {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+            margin: 20px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease;
+        }
+        
+        .image-with-watermark:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* 确保图片能够正确显示 */
+        .image-with-watermark img {
+            max-width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            transition: transform 0.3s ease;
+        }
+        
+        /* 为图片添加水印 */
+        .image-with-watermark::after {
+            content: "天马行空创意团队";
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            color: #475569;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .question-content .keyword {
+            color: #667eea;
+            font-weight: 700;
+            background: linear-gradient(120deg, rgba(102, 126, 234, 0.1) 0%, rgba(102, 126, 234, 0.3) 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        /* 选项样式 - 真实驾考风格 */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px 28px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .option:hover {
+            border-color: #6366f1;
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+        }
+        
+        .option.selected {
+            border-color: #6366f1;
+            background: linear-gradient(135deg, #eef2ff 0%, #c7d2fe 100%);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+        
+        .option.correct {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        }
+        
+        .option.wrong {
+            border-color: #ef4444;
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        }
+        
+        .option input {
+            display: none;
+        }
+        
+        /* 选项字母 */
+        .option-letter {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: 700;
+            color: #475569;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option.selected .option-letter {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .option.correct .option-letter {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-color: #10b981;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .option.wrong .option-letter {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border-color: #ef4444;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .option-text {
+            flex: 1;
+            font-size: 18px;
+            color: #1e293b;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        
+        /* 进度条样式 */
+        .progress-section {
+            padding: 25px 35px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+        
+        .progress-container {
+            margin-bottom: 0;
+        }
+        
+        .progress-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 16px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            transition: width 0.5s ease, background 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShine 2s infinite;
+        }
+        
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* 题目浏览区域样式 */
+        .questions-browser {
+            padding: 25px 35px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+        
+        .questions-browser::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .questions-browser::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        
+        .questions-browser::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        
+        .questions-browser::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+            gap: 12px;
+        }
+        
+        .question-number {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .question-number:hover {
+            background: #e0e7ff;
+            border-color: #6366f1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+        
+        .question-number.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .question-number.answered {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-color: #10b981;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .question-number.unanswered {
+            background: #f8fafc;
+            color: #64748b;
+            border-color: #e2e8f0;
+        }
+        
+        .question-number.answered:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-2px);
+        }
+        
+        .question-number.unanswered:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+        
+        /* 题目图片样式 */
+        .question-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        /* 确保图片在不同设备上都能正常显示 */
+        @media (max-width: 768px) {
+            .question-image {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+        
+        /* 题目导航栏 */
+        .exam-footer {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 25px 35px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+        
+        .nav-btns {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .nav-btn {
+            padding: 12px 28px;
+            border: 2px solid #cbd5e1;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
+            color: #475569;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-btn:hover:not(:disabled) {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.25);
+        }
+        
+        .nav-btn:disabled {
+            background: #f1f5f9;
+            color: #94a3b8;
+            cursor: not-allowed;
+            border-color: #e2e8f0;
+            box-shadow: none;
+        }
+        
+        .submit-btn {
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.25);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35);
+        }
+        
+        /* 交卷确认弹窗 */
+        .confirm-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+        
+        .confirm-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .confirm-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .confirm-text {
+            margin-bottom: 25px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .confirm-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .confirm-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        
+        .confirm-btn.primary {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .confirm-btn.primary:hover {
+            background: #c0392b;
+        }
+        
+        .confirm-btn.secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .confirm-btn.secondary:hover {
+            background: #7f8c8d;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        
+        .disclaimer {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .disclaimer h3 {
+            color: #0066cc;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .disclaimer p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            font-size: 14px;
+            color: #ccc;
+        }
+        
+        @media (max-width: 1200px) {
+            .container {
+                width: 95%;
+            }
+            
+            .exam-container {
+                max-width: 100%;
+                margin: 0 10px;
+                max-height: calc(100vh - 200px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+                width: 100%;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .exam-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-tabs {
+                justify-content: center;
+            }
+            
+            .exam-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .exam-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .exam-timer, .question-progress, .current-score {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+            
+            .progress-section, .questions-browser, .question-area {
+                padding: 20px;
+            }
+            
+            .questions-grid {
+                grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+                gap: 10px;
+            }
+            
+            .question-number {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+            
+            .question-content {
+                font-size: 18px;
+            }
+            
+            .option {
+                padding: 15px 20px;
+            }
+            
+            .option-text {
+                font-size: 16px;
+            }
+            
+            .exam-footer {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            
+            .nav-btns {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-btn, .submit-btn {
+                width: 48%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .exam-header {
+                padding: 15px;
+            }
+            
+            .exam-title {
+                font-size: 20px;
+            }
+            
+            .progress-section, .questions-browser, .question-area {
+                padding: 15px;
+            }
+            
+            .questions-grid {
+                grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+                gap: 8px;
+            }
+            
+            .question-number {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+            
+            .question-content {
+                font-size: 16px;
+            }
+            
+            .option {
+                padding: 12px 16px;
+            }
+            
+            .option-letter {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            
+            .option-text {
+                font-size: 14px;
+            }
+            
+            .nav-btn, .submit-btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="photo/logo.png" alt="Logo">
+                <div>
+                    <div class="logo-main">天马行空创意网</div>
+                    <div class="logo-sub">TianMa Creative Network</div>
+                </div>
+            </div>
+            <div class="search" style="position: relative;">
+                <input type="text" placeholder="搜索...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li>
+                    <a href="#">服务系统</a>
+                    <ul class="dropdown">
+                        <li><a href="team-info.html">团队档案信息查询系统</a></li>
+                        <li><a href="https://v.kaoshixing.com/exam/aiInterview/pc/#/list" target="_blank">团队考核系统</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://work.weixin.qq.com/wework_admin/frame#/index" target="_blank">工作系统</a></li>
+                <li>
+                    <a href="#">下载专区</a>
+                    <ul class="dropdown">
+                        <li><a href="download-materials.html">资料</a></li>
+                        <li><a href="download-software.html">软件</a></li>
+                    </ul>
+                </li>
+                <li><a href="video.html">视频区</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="banner">
+        <div class="container banner-content">
+            <h1>在线考试中心</h1>
+            <p>专业在线考试平台，提供驾考、职业资格考试等多种考试服务</p>
+        </div>
+    </div>
+    
+    <div class="container main-content">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>考试分类</h3>
+                <p>选择您要参加的考试类型</p>
+            </div>
+            <div class="exam-nav">
+                <div class="exam-nav-item active" data-exam="driving">
+                    <div class="icon driving">🚗</div>
+                    <div class="info">
+                        <h4>驾考</h4>
+                        <p>科目一/科目四</p>
+                    </div>
+                </div>
+                <div class="exam-nav-item" data-exam="professional">
+                    <div class="icon professional">🎓</div>
+                    <div class="info">
+                        <h4>专业人才测试</h4>
+                        <p>天马行空创意团队</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <!-- 考试类型选择界面 -->
+            <div id="examTypesSection">
+                <div class="content-header">
+                    <h2>选择考试类型</h2>
+                    <p>点击您要参加的考试类型开始备考</p>
+                </div>
+                
+                <div class="exam-types">
+                    <div class="exam-type-card highlight" data-exam="driving">
+                        <div class="card-icon">🚗</div>
+                        <h3>驾考</h3>
+                        <p>机动车驾驶考试</p>
+                        <div class="stats">
+                            <span>题库: 2000+</span>
+                            <span>通过率: 98%</span>
+                        </div>
+                        <span class="btn">开始驾考</span>
+                    </div>
+                    
+                    <div class="exam-type-card" data-exam="professional">
+                        <div class="card-icon">🎓</div>
+                        <h3>天马行空创意团队专业人才模拟测试</h3>
+                        <p>专业能力评估</p>
+                        <div class="stats">
+                            <span>题库: 1500+</span>
+                            <span>通过率: 95%</span>
+                        </div>
+                        <span class="btn">开始测试</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 驾考分类界面 -->
+            <div id="drivingCategories" class="driving-categories">
+                <div class="content-header">
+                    <h2>驾考分类</h2>
+                    <p>选择您要备考的科目</p>
+                </div>
+                
+                <div class="category-tabs">
+                    <div class="category-tab active" data-category="subject1">科目一</div>
+                    <div class="category-tab" data-category="subject4">科目四</div>
+                </div>
+                
+                <!-- 科目一 -->
+                <div id="subject1" class="category-content active">
+                    <div class="exam-rules">
+                        <h3>📚 科目一考试规则</h3>
+                        <ul>
+                            <li>考试时间：45分钟</li>
+                            <li>题目数量：100题</li>
+                            <li>及格分数：90分</li>
+                            <li>题目类型：判断题、单选题</li>
+                            <li>答题时必须认真审题，仔细作答</li>
+                            <li>交卷后不可修改答案</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="confirm-section">
+                        <div class="confirm-checkbox">
+                            <input type="checkbox" id="subject1Confirm">
+                            <label for="subject1Confirm">我已阅读并同意考试规则</label>
+                        </div>
+                        <button class="confirm-btn" id="startSubject1" disabled>开始科目一考试</button>
+                    </div>
+                </div>
+                
+                <!-- 科目四 -->
+                <div id="subject4" class="category-content">
+                    <div class="exam-rules">
+                        <h3></h3>📚 科目四考试规则</h3>
+                        <ul>
+                            <li>考试时间：30分钟</li>
+                            <li>题目数量：50题</li>
+                            <li>及格分数：90分</li>
+                            <li>题目类型：判断题、单选题、多选题</li>
+                            <li>包含安全文明驾驶常识内容</li>
+                            <li>考试前需完成科目一考试</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="confirm-section">
+                        <div class="confirm-checkbox">
+                            <input type="checkbox" id="subject4Confirm">
+                            <label for="subject4Confirm">我已阅读并同意考试规则</label>
+                        </div>
+                        <button class="confirm-btn" id="startSubject4" disabled>开始科目四考试</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专业人才测试分类界面 -->
+            <div id="professionalCategories" class="driving-categories">
+                <div class="content-header">
+                    <h2>专业人才测试</h2>
+                    <p>选择您要参加的测试类型</p>
+                </div>
+                
+                <div class="category-tabs">
+                    <div class="category-tab active" data-category="creative">创意能力测试</div>
+                    <div class="category-tab" data-category="technical">技术能力测试</div>
+                </div>
+                
+                <!-- 创意能力测试 -->
+                <div id="creative" class="category-content active">
+                    <div class="exam-rules">
+                        <h3>📚 创意能力测试规则</h3>
+                        <ul>
+                            <li>考试时间：60分钟</li>
+                            <li>题目数量：80题</li>
+                            <li>及格分数：85分</li>
+                            <li>题目类型：单选题、多选题、判断题</li>
+                            <li>测试创意思维和创新能力</li>
+                            <li>交卷后不可修改答案</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="confirm-section">
+                        <div class="confirm-checkbox">
+                            <input type="checkbox" id="creativeConfirm">
+                            <label for="creativeConfirm">我已阅读并同意测试规则</label>
+                        </div>
+                        <button class="confirm-btn" id="startCreative" disabled>开始创意能力测试</button>
+                    </div>
+                </div>
+                
+                <!-- 技术能力测试 -->
+                <div id="technical" class="category-content">
+                    <div class="exam-rules">
+                        <h3>📚 技术能力测试规则</h3>
+                        <ul>
+                            <li>考试时间：90分钟</li>
+                            <li>题目数量：100题</li>
+                            <li>及格分数：90分</li>
+                            <li>题目类型：单选题、多选题、填空题</li>
+                            <li>测试技术知识和解决问题能力</li>
+                            <li>交卷后不可修改答案</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="confirm-section">
+                        <div class="confirm-checkbox">
+                            <input type="checkbox" id="technicalConfirm">
+                            <label for="technicalConfirm">我已阅读并同意测试规则</label>
+                        </div>
+                        <button class="confirm-btn" id="startTechnical" disabled>开始技术能力测试</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 考试界面 -->
+            <div id="examInterface" class="exam-interface">
+                <div class="exam-container">
+                    <div class="exam-header">
+                        <div class="exam-title" id="examTitle">科目一考试</div>
+                        <div class="exam-info">
+                            <div class="exam-timer">
+                                <span class="icon">⏱️</span>
+                                <span id="timer">45:00</span>
+                            </div>
+                            <div class="question-progress">
+                                <span id="currentNum">1</span>/<span id="totalNum">100</span>
+                            </div>
+                            <div class="current-score">
+                                <span class="icon">📊</span>
+                                <span id="score">0</span>分
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 可滚动主内容区域 -->
+                    <div class="exam-main-content">
+                        <!-- 进度条区域 -->
+                        <div class="progress-section">
+                            <div class="progress-container">
+                                <div class="progress-label">
+                                    <span>考试进度</span>
+                                    <span id="progressText">1%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 题目浏览区域 -->
+                        <div class="questions-browser">
+                            <div class="progress-label">
+                                <span>题目浏览</span>
+                                <span>点击题目跳转到对应题目</span>
+                            </div>
+                            <div class="questions-grid" id="questionsGrid">
+                                <!-- 题目编号将在这里动态生成 -->
+                            </div>
+                        </div>
+                        
+                        <div id="questionArea" class="question-area">
+                            <!-- 题目将在这里动态加载 -->
+                        </div>
+                    </div>
+                    
+                    <div class="exam-footer">
+                        <div class="nav-btns">
+                            <button class="nav-btn" id="prevBtn">上一题</button>
+                            <button class="nav-btn" id="nextBtn">下一题</button>
+                        </div>
+                        <button class="submit-btn" id="submitBtn">交卷</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2024 天马行空创意网. 保留所有权利. <a href="http://m.tmxkcy.xyz" target="_blank" style="color: #0066cc; text-decoration: none;">手机版</a></p>
+            <div class="disclaimer">
+                <h3>免责声明</h3>
+                <p>本网站尚未进行ICP备案，仅供学习和交流使用。网站内容仅代表作者个人观点，不代表任何官方立场。</p>
+                <p>本网站提供的信息仅供参考，不构成任何投资建议或其他建议。使用本网站信息所造成的任何后果，本网站不承担任何责任。</p>
+                <p>如有侵权，请联系我们删除相关内容。联系方式：tmxkcytd@foxmail.com</p>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script>
+        // 考试数据
+        const examData = {
+            subject1: {
+                title: '科目一考试',
+                time: 45,
+                totalQuestions: 100,
+                passingScore: 90,
+                questions: [],
+                initialLoad: 10 // 初始加载题目数量
+            },
+            subject4: {
+                title: '科目四考试',
+                time: 30,
+                totalQuestions: 50,
+                passingScore: 90,
+                questions: [],
+                initialLoad: 10 // 初始加载题目数量
+            },
+            creative: {
+                title: '创意能力测试',
+                time: 60,
+                totalQuestions: 80,
+                passingScore: 85,
+                questions: []
+            },
+            technical: {
+                title: '技术能力测试',
+                time: 90,
+                totalQuestions: 100,
+                passingScore: 90,
+                questions: []
+            }
+        }
+        
+        // 生成题库 - 使用API获取真实驾考题目
+        async function generateQuestions(subject, count) {
+            // 只对驾考科目使用API，专业人才测试仍使用模拟数据
+            if (subject === 'creative' || subject === 'technical') {
+                const questions = [];
+                const questionTemplates = {
+                    creative: [
+                        { type: '单选', text: '以下哪种方法最能激发创意？', options: ['头脑风暴', '独自思考', '阅读文献', '模仿他人'], answer: 'A' },
+                        { type: '判断', text: '创意需要天赋，普通人无法培养。', answer: '错误' },
+                        { type: '多选', text: '创意产生的条件包括？', options: ['好奇心', '知识积累', '开放心态', '固定思维'], answer: 'ABC' },
+                        { type: '单选', text: '以下哪个是发散思维的特点？', options: ['单一方向', '多角度思考', '逻辑推理', '固定模式'], answer: 'B' },
+                        { type: '判断', text: '创意可以通过系统的训练来提升。', answer: '正确' },
+                        { type: '单选', text: '六顶思考帽法中，蓝色帽子代表什么？', options: ['创新', '逻辑', '情感', '控制'], answer: 'D' },
+                        { type: '多选', text: '创意评估的标准包括？', options: ['新颖性', '可行性', '价值性', '复杂性'], answer: 'ABC' },
+                        { type: '判断', text: '团队合作比个人创作更有利于产生创意。', answer: '正确' }
+                    ],
+                    technical: [
+                        { type: '单选', text: '以下哪种语言是编译型语言？', options: ['JavaScript', 'Python', 'C++', 'Ruby'], answer: 'C' },
+                        { type: '判断', text: 'HTTP协议是无状态的。', answer: '正确' },
+                        { type: '多选', text: '常见的排序算法包括？', options: ['冒泡排序', '快速排序', '二叉树排序', '线性排序'], answer: 'ABD' },
+                        { type: '单选', text: '以下哪个不是设计模式？', options: ['单例模式', '工厂模式', '观察者模式', '循环模式'], answer: 'D' },
+                        { type: '判断', text: '数据库索引可以提高查询效率。', answer: '正确' },
+                        { type: '单选', text: '以下哪种数据结构是线性结构？', options: ['树', '图', '链表', '堆'], answer: 'C' },
+                        { type: '多选', text: '常见的网络协议包括？', options: ['TCP', 'UDP', 'IP', 'HTML'], answer: 'ABC' },
+                        { type: '判断', text: '面向对象编程的三大特性是封装、继承和多态。', answer: '正确' }
+                    ]
+                };
+                
+                const templates = questionTemplates[subject] || questionTemplates.creative;
+                for (let i = 0; i < count; i++) {
+                    const template = templates[i % templates.length];
+                    const question = {
+                        id: i + 1,
+                        type: template.type,
+                        options: template.options || null,
+                        answer: template.answer,
+                        explain: '模拟题目的解释' // 添加解释字段
+                    };
+                    
+                    if (template.type === '判断') {
+                        question.text = `${i + 1}、${template.text}`;
+                    } else if (template.type === '单选') {
+                        question.text = `${i + 1}、${template.text}`;
+                    } else if (template.type === '多选') {
+                        question.text = `${i + 1}、${template.text}`;
+                    }
+                    
+                    questions.push(question);
+                }
+                
+                return questions;
+            }
+            
+            // 驾考科目使用API获取真实题目
+            const questions = [];
+            const apiSubject = subject === 'subject1' ? 1 : 4;
+            const startTime = performance.now();
+            
+            // 并行获取题目，提高性能
+            const fetchPromises = [];
+            
+            // 创建多个并发请求
+            for (let i = 0; i < count; i++) {
+                fetchPromises.push(
+                    fetch(`https://v2.xxapi.cn/api/jiakao?subject=${apiSubject}`)
+                        .then(response => response.json())
+                        .catch(error => {
+                            console.error('API请求异常:', error);
+                            return null;
+                        })
+                );
+            }
+            
+            // 等待所有请求完成
+            const results = await Promise.all(fetchPromises);
+            
+            // 处理结果
+            results.forEach((data, i) => {
+                try {
+                    if (data && data.code === 200 && data.data) {
+                        const apiData = data.data;
+                        let questionText = `${i + 1}、${apiData.question}`;
+                        
+                        console.log('API返回的数据:', apiData); // 添加调试日志
+                        
+                        // 检查多种可能的图片字段名
+                        const possibleImageFields = ['image', 'img', 'pic', 'picture', 'images'];
+                        let foundImageUrl = '';
+                        
+                        for (const field of possibleImageFields) {
+                            if (apiData[field] && apiData[field].trim() !== '') {
+                                foundImageUrl = apiData[field];
+                                console.log(`找到图片字段 ${field}: ${foundImageUrl}`); // 添加调试日志
+                                break;
+                            }
+                        }
+                        
+                        // 如果找到图片URL，添加到题目文本中
+                        if (foundImageUrl) {
+                            // 确保图片URL是完整的
+                            let imageUrl = foundImageUrl;
+                            if (!imageUrl.startsWith('http://') && !imageUrl.startsWith('https://')) {
+                                if (imageUrl.startsWith('//')) {
+                                    imageUrl = `https:${imageUrl}`; // 处理相对协议
+                                } else {
+                                    // 检查是否是本地图片资源
+                                    const localImages = {
+                                        '标志': 'photo/考试.jpeg',
+                                        '弯道': 'photo/考试2.jpeg',
+                                        '窄桥': 'photo/考试.jpeg',
+                                        '路面变窄': 'photo/考试2.jpeg'
+                                    };
+                                    
+                                    // 根据题目关键词选择本地图片
+                                    let localImagePath = '';
+                                    for (const [keyword, path] of Object.entries(localImages)) {
+                                        if (apiData.question.includes(keyword)) {
+                                            localImagePath = path;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    if (localImagePath) {
+                                        imageUrl = localImagePath; // 使用本地图片
+                                        console.log('使用本地图片:', imageUrl);
+                                    } else {
+                                        imageUrl = `https://${imageUrl}`; // 添加默认协议
+                                    }
+                                }
+                            }
+                            
+                            questionText += `<br><img src="${imageUrl}" alt="题目图片" title="题目图片">`;
+                        } else {
+                            console.log('未找到图片字段'); // 添加调试日志
+                        }
+                        
+                        let question = {
+                            id: i + 1,
+                            text: questionText,
+                            answer: apiData.answer,
+                            explain: apiData.explain || '',
+                            chapter: apiData.chapter || ''
+                        };
+                        
+                        // 根据API返回的数据判断题目类型
+                        if (apiData.option1 || apiData.option2 || apiData.option3 || apiData.option4) {
+                            // 选择题
+                            question.type = '单选';
+                            question.options = [];
+                            if (apiData.option1) question.options.push(apiData.option1.replace(/^A、/, ''));
+                            if (apiData.option2) question.options.push(apiData.option2.replace(/^B、/, ''));
+                            if (apiData.option3) question.options.push(apiData.option3.replace(/^C、/, ''));
+                            if (apiData.option4) question.options.push(apiData.option4.replace(/^D、/, ''));
+                        } else {
+                            // 判断题
+                            question.type = '判断';
+                            // 将API返回的答案转换为统一格式
+                            question.answer = apiData.answer === '对' ? '正确' : '错误';
+                        }
+                        
+                        questions.push(question);
+                    } else {
+                        // API调用失败，使用默认题目
+                        if (data) console.error('API调用失败:', data.msg);
+                        // 添加默认题目
+                        questions.push({
+                            id: i + 1,
+                            type: '判断',
+                            text: `${i + 1}、机动车在道路上发生故障时，应当开启危险报警闪光灯。`,
+                            answer: '正确',
+                            explain: '默认题目的解释',
+                            chapter: '默认章节'
+                        });
+                    }
+                } catch (error) {
+                    // 处理单个结果的解析错误
+                    console.error('处理题目数据失败:', error);
+                    // 添加默认题目
+                    questions.push({
+                        id: i + 1,
+                        type: '判断',
+                        text: `${i + 1}、机动车在道路上发生故障时，应当开启危险报警闪光灯。`,
+                        answer: '正确',
+                        explain: '默认题目的解释',
+                        chapter: '默认章节'
+                    });
+                }
+            });
+            
+            const endTime = performance.now();
+            console.log(`获取${count}道题耗时: ${(endTime - startTime).toFixed(2)}ms`);
+            
+            return questions;
+        }
+        
+        // 状态管理
+        let currentExam = null;
+        let currentSubject = null;
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let timerInterval = null;
+        let remainingTime = 0;
+        
+        // DOM元素
+        const examTypesSection = document.getElementById('examTypesSection');
+        const drivingCategories = document.getElementById('drivingCategories');
+        const professionalCategories = document.getElementById('professionalCategories');
+        const examInterface = document.getElementById('examInterface');
+        const questionArea = document.getElementById('questionArea');
+        const examTitle = document.getElementById('examTitle');
+        const timerDisplay = document.getElementById('timer');
+        const currentNum = document.getElementById('currentNum');
+        const totalNum = document.getElementById('totalNum');
+        
+        // 新增进度条和题目浏览区域DOM元素
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const questionsGrid = document.getElementById('questionsGrid');
+        
+        // 新增得分显示DOM元素
+        const scoreDisplay = document.getElementById('score');
+        
+        // 初始化事件监听
+        document.addEventListener('DOMContentLoaded', function() {
+            // 考试类型选择
+            document.querySelectorAll('.exam-type-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const examType = this.dataset.exam;
+                    if (examType === 'driving') {
+                        showDrivingCategories();
+                    } else if (examType === 'professional') {
+                        showProfessionalCategories();
+                    }
+                });
+            });
+            
+            // 侧边栏导航
+            document.querySelectorAll('.exam-nav-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.exam-nav-item').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const examType = this.dataset.exam;
+                    if (examType === 'driving') {
+                        showDrivingCategories();
+                    } else if (examType === 'professional') {
+                        showProfessionalCategories();
+                    }
+                });
+            });
+            
+            // 科目标签切换
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    document.querySelectorAll('.category-content').forEach(c => c.classList.remove('active'));
+                    document.getElementById(this.dataset.category).classList.add('active');
+                });
+            });
+            
+            // 确认复选框
+            document.getElementById('subject1Confirm').addEventListener('change', function() {
+                document.getElementById('startSubject1').disabled = !this.checked;
+            });
+            
+            document.getElementById('subject4Confirm').addEventListener('change', function() {
+                document.getElementById('startSubject4').disabled = !this.checked;
+            });
+            
+            document.getElementById('creativeConfirm').addEventListener('change', function() {
+                document.getElementById('startCreative').disabled = !this.checked;
+            });
+            
+            document.getElementById('technicalConfirm').addEventListener('change', function() {
+                document.getElementById('startTechnical').disabled = !this.checked;
+            });
+            
+            // 开始考试按钮
+            document.getElementById('startSubject1').addEventListener('click', async function() {
+                await startExam('subject1');
+            });
+            
+            document.getElementById('startSubject4').addEventListener('click', async function() {
+                await startExam('subject4');
+            });
+            
+            document.getElementById('startCreative').addEventListener('click', async function() {
+                await startExam('creative');
+            });
+            
+            document.getElementById('startTechnical').addEventListener('click', async function() {
+                await startExam('technical');
+            });
+            
+            // 导航按钮
+            document.getElementById('prevBtn').addEventListener('click', async function() {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    await renderQuestion();
+                }
+            });
+            
+            document.getElementById('nextBtn').addEventListener('click', async function() {
+                if (currentQuestion < currentExam.totalQuestions - 1) {
+                    currentQuestion++;
+                    await renderQuestion();
+                }
+            });
+            
+            // 交卷按钮
+            document.getElementById('submitBtn').addEventListener('click', submitExam);
+        });
+        
+        function showDrivingCategories() {
+            examTypesSection.style.display = 'none';
+            drivingCategories.classList.add('show');
+            professionalCategories.classList.remove('show');
+            examInterface.classList.remove('show');
+        }
+        
+        function showProfessionalCategories() {
+            examTypesSection.style.display = 'none';
+            drivingCategories.classList.remove('show');
+            professionalCategories.classList.add('show');
+            examInterface.classList.remove('show');
+        }
+        
+        // 全屏监控系统变量
+        let isFullscreen = false;
+        let fullscreenExitAttempts = 0;
+        
+        // 兼容不同浏览器的全屏API
+        function requestFullscreen(element) {
+            if (element.requestFullscreen) {
+                return element.requestFullscreen();
+            } else if (element.webkitRequestFullscreen) {
+                return element.webkitRequestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                return element.mozRequestFullScreen();
+            } else if (element.msRequestFullscreen) {
+                return element.msRequestFullscreen();
+            }
+        }
+        
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                return document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                return document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                return document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                return document.msExitFullscreen();
+            }
+        }
+        
+        function isDocumentFullscreen() {
+            return !!(document.fullscreenElement || 
+                    document.webkitFullscreenElement || 
+                    document.mozFullScreenElement || 
+                    document.msFullscreenElement);
+        }
+        
+        // 显示警告信息
+        function showWarningMessage() {
+            // 记录违规行为
+            fullscreenExitAttempts++;
+            
+            // 创建警告模态框
+            const warningModal = document.createElement('div');
+            warningModal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                color: white;
+                font-size: 24px;
+                text-align: center;
+            `;
+            warningModal.innerHTML = `
+                <div style="background: #dc3545; padding: 30px; border-radius: 10px; max-width: 500px;">
+                    <h2 style="margin-bottom: 20px;">⚠️ 考试警告</h2>
+                    <p>您尝试退出全屏模式，这违反了考试规定！</p>
+                    <p style="margin: 20px 0;">违规次数：${fullscreenExitAttempts}/3</p>
+                    <p>再次违规将自动提交试卷！</p>
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            style="margin-top: 20px; padding: 10px 20px; font-size: 18px; 
+                                   background: white; color: #dc3545; border: none; 
+                                   border-radius: 5px; cursor: pointer;">
+                        我知道了
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(warningModal);
+            
+            // 3秒后自动关闭警告
+            setTimeout(() => {
+                if (warningModal.parentNode) {
+                    warningModal.remove();
+                }
+            }, 3000);
+        }
+        
+        // 处理全屏退出
+        function handleFullscreenExit() {
+            if (!isDocumentFullscreen()) {
+                // 检测到全屏退出
+                showWarningMessage();
+                
+                // 尝试重新进入全屏
+                setTimeout(() => {
+                    if (!isDocumentFullscreen()) {
+                        // 如果无法重新进入全屏，自动交卷
+                        alert('您已退出全屏模式，考试将自动提交！');
+                        submitExam();
+                    }
+                }, 1000);
+            } else {
+                isFullscreen = true;
+            }
+        }
+        
+        // 阻止特定键盘事件
+        function handleKeyDown(event) {
+            if (isFullscreen) {
+                // 阻止ESC键
+                if (event.key === 'Escape' || event.keyCode === 27) {
+                    event.preventDefault();
+                    showWarningMessage();
+                }
+                // 阻止F11键
+                if (event.key === 'F11' || event.keyCode === 122) {
+                    event.preventDefault();
+                    showWarningMessage();
+                }
+                // 阻止Alt+Tab (无法完全阻止，但可以警告)
+                if (event.altKey && event.key === 'Tab') {
+                    showWarningMessage();
+                }
+                // 阻止Ctrl+W (关闭标签页)
+                if (event.ctrlKey && event.key === 'w') {
+                    event.preventDefault();
+                    showWarningMessage();
+                }
+                // 阻止Ctrl+Shift+I (开发者工具)
+                if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === 'I') {
+                    event.preventDefault();
+                    showWarningMessage();
+                }
+            }
+        }
+        
+        async function startExam(subject) {
+            // 显示组卷动画
+            showLoadingAnimation();
+            
+            currentSubject = subject;
+            currentExam = examData[subject];
+            currentQuestion = 0;
+            userAnswers = new Array(currentExam.totalQuestions).fill(null);
+            fullscreenExitAttempts = 0; // 重置违规次数
+            
+            // 初始化问题数组
+            currentExam.questions = new Array(currentExam.totalQuestions).fill(null);
+            
+            // 计算初始加载数量
+            const initialLoadCount = currentExam.initialLoad || currentExam.totalQuestions;
+            
+            try {
+                // 生成初始题库 - 使用异步调用
+                const initialQuestions = await generateQuestions(subject, initialLoadCount);
+                
+                // 将初始题目填充到问题数组
+                initialQuestions.forEach((question, index) => {
+                    currentExam.questions[index] = question;
+                });
+                
+                drivingCategories.classList.remove('show');
+                if (professionalCategories) {
+                    professionalCategories.classList.remove('show');
+                }
+                examInterface.classList.add('show');
+                
+                // 初始化界面
+                examTitle.textContent = currentExam.title;
+                totalNum.textContent = currentExam.totalQuestions;
+                remainingTime = currentExam.time * 60;
+                
+                // 初始化题目浏览区域
+                initializeQuestionsBrowser();
+                
+                // 开始计时器
+                startTimer();
+                
+                // 渲染第一题
+                await renderQuestion();
+                
+                // 激活全屏模式
+                const examContainer = document.querySelector('.exam-container');
+                if (examContainer) {
+                    requestFullscreen(examContainer).then(() => {
+                        isFullscreen = true;
+                    }).catch(error => {
+                        console.error('无法进入全屏模式:', error);
+                        alert('考试监控系统需要全屏权限，请允许浏览器全屏请求！');
+                    });
+                }
+                
+                // 添加全屏变化事件监听器
+                document.addEventListener('fullscreenchange', handleFullscreenExit);
+                document.addEventListener('webkitfullscreenchange', handleFullscreenExit);
+                document.addEventListener('mozfullscreenchange', handleFullscreenExit);
+                document.addEventListener('MSFullscreenChange', handleFullscreenExit);
+                
+                // 添加键盘事件监听器
+                document.addEventListener('keydown', handleKeyDown);
+                
+                // 如果还有题目需要加载，在后台异步加载剩余题目
+                if (initialLoadCount < currentExam.totalQuestions) {
+                    loadRemainingQuestions(subject, initialLoadCount);
+                }
+            } catch (error) {
+                console.error('开始考试失败:', error);
+                alert('考试加载失败，请重试');
+            } finally {
+                // 隐藏组卷动画
+                hideLoadingAnimation();
+            }
+        }
+        
+        // 显示组卷动画
+        function showLoadingAnimation() {
+            // 创建加载动画元素
+            const loadingOverlay = document.createElement('div');
+            loadingOverlay.className = 'loading-overlay';
+            loadingOverlay.innerHTML = `
+                <div class="loading-content">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">正在组卷中</div>
+                    <div class="loading-subtext">
+                        系统正在为您准备题目
+                        <span class="loading-dots"></span>
+                    </div>
+                </div>
+            `;
+            
+            // 将动画添加到页面
+            document.body.appendChild(loadingOverlay);
+        }
+        
+        // 隐藏组卷动画
+        function hideLoadingAnimation() {
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            if (loadingOverlay) {
+                // 添加淡出效果
+                loadingOverlay.style.transition = 'opacity 0.3s ease';
+                loadingOverlay.style.opacity = '0';
+                
+                // 延迟移除元素，让淡出动画完成
+                setTimeout(() => {
+                    document.body.removeChild(loadingOverlay);
+                }, 300);
+            }
+        }
+        
+        // 后台加载剩余题目
+        async function loadRemainingQuestions(subject, loadedCount) {
+            const remainingCount = currentExam.totalQuestions - loadedCount;
+            const remainingQuestions = await generateQuestions(subject, remainingCount);
+            
+            // 将剩余题目填充到问题数组
+            remainingQuestions.forEach((question, index) => {
+                currentExam.questions[loadedCount + index] = question;
+            });
+            
+            console.log(`已加载所有题目，共${currentExam.totalQuestions}道`);
+        }
+        
+        function startTimer() {
+            updateTimerDisplay();
+            timerInterval = setInterval(function() {
+                remainingTime--;
+                updateTimerDisplay();
+                
+                if (remainingTime <= 0) {
+                    clearInterval(timerInterval);
+                    submitExam();
+                }
+            }, 1000);
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // 初始化题目浏览区域
+        function initializeQuestionsBrowser() {
+            // 清空现有内容
+            questionsGrid.innerHTML = '';
+            
+            // 生成题目编号
+            for (let i = 0; i < currentExam.totalQuestions; i++) {
+                const questionNum = document.createElement('div');
+                questionNum.className = 'question-number ' + (i === 0 ? 'active' : 'unanswered');
+                questionNum.textContent = i + 1;
+                questionNum.dataset.questionIndex = i;
+                
+                // 添加点击事件
+                questionNum.addEventListener('click', function() {
+                    const questionIndex = parseInt(this.dataset.questionIndex);
+                    if (questionIndex !== currentQuestion) {
+                        currentQuestion = questionIndex;
+                        renderQuestion();
+                        
+                        // 显示底部导航按钮（如果之前隐藏了）
+                        document.querySelector('.exam-footer').style.display = 'flex';
+                    }
+                });
+                
+                questionsGrid.appendChild(questionNum);
+            }
+        }
+        
+        // 更新进度条
+        function updateProgressBar() {
+            // 计算已完成题目数量
+            const answeredCount = userAnswers.filter(answer => answer !== null).length;
+            
+            // 计算进度百分比
+            const progressPercent = Math.round((answeredCount / currentExam.totalQuestions) * 100);
+            
+            // 更新进度条
+            progressFill.style.width = progressPercent + '%';
+            progressText.textContent = progressPercent + '%';
+            
+            // 更新题目浏览区域中已答和未答的状态
+            const questionNumbers = document.querySelectorAll('.question-number');
+            questionNumbers.forEach((num, index) => {
+                num.classList.remove('answered', 'unanswered', 'active');
+                
+                if (index === currentQuestion) {
+                    num.classList.add('active');
+                }
+                
+                if (userAnswers[index] !== null) {
+                    num.classList.add('answered');
+                } else {
+                    num.classList.add('unanswered');
+                }
+            });
+        }
+        
+        // 更新得分
+        function updateScore() {
+            // 计算正确答案数量
+            let correctCount = 0;
+            currentExam.questions.forEach((question, index) => {
+                if (question && userAnswers[index] === question.answer) {
+                    correctCount++;
+                }
+            });
+            
+            // 更新得分显示
+            scoreDisplay.textContent = correctCount;
+        }
+        
+        async function renderQuestion() {
+            let question = currentExam.questions[currentQuestion];
+            
+            // 更新当前题目数量显示
+            document.getElementById('currentNum').textContent = currentQuestion + 1;
+            
+            // 更新进度条
+            updateProgressBar();
+            
+            // 更新得分
+            updateScore();
+            
+            // 检查题目是否已加载，如果未加载则显示加载状态并动态加载
+            if (!question) {
+                questionArea.innerHTML = '<div style="text-align: center; padding: 50px; font-size: 18px;">正在加载题目，请稍候... ⏳</div>';
+                
+                // 动态加载当前题目
+                try {
+                    const loadedQuestion = await generateQuestions(currentSubject, 1);
+                    currentExam.questions[currentQuestion] = loadedQuestion[0];
+                    question = loadedQuestion[0];
+                    
+                    // 加载完成后重新渲染
+                    renderQuestion();
+                    return;
+                } catch (error) {
+                    console.error('动态加载题目失败:', error);
+                    // 显示错误提示
+                    questionArea.innerHTML = '<div style="text-align: center; padding: 50px; font-size: 18px; color: #dc3545;">题目加载失败，请点击上一题或下一题重试。</div>';
+                    return;
+                }
+            }
+            
+            const userAnswer = userAnswers[currentQuestion];
+            
+            // 渲染题目
+            // 处理题目文本中的图片，将其包裹在容器中以便添加水印
+            const processedText = question.text.replace(/<img/g, '<div class="image-with-watermark"><img class="question-image" onerror="this.style.display=\'none\';"').replace(/<\/img>/g, '</img></div>');
+            
+            let html = `
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-num-badge">第${question.id}题</span>
+                        <span class="question-type">${question.type === '判断' ? '判断题' : question.type === '单选' ? '单选题' : '多选题'}</span>
+                    </div>
+                    <div class="question-content">${processedText}</div>
+                    ${question.chapter ? `<div style="color: #3498db; font-size: 14px; margin-bottom: 15px;">📚 ${question.chapter}</div>` : ''}
+                    <div class="options">
+            `;
+            
+            if (question.type === '判断') {
+                const optionA = { letter: 'A', text: '正确', selected: userAnswer === '正确' };
+                const optionB = { letter: 'B', text: '错误', selected: userAnswer === '错误' };
+                
+                [optionA, optionB].forEach(opt => {
+                    html += `
+                        <label class="option ${opt.selected ? 'selected' : ''}" onclick="selectOption('${opt.text}')">
+                            <input type="radio" name="question${question.id}" value="${opt.text}" ${opt.selected ? 'checked' : ''}>
+                            <span class="option-letter">${opt.letter}</span>
+                            <span class="option-text">${opt.text}</span>
+                        </label>
+                    `;
+                });
+            } else if (question.options) {
+                const letters = ['A', 'B', 'C', 'D'];
+                question.options.forEach((opt, index) => {
+                    html += `
+                        <label class="option ${userAnswer === letters[index] ? 'selected' : ''}" onclick="selectOption('${letters[index]}')">
+                            <input type="radio" name="question${question.id}" value="${letters[index]}" ${userAnswer === letters[index] ? 'checked' : ''}>
+                            <span class="option-letter">${letters[index]}</span>
+                            <span class="option-text">${opt}</span>
+                        </label>
+                    `;
+                });
+            }
+            
+            // 添加反馈区域
+            html += `
+                    </div>
+                    <!-- 答题反馈区域 -->
+                    <div id="feedbackArea" style="display: none; margin-top: 25px; padding: 20px; background: #f8f9fa; border-left: 4px solid #3498db; border-radius: 4px;">
+                        <h4 style="color: #3498db; margin-bottom: 15px;">📋 答题反馈</h4>
+                        <div style="margin-bottom: 15px;">
+                            <strong>您的答案：</strong> <span id="userAnswerDisplay"></span>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>正确答案：</strong> <span id="correctAnswerDisplay"></span>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <strong>解析：</strong> <div id="explanationDisplay" style="margin-top: 10px; line-height: 1.6; color: #555;"></div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <strong>相关概念：</strong> <div id="conceptsDisplay" style="margin-top: 10px; line-height: 1.6; color: #555;"></div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <strong>常见错误：</strong> <div id="commonMistakesDisplay" style="margin-top: 10px; line-height: 1.6; color: #e74c3c;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: flex-end;">
+                            <button id="nextQuestionBtn" class="nav-btn" onclick="nextQuestion()">下一题 →</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            questionArea.innerHTML = html;
+            
+            // 更新按钮状态
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').disabled = currentQuestion === currentExam.totalQuestions - 1;
+        }
+        
+        async function selectOption(answer) {
+            userAnswers[currentQuestion] = answer;
+            const question = currentExam.questions[currentQuestion];
+            
+            // 更新进度条和题目浏览区域状态
+            updateProgressBar();
+            
+            // 更新得分
+            updateScore();
+            
+            // 显示反馈区域
+            const feedbackArea = document.getElementById('feedbackArea');
+            const userAnswerDisplay = document.getElementById('userAnswerDisplay');
+            const correctAnswerDisplay = document.getElementById('correctAnswerDisplay');
+            const explanationDisplay = document.getElementById('explanationDisplay');
+            const conceptsDisplay = document.getElementById('conceptsDisplay');
+            const commonMistakesDisplay = document.getElementById('commonMistakesDisplay');
+            
+            // 更新用户答案和正确答案显示
+            userAnswerDisplay.textContent = answer;
+            userAnswerDisplay.style.color = answer === question.answer ? '#27ae60' : '#e74c3c';
+            
+            correctAnswerDisplay.textContent = question.answer;
+            correctAnswerDisplay.style.color = '#27ae60';
+            
+            // 更新解析显示
+            explanationDisplay.innerHTML = question.explain || '暂无解析';
+            
+            // 更新相关概念显示
+            let concepts = '';
+            if (question.chapter) {
+                concepts = `<p>• 本章主题：${question.chapter}</p>`;
+            }
+            // 添加一些通用概念
+            if (question.type === '判断') {
+                concepts += '<p>• 判断题通常考察对基本规则的理解和记忆</p>';
+            } else {
+                concepts += '<p>• 选择题需要理解每个选项的含义并进行比较</p>';
+            }
+            conceptsDisplay.innerHTML = concepts;
+            
+            // 更新常见错误显示
+            let mistakes = '';
+            if (answer !== question.answer) {
+                mistakes += '<p>• 注意仔细阅读题目，避免理解偏差</p>';
+                mistakes += '<p>• 注意区分相似概念和易混淆知识点</p>';
+                mistakes += '<p>• 避免根据经验或直觉答题，要依据教材内容</p>';
+            }
+            commonMistakesDisplay.innerHTML = mistakes || '暂无常见错误提示';
+            
+            // 显示反馈区域
+            feedbackArea.style.display = 'block';
+            
+            // 禁用选项点击，防止重复选择
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+            
+            // 隐藏底部导航按钮，使用反馈区域的下一题按钮
+            document.querySelector('.exam-footer').style.display = 'none';
+        }
+        
+        // 下一题函数
+        async function nextQuestion() {
+            // 检查是否是最后一题
+            if (currentQuestion < currentExam.totalQuestions - 1) {
+                // 进入下一题
+                currentQuestion++;
+                
+                // 重新渲染题目，隐藏反馈区域
+                await renderQuestion();
+                
+                // 显示底部导航按钮
+                document.querySelector('.exam-footer').style.display = 'flex';
+            } else {
+                // 最后一题，显示考试结束界面
+                submitExam();
+            }
+        }
+        
+        function submitExam() {
+            clearInterval(timerInterval);
+            
+            // 退出全屏模式
+            if (isFullscreen && isDocumentFullscreen()) {
+                exitFullscreen();
+            }
+            isFullscreen = false;
+            
+            // 移除事件监听器
+            document.removeEventListener('fullscreenchange', handleFullscreenExit);
+            document.removeEventListener('webkitfullscreenchange', handleFullscreenExit);
+            document.removeEventListener('mozfullscreenchange', handleFullscreenExit);
+            document.removeEventListener('MSFullscreenChange', handleFullscreenExit);
+            document.removeEventListener('keydown', handleKeyDown);
+            
+            // 计算分数
+            let correct = 0;
+            let unanswered = 0;
+            let answered = 0;
+            
+            currentExam.questions.forEach((question, index) => {
+                if (userAnswers[index] === undefined || userAnswers[index] === null || userAnswers[index] === '') {
+                    unanswered++;
+                } else {
+                    answered++;
+                    if (userAnswers[index] === question.answer) {
+                        correct++;
+                    }
+                }
+            });
+            
+            const score = correct;
+            const total = currentExam.totalQuestions;
+            const passed = score >= currentExam.passingScore;
+            const accuracy = Math.round((correct / total) * 100);
+            const usedTime = currentExam.totalTime - remainingTime;
+            
+            // 计算用时（分钟:秒）
+            const minutes = Math.floor(usedTime / 60);
+            const seconds = usedTime % 60;
+            const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // 显示结果 - 添加结算信息
+            let resultHtml = `
+                <div class="question-card" style="text-align: center; padding: 30px;">
+                    <h2 style="color: ${passed ? '#28a745' : '#dc3545'}; margin-bottom: 30px; font-size: 24px;">
+                        ${passed ? '🎉 恭喜完成练习！' : '😢 练习结束'}
+                    </h2>
+                    
+                    <!-- 结算信息卡片 -->
+                    <div style="background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%); border-radius: 16px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 28px; margin-bottom: 15px; font-weight: bold;">
+                            ${score} / ${total}
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+                            <div style="background: white; padding: 15px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <div style="font-size: 14px; color: #666; margin-bottom: 5px;">正确率</div>
+                                <div style="font-size: 24px; font-weight: bold; color: #667eea;">${accuracy}%</div>
+                            </div>
+                            <div style="background: white; padding: 15px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <div style="font-size: 14px; color: #666; margin-bottom: 5px;">用时</div>
+                                <div style="font-size: 24px; font-weight: bold; color: #667eea;">${formattedTime}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: #28a745;">${correct}</div>
+                                <div style="font-size: 12px; color: #666;">正确</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: #dc3545;">${answered - correct}</div>
+                                <div style="font-size: 12px; color: #666;">错误</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: #ffc107;">${unanswered}</div>
+                                <div style="font-size: 12px; color: #666;">未答</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #666; margin-bottom: 30px; line-height: 1.6;">
+                        ${passed ? '您已完成本次练习，正确率达到了' + accuracy + '%，表现优秀！请继续加油！' : `本次练习正确率为${accuracy}%，继续努力，争取下次取得更好的成绩！`}
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+                        <button class="confirm-btn" onclick="startExam('${currentSubject}')" style="padding: 15px 30px; width: 100%; max-width: 300px; margin: 0 auto;">
+                            重新练习
+                        </button>
+                        <button class="nav-btn" onclick="location.reload()" style="padding: 15px 30px; width: 100%; max-width: 300px; margin: 0 auto;">
+                            返回首页
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // 添加题目解析
+            resultHtml += '<div style="margin-top: 30px;">';
+            resultHtml += '<h3 style="color: #667eea; margin-bottom: 20px; text-align: center;">📝 题目解析</h3>';
+            
+            currentExam.questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.answer;
+                
+                resultHtml += `
+                    <div class="question-card" style="margin-bottom: 20px; border-left: 4px solid ${isCorrect ? '#28a745' : '#dc3545'};">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span class="question-num-badge">第${index + 1}题</span>
+                            <span style="color: ${isCorrect ? '#28a745' : '#dc3545'}; font-weight: bold;">
+                                ${isCorrect ? '✅ 正确' : '❌ 错误'}
+                            </span>
+                        </div>
+                        <div class="question-content" style="margin-bottom: 15px;">${question.text}</div>
+                        ${question.chapter ? `<div style="color: #667eea; font-size: 14px; margin-bottom: 10px;">📚 ${question.chapter}</div>` : ''}
+                        <div style="margin-bottom: 15px;">
+                            <strong>您的答案：</strong>${userAnswer || '未作答'}
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>正确答案：</strong>${question.answer}
+                        </div>
+                        ${question.explain ? `
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                                <strong>解析：</strong>${question.explain}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            
+            resultHtml += '</div>';
+            
+            questionArea.innerHTML = resultHtml;
+            document.getElementById('submitBtn').style.display = 'none';
+        }
+    </script>
+    
+    <!-- 优化后的悬浮广告 -->
+    <div id="idy_floatdiv" style="position:fixed;left:0;bottom:20%;width:40px;height:120px;background:linear-gradient(180deg, #667eea 0%, #764ba2 100%);line-height: 30px;writing-mode:vertical-rl;text-align:center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:16px;font-weight:600;box-shadow: 4px 4px 16px rgba(102, 126, 234, 0.4);border-radius: 0 12px 12px 0;transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);z-index: 999;cursor:pointer;">
+        <a href="https://www.wenjuan.com/s/UZBZJvkySyB/" target="blank" style="color:#ffffff;text-decoration:none;display:block;width:100%;height:100%;padding:15px 8px;transition: all 0.3s ease;">
+            <span style="display:inline-block;transition: transform 0.3s ease;">加入我们</span>
+        </a>
+    </div>
+    
+    <style>
+        #idy_floatdiv:hover {
+            transform: translateX(5px);
+            box-shadow: 6px 6px 20px rgba(102, 126, 234, 0.5);
+            background:linear-gradient(180deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        #idy_floatdiv:hover span {
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            #idy_floatdiv {
+                width: 36px;
+                height: 100px;
+                font-size: 14px;
+                line-height: 26px;
+            }
+            
+            #idy_floatdiv a {
+                padding: 12px 6px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #idy_floatdiv {
+                width: 32px;
+                height: 90px;
+                font-size: 13px;
+                line-height: 24px;
+            }
+            
+            #idy_floatdiv a {
+                padding: 10px 5px;
+            }
+        }
+    </style>
+</body>
+</html>

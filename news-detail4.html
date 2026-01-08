@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>关于我们 - 天马行空创意网</title>
+    <title>2026年天马行空创意团队新春晚会节目火热征集中！ - 天马行空创意网</title>
     <link rel="icon" href="photo/logo.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -68,6 +68,7 @@
         .logo-sub {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.8);
+            font-weight: normal;
         }
         
         .slogan {
@@ -217,121 +218,96 @@
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
         
-        .banner-btn {
-            display: inline-block;
-            padding: 12px 30px;
+        /* 新闻详情样式 */
+        .news-detail {
             background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-        
-        .banner-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* 美化section */
-        section {
-            margin: 40px 0;
-            background: white;
-            border-radius: 12px;
+            margin: 20px auto;
             padding: 25px;
+            border-radius: 12px;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            max-width: 480px;
             animation: fadeInUp 0.8s ease-out;
         }
         
-        .section-title {
-            font-size: 22px;
-            color: #667eea;
-            margin-bottom: 20px;
-            font-weight: 700;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            border-radius: 3px;
-        }
-        
-        /* 团队简介 */
-        .about-content {
-            line-height: 1.7;
-            color: #666;
-        }
-        
-        .about-content h3 {
-            font-size: 18px;
+        .news-detail h1 {
             color: #333;
-            margin: 20px 0 10px;
-            font-weight: 600;
+            font-size: 24px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            font-weight: 700;
         }
         
-        .about-content p {
+        .news-detail .news-meta {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .news-detail .news-content {
+            line-height: 1.7;
+            color: #555;
+            font-size: 16px;
+        }
+        
+        .news-detail .news-content p {
             margin-bottom: 15px;
+            text-align: justify;
         }
         
-        .about-content img {
+        .news-detail .news-content img {
             width: 100%;
-            max-width: 300px;
+            max-width: 100%;
+            height: auto;
             border-radius: 8px;
-            margin: 20px auto;
-            display: block;
+            margin: 20px 0;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
-        /* 动画效果 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* 美化footer */
-        footer {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
-        
-        footer p {
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-        
-        .disclaimer {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .disclaimer h3 {
-            font-size: 16px;
-            margin-bottom: 15px;
+        .news-detail .news-content h2 {
+            color: #333;
+            font-size: 20px;
+            margin: 25px 0 15px;
             font-weight: 600;
         }
         
-        .disclaimer p {
-            font-size: 12px;
-            margin-bottom: 8px;
-            opacity: 0.8;
+        .news-detail .news-content h3 {
+            color: #444;
+            font-size: 18px;
+            margin: 20px 0 15px;
+            font-weight: 600;
+        }
+        
+        .news-detail .news-content ul,
+        .news-detail .news-content ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        .news-detail .news-content li {
+            margin-bottom: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         
         /* 回到顶部按钮 */
@@ -363,11 +339,66 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
+        
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 美化footer */
+        footer {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .disclaimer {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .disclaimer h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .disclaimer p {
+            font-size: 12px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 480px) {
+            .news-detail {
+                padding: 20px;
+            }
+        }
     </style>
+    <!-- 新年主题样式 -->
+    <link rel="stylesheet" href="css/newyear.css">
 </head>
 <body>
     <header class="header">
-        <div class="header-content">
+        <div class="container header-content">
             <div class="logo">
                 <img src="photo/logo.png" alt="Logo">
                 <div class="logo-text">
@@ -386,78 +417,98 @@
     <nav class="mobile-nav">
         <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">首页</a></li>
-            <li class="nav-item"><a href="about.html" class="nav-link active">关于我们</a></li>
-            <li class="nav-item"><a href="news.html" class="nav-link">新闻动态</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">关于我们</a></li>
+            <li class="nav-item"><a href="news.html" class="nav-link active">新闻动态</a></li>
             <li class="nav-item"><a href="team-info.html" class="nav-link">团队查询</a></li>
             <li class="nav-item"><a href="download-materials.html" class="nav-link">资料下载</a></li>
             <li class="nav-item"><a href="download-software.html" class="nav-link">软件下载</a></li>
             <li class="nav-item"><a href="video.html" class="nav-link">视频区</a></li>
             <li class="nav-item"><a href="music.html" class="nav-link">音乐区</a></li>
-            <li class="nav-item"><a href="online-exam.html" class="nav-link">在线考试中心</a></li>
         </ul>
     </nav>
     
     <div class="banner">
         <div class="container banner-content">
-            <h1>关于我们</h1>
-            <p>了解天马行空创意团队的发展历程、文化理念和核心优势</p>
+            <h1>新闻详情</h1>
+            <p>了解天马行空创意团队的最新动态和活动</p>
         </div>
     </div>
     
     <div class="container">
-        <section class="team-intro">
-            <h2 class="section-title">团队简介</h2>
-            <div class="intro-content">
-                <img src="photo/team-photo.jpg" alt="团队照片" class="team-photo">
-                <div class="intro-text">
-                    <h3>天马行空创意团队</h3>
-                    <p>天马行空创意团队是一支活跃的创意团队，致力于多种创意项目，包括微电影、短片和社交媒体内容。我们始终保持着对创意的热爱和追求，不断探索新的创作领域和表现形式，为观众带来优质的创意内容。</p>
-                    <p>团队成员充满活力和创意，他们来自不同的专业背景，拥有丰富的行业经验和专业技能。在天马行空，每个人都能充分发挥自己的创意才华，共同为客户创造价值。</p>
-                </div>
+        <div class="news-detail">
+            <h1>2026年天马行空创意团队新春晚会节目火热征集中！</h1>
+            <div class="news-meta">
+                <span>📅 2025-12-25</span>
+                <span>👁️ 阅读：0</span>
+                <span>📝 来源：天马行空创意团队</span>
             </div>
-        </section>
-        
-        <section class="about-section">
-            <h2 class="section-title">发展历程</h2>
-            <div class="about-content">
-                <h3>2019年 - 团队成立</h3>
-                <p>团队最初由张生智、李锦华、陈兵三人组建，成立时名为"八逗笑乐团队"，开始涉足创意内容创作领域。</p>
+            <div class="news-content">
+                <p>为了举办一场精彩纷呈的新春晚会，现面向全网公开征集节目！无论您是专业演员还是业余爱好者，只要您有创意、有才华，都可以报名参加我们的节目征集。2026年天马行空创意团队新春晚会，今年以 “天马行空 - 马到成功” 为主题，升级为「线上录导播 + 多平台直播」模式，没有舞台限制，没有距离阻隔。</p>
                 
-                <h3>2023年 - 品牌升级</h3>
-                <p>正式更名为"天马行空创意团队"，确立了以创意为核心的发展方向，业务范围逐渐扩展到微电影、短片和社交媒体内容等多个领域。</p>
+                <h2>主题意义</h2>
+                <p>2026年是农历马年，天马行空创意团队以“天马行空-马到成功”为晚会主题，寓意着在新的一年里能够像天马一样自由驰骋，同时也希望在新的一年里事业顺利，马到成功。本次晚会主题融合了团队名称“天马行空”的创意理念与马年的吉祥寓意，旨在通过丰富多彩的节目形式，展现创意与才华，同时传递出积极向上、勇往直前的精神风貌。</p>
                 
-                <h3>至今 - 持续发展</h3>
-                <p>团队专注于创意领域，稳扎稳打，不断提升创作能力，推出了一系列创意作品，在行业内积累了一定的经验和认可。</p>
+                <h2>节目时间</h2>
+                <p><strong>报名时间：</strong>2025年12月20日起</p>
+                <p><strong>报名截止日期：</strong>2026年1月15日</p>
+                <p><strong>名单公布时间：</strong>2026年1月20日</p>
+                <p><strong>晚会直播时间：</strong>2026年2月10日晚8点</p>
+                
+                <h2>节目类型</h2>
+                <ol>
+                    <li><strong>音乐类：</strong>包括歌曲演唱、乐器演奏、乐队表演等</li>
+                    <li><strong>舞蹈类：</strong>包括民族舞、现代舞、街舞、拉丁舞等</li>
+                    <li><strong>语言类：</strong>包括相声、小品、朗诵、脱口秀等</li>
+                    <li><strong>影像类：</strong>包括短片、微电影、创意视频等</li>
+                    <li><strong>其他类：</strong>包括魔术、杂技、武术、创意表演</li>
+                </ol>
+                
+                <h2>注意事项与要求</h2>
+                
+                <h3>节目内容要求</h3>
+                <ul>
+                    <li>内容积极向上，符合社会主义核心价值观，传递正能量</li>
+                    <li>富有创意和创新性，能够展现独特的艺术魅力</li>
+                    <li>主题鲜明，形式新颖，具有观赏性和感染力</li>
+                    <li>不得涉及违法违规内容，不得含有低俗、暴力、色情等不良信息</li>
+                    <li>不得侵犯他人知识产权，所有节目内容必须原创或获得合法授权</li>
+                </ul>
+                
+                <h3>节目形式要求</h3>
+                <ul>
+                    <li>节目时长控制在3-10分钟以内，特殊节目可适当延长</li>
+                    <li>节目人数不限，个人或团队均可报名</li>
+                    <li>节目上传格式为MP4，分辨率不少于1080p60帧，清晰度1920×1080像素或以上，画面比例为16：9宽屏</li>
+                </ul>
+                
+                <h3>其他注意事项</h3>
+                <ul>
+                    <li>所有报名节目将经过导演组的严格筛选，最终入选节目名单将于2026年1月20日公布</li>
+                    <li>主办方拥有节目录制、播出和推广的权利，报名即视为同意</li>
+                    <li>未成年人参与者必须取得监护人同意</li>
+                </ul>
+                
+                <h2>节目征集与教程</h2>
+                <p>邮件主题统一格式：【2026年天马行空创意团队新春晚会节目征集】+姓名+节目名称+内容</p>
+                
+                <h3>1、节目征集上传邮箱以下内容：</h3>
+                <p>《2026年天马行空创意团队“天马行空-马到成功”新春晚会节目征集表》扫描二维码下载报名表</p>
+                <p>（1）节目视频上传可以邮箱附件或者网盘分享（视频清晰无水印）</p>
+                <p>（2）扫描二维码填写征集表附视频或链接发送团队邮箱：zsz@tmxkcy.xyz或者tmxkcytd@foxmail.com</p>
+                
+                <h3>演职人员申请表填写</h3>
+                <p>访问天马行空创意网手机端进行填写或直接在浏览器输入：http://m.tmxkcy.xyz</p>
+                
+                <h3>手机版教程：</h3>
+                <p>注意：微信扫码访问之后需要在浏览器中打开，提交申请后将会获得演职人员申请凭证图片，将图片上传《2026年天马行空创意团队“天马行空-马到成功”新春晚会节目征集表》和视频一并发送邮箱中。</p>
+                
+                <h3>电脑版教程：</h3>
+                <p>tmxkcy.xyz</p>
+                
+                <p style="margin-top: 30px; font-weight: bold; text-align: center; color: #4facfe;">金鞍耀新春，创意踏歌行！愿每一个闪耀舞台的你，都如骏马驰聘，不负热爱、不负韶华；愿天马行空的我们，以灵感为翼，以协作为缰，新岁策马扬鞭，事事马到成功，快马加鞭，未来光芒万丈！</p>
             </div>
-        </section>
-        
-        <section class="about-section">
-            <h2 class="section-title">团队活动</h2>
-            <div class="about-content">
-                <h3>2025年普通专业技能联合测考试</h3>
-                <p>最近，天马行空创意团队举办了2025年普通专业技能联合测考试，所有成员参与了线上线下结合的考试形式。考试内容涵盖团队合作、自媒体运营、拍摄与后期等多项技能，旨在提升团队整体专业水平和协作能力。</p>
-                
-                <h3>微电影《绝意人生》</h3>
-                <p>团队制作了微电影《绝意人生》，尝试了影视创作领域的探索，在剧本创作、拍摄和后期制作等方面积累了宝贵经验。</p>
-            </div>
-        </section>
-        
-        <section class="about-section">
-            <h2 class="section-title">团队文化</h2>
-            <div class="about-content">
-                <h3>核心理念</h3>
-                <p>拥抱创意，点亮人生</p>
-                
-                <h3>团队精神</h3>
-                <p>团结、创新、专注、务实</p>
-                
-                <h3>服务宗旨</h3>
-                <p>以创意为核心，以质量为基础</p>
-                
-                <h3>发展目标</h3>
-                <p>专注影视创意领域，成为具有影响力的影视创意团队</p>
-            </div>
-        </section>
+            <a href="news.html" class="back-link">← 返回新闻列表</a>
+        </div>
     </div>
     
     <!-- 回到顶部按钮 -->
@@ -501,8 +552,6 @@
             });
         });
     </script>
-    <!-- 新年主题样式 -->
-    <link rel="stylesheet" href="css/newyear.css">
     <!-- 新年主题脚本 -->
     <script src="js/newyear.js"></script>
 </body>

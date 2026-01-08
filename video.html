@@ -288,10 +288,13 @@
         <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">首页</a></li>
             <li class="nav-item"><a href="about.html" class="nav-link">关于我们</a></li>
+            <li class="nav-item"><a href="news.html" class="nav-link">新闻动态</a></li>
             <li class="nav-item"><a href="team-info.html" class="nav-link">团队查询</a></li>
             <li class="nav-item"><a href="download-materials.html" class="nav-link">资料下载</a></li>
             <li class="nav-item"><a href="download-software.html" class="nav-link">软件下载</a></li>
-            <li class="nav-item"><a href="video.html" class="nav-link">视频区</a></li>
+            <li class="nav-item"><a href="video.html" class="nav-link active">视频区</a></li>
+            <li class="nav-item"><a href="music.html" class="nav-link">音乐区</a></li>
+            <li class="nav-item"><a href="online-exam.html" class="nav-link">在线考试中心</a></li>
         </ul>
     </nav>
     
@@ -299,11 +302,27 @@
         <div class="container banner-content">
             <h1>视频区</h1>
             <p>展示天马行空创意团队的优秀作品</p>
-            <a href="#" class="banner-btn">了解更多</a>
+            <a href="fullscreen-video.html" class="banner-btn">刷视频</a>
         </div>
     </div>
     
-    <div class="container">
+    <!-- 视频播放模态框 -->
+    <div id="randomVideoModal" class="modal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.9);">
+        <div class="modal-content" style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 600px; border-radius: 10px; position: relative;">
+            <span class="close" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">随机美女视频</h2>
+            <div id="videoContainer" style="width: 100%; height: 300px; background-color: #000; border-radius: 8px; overflow: hidden;"></div>
+            <div class="video-controls" style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+                <button class="banner-btn" onclick="getRandomVideo()" style="margin: 0;">下一个</button>
+                <button class="banner-btn" onclick="closeVideoModal()" style="margin: 0;">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <!-- 传统视频列表区域 -->
+    <div class="container" style="margin-top: 20px;">
         <div class="content-section">
             <h2>视频区</h2>
             <p>本专区展示天马行空创意团队制作的各种视频作品，包括微电影、短视频、宣传片等。</p>
@@ -486,6 +505,71 @@
                 });
             });
         });
+        
+        // 随机视频功能
+        const randomVideoModal = document.getElementById('randomVideoModal');
+        const closeBtn = document.querySelector('.close');
+        const videoContainer = document.getElementById('videoContainer');
+        
+        // 获取随机视频
+        function getRandomVideo() {
+            // 显示加载状态
+            videoContainer.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 18px;">加载中...</div>';
+            
+            // 打开模态框
+            randomVideoModal.style.display = 'block';
+            
+            // 调用API获取随机视频
+            fetch('https://v2.xxapi.cn/api/meinv')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 200 && data.data) {
+                        const videoUrl = data.data.trim();
+                        playVideo(videoUrl);
+                    } else {
+                        videoContainer.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 18px;">获取视频失败，请重试</div>';
+                    }
+                })
+                .catch(error => {
+                    console.error('获取视频失败:', error);
+                    videoContainer.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 18px;">网络错误，请重试</div>';
+                });
+        }
+        
+        // 播放视频
+        function playVideo(videoUrl) {
+            // 创建video元素
+            const videoElement = document.createElement('video');
+            videoElement.src = videoUrl;
+            videoElement.controls = true;
+            videoElement.autoplay = true;
+            videoElement.muted = false;
+            videoElement.style.width = '100%';
+            videoElement.style.height = '100%';
+            
+            // 清空容器并添加视频元素
+            videoContainer.innerHTML = '';
+            videoContainer.appendChild(videoElement);
+        }
+        
+        // 关闭视频模态框
+        function closeVideoModal() {
+            randomVideoModal.style.display = 'none';
+            // 清空视频容器，停止视频播放
+            videoContainer.innerHTML = '';
+        }
+        
+        // 点击关闭按钮
+        closeBtn.addEventListener('click', closeVideoModal);
+        
+        // 点击模态框外部关闭
+        window.addEventListener('click', function(event) {
+            if (event.target === randomVideoModal) {
+                closeVideoModal();
+            }
+        });
+        
+
     </script>
     <!-- 新年主题样式 -->
     <link rel="stylesheet" href="css/newyear.css">
