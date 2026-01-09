@@ -13,14 +13,35 @@
             box-sizing: border-box;
         }
         
+        /* CSS变量定义 */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --secondary-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --primary-color: #4facfe;
+            --secondary-color: #00f2fe;
+            --accent-color: #fa709a;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.9);
+            --text-tertiary: rgba(255, 255, 255, 0.7);
+            --background-primary: #000000;
+            --background-secondary: rgba(0, 0, 0, 0.8);
+            --background-tertiary: rgba(0, 0, 0, 0.6);
+            --overlay-gradient: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.7), transparent);
+            --button-background: rgba(255, 255, 255, 0.1);
+            --button-background-hover: rgba(255, 255, 255, 0.2);
+            --border-radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         /* 全局样式 */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #000;
-            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-primary);
+            color: var(--text-primary);
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
         }
         
         /* 主容器 */
@@ -86,51 +107,284 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 80%;
-            padding: 25px 20px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), transparent);
+            right: 0;
+            width: 100%;
+            padding: 40px 24px 24px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3), transparent);
             z-index: 10;
             transform: translateY(0);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
         }
         
         /* 视频标题 */
         .video-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             margin-bottom: 12px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
         
         /* 视频描述 */
         .video-desc {
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 18px;
+            font-size: 15px;
+            line-height: 1.65;
+            margin-bottom: 24px;
             opacity: 0.9;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-            max-height: 60px;
+            max-height: 64px;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        /* 互动按钮区域 */
+        .interaction-buttons {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        /* 单个互动按钮 */
+        .interact-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--button-background);
+            border: none;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 互动按钮悬停效果 */
+        .interact-btn:hover {
+            background: var(--button-background-hover);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 右侧垂直互动按钮 */
+        .right-interact-buttons {
+            position: absolute;
+            right: 16px;
+            bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            z-index: 15;
+        }
+        
+        /* 右侧互动按钮 */
+        .right-interact-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            min-width: 56px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 右侧互动按钮悬停效果 */
+        .right-interact-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.15);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* 右侧按钮图标 */
+        .right-btn-icon {
+            font-size: 24px;
+        }
+        
+        /* 右侧按钮文字 */
+        .right-btn-text {
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0.9;
         }
         
 
         
-        /* 隐藏视频进度条 */
-        video::-webkit-media-controls-timeline {
+        /* 隐藏默认视频控件 */
+        video::-webkit-media-controls {
             display: none !important;
         }
         
-        video::-webkit-media-controls {
-            overflow: hidden !important;
+        video {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
-        /* 自定义视频控制样式 - 无进度条 */
-        video {
-            --webkit-media-controls-overlay-play-button-background-color: rgba(255, 255, 255, 0.3);
+        /* 自定义视频播放器控件容器 */
+        .custom-video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.7), transparent);
+            backdrop-filter: blur(12px);
+            padding: 15px 20px 25px;
+            z-index: 20;
+            opacity: 1;
+            transition: var(--transition);
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* 视频控件隐藏状态 */
+        .custom-video-controls.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        /* 视频进度条容器 */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 视频进度条 */
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s linear;
+            position: relative;
+        }
+        
+        /* 进度条悬停效果 */
+        .progress-container:hover {
+            height: 6px;
+        }
+        
+        /* 视频控制按钮组 */
+        .control-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* 左侧控制按钮 */
+        .left-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        /* 右侧控制按钮 */
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        /* 控制按钮样式 */
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 控制按钮悬停效果 */
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        /* 播放/暂停按钮 */
+        .play-pause-btn {
+            font-size: 24px;
+        }
+        
+        /* 时间显示 */
+        .time-display {
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        /* 音量控制 */
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* 音量滑块 */
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            outline: none;
+        }
+        
+        /* 音量滑块轨道 */
+        .volume-slider::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+        
+        /* 音量滑块拇指 */
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-top: -4.5px;
+            transition: var(--transition);
+        }
+        
+        /* 音量滑块拇指悬停效果 */
+        .volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background: var(--primary-color);
         }
         
         /* 顶部导航栏 */
@@ -144,15 +398,16 @@
             justify-content: space-between;
             align-items: center;
             z-index: 20;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
         
         /* 标题 */
         .page-title {
             font-size: 20px;
             font-weight: 800;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -162,20 +417,20 @@
         
         /* 返回按钮 */
         .back-btn {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--button-background);
             border: none;
-            color: white;
+            color: var(--text-primary);
             font-size: 22px;
             cursor: pointer;
             padding: 8px 12px;
             border-radius: 50%;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             backdrop-filter: blur(10px);
         }
         
         /* 返回按钮悬停效果 */
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--button-background-hover);
             transform: translateX(-3px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
@@ -187,26 +442,58 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 18px;
-            color: white;
+            color: var(--text-primary);
             text-align: center;
+            z-index: 30;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px 40px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-in-out;
         }
         
         /* 加载动画 */
         .loading::after {
             content: '';
             display: block;
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             margin: 15px auto 0;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(79, 172, 254, 0.3);
             border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
+            border-top-color: var(--primary-color);
+            animation: spin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
         
         /* 旋转动画 */
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+        
+        /* 加载进度指示器 */
+        .loading-progress {
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .loading-progress-bar {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+            width: 0%;
+            animation: loadingProgress 2s ease-in-out infinite;
+        }
+        
+        /* 加载进度动画 */
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            50% { width: 60%; }
+            100% { width: 100%; }
         }
         
         /* 滑入动画 */
@@ -229,12 +516,113 @@
         
         /* 视频项进入动画 */
         .video-item {
-            animation: fadeIn 0.5s ease-in;
+            animation: fadeIn 0.6s ease-in-out;
         }
         
         /* 视频信息动画 */
         .video-info {
-            animation: slideInUp 0.6s ease-out;
+            animation: slideInUp 0.6s ease-out 0.2s both;
+        }
+        
+        /* 右侧互动按钮动画 */
+        .right-interact-buttons {
+            animation: fadeIn 0.7s ease-in-out 0.4s both;
+        }
+        
+        /* 自定义视频控件动画 */
+        .custom-video-controls {
+            animation: slideInUp 0.5s ease-out 0.5s both;
+        }
+        
+        /* 互动按钮悬停动画 */
+        .interact-btn {
+            transition: var(--transition);
+        }
+        
+        .interact-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        /* 右侧互动按钮动画 */
+        .right-interact-btn {
+            transition: var(--transition);
+        }
+        
+        .right-interact-btn:hover {
+            transform: scale(1.15);
+        }
+        
+        /* 视频封面悬停效果 */
+        .video-cover {
+            transition: var(--transition);
+        }
+        
+        .video-item:hover .video-cover {
+            transform: scale(1.05);
+        }
+        
+        /* 视频加载动画 */
+        .loading::after {
+            animation: spin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        
+        /* 视频播放按钮动画 */
+        .video-play-btn {
+            animation: fadeIn 0.5s ease-in-out 0.3s forwards, pulse 2s ease-in-out 1s infinite;
+        }
+        
+        /* 脉冲动画 */
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.05);
+                opacity: 1;
+            }
+        }
+        
+        /* 滑入动画 */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* 淡入动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* 旋转动画 */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 缩放动画 */
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* 页面元素基础动画 */
+        .top-nav,
+        .page-title,
+        .back-btn {
+            animation: fadeIn 0.5s ease-in-out;
         }
         
         /* 隐藏滚动条 */
@@ -248,8 +636,71 @@
         }
         
         /* 响应式设计 */
-        @media (max-width: 768px) {
-            /* 移动端优化 */
+        @media (max-width: 375px) {
+            /* 小屏手机优化 */
+            .top-nav {
+                padding: 12px 16px;
+            }
+            
+            .page-title {
+                font-size: 16px;
+            }
+            
+            .back-btn {
+                font-size: 20px;
+                padding: 6px 10px;
+            }
+            
+            .video-info {
+                padding: 30px 16px 20px;
+            }
+            
+            .video-title {
+                font-size: 18px;
+            }
+            
+            .video-desc {
+                font-size: 14px;
+            }
+            
+            .interaction-buttons {
+                gap: 16px;
+            }
+            
+            .interact-btn {
+                font-size: 14px;
+                padding: 6px 12px;
+                gap: 6px;
+            }
+            
+            .right-interact-btn {
+                min-width: 50px;
+                padding: 10px;
+            }
+            
+            .right-btn-icon {
+                font-size: 20px;
+            }
+            
+            .right-btn-text {
+                font-size: 11px;
+            }
+            
+            .custom-video-controls {
+                padding: 12px 16px 20px;
+            }
+            
+            .control-btn {
+                font-size: 18px;
+            }
+            
+            .play-pause-btn {
+                font-size: 22px;
+            }
+        }
+        
+        @media (min-width: 376px) and (max-width: 768px) {
+            /* 大屏手机和平板优化 */
             .top-nav {
                 padding: 15px 20px;
             }
@@ -259,60 +710,110 @@
             }
             
             .back-btn {
-                font-size: 20px;
-                padding: 6px 10px;
+                font-size: 22px;
+                padding: 8px 12px;
             }
             
             .video-info {
-                padding: 20px 15px;
+                padding: 40px 24px 24px;
             }
             
             .video-title {
-                font-size: 16px;
+                font-size: 20px;
             }
             
             .video-desc {
-                font-size: 13px;
+                font-size: 15px;
             }
             
             .interaction-buttons {
-                gap: 20px;
+                gap: 24px;
             }
             
             .interact-btn {
-                font-size: 15px;
-                padding: 6px 10px;
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+            
+            .right-interact-btn {
+                min-width: 56px;
+                padding: 12px;
             }
         }
         
-        @media (max-width: 480px) {
-            /* 小屏设备优化 */
-            .page-title {
-                font-size: 16px;
+        @media (min-width: 769px) {
+            /* 桌面设备优化 */
+            .fullscreen-video-app {
+                max-width: 1200px;
+                margin: 0 auto;
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
             }
             
-            .video-title {
-                font-size: 15px;
-            }
-            
-            .video-desc {
-                font-size: 12px;
-            }
-            
-            .interact-btn {
-                font-size: 14px;
-                gap: 6px;
+            .video-item {
+                border-radius: 8px;
+                overflow: hidden;
             }
         }
         
         /* 横屏模式优化 */
         @media (orientation: landscape) {
             .video-info {
-                padding: 20px 25px;
+                padding: 30px 24px 24px;
             }
             
             .interaction-buttons {
-                gap: 30px;
+                gap: 24px;
+            }
+            
+            .right-interact-buttons {
+                bottom: 80px;
+            }
+            
+            .custom-video-controls {
+                padding: 12px 24px 16px;
+            }
+        }
+        
+        /* 小屏横屏优化 */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .video-info {
+                padding: 20px 24px 16px;
+            }
+            
+            .video-title {
+                font-size: 18px;
+            }
+            
+            .video-desc {
+                font-size: 14px;
+                margin-bottom: 16px;
+            }
+            
+            .interaction-buttons {
+                gap: 16px;
+            }
+            
+            .interact-btn {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .right-interact-buttons {
+                bottom: 60px;
+                right: 12px;
+            }
+            
+            .right-interact-btn {
+                min-width: 48px;
+                padding: 8px;
+            }
+            
+            .right-btn-icon {
+                font-size: 18px;
+            }
+            
+            .right-btn-text {
+                font-size: 10px;
             }
         }
         
@@ -323,26 +824,25 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            color: white;
+            color: var(--text-primary);
             font-size: 16px;
         }
         
         .video-error button {
             margin-top: 15px;
             padding: 10px 20px;
-            background-color: #4facfe;
+            background: var(--primary-gradient);
             color: white;
             border: none;
-            border-radius: 20px;
+            border-radius: var(--border-radius);
             font-size: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .video-error button:hover {
-            background-color: #00f2fe;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.5);
         }
         
         /* 视频播放按钮样式 */
@@ -394,7 +894,7 @@
             <!-- 视频列表 -->
             <div class="video-list" id="videoList">
                 <!-- 视频元素将通过JavaScript动态生成 -->
-                <video class="video-player" id="mainVideo" preload="auto" controls muted></video>
+                <video class="video-player" id="mainVideo" preload="auto" controls></video>
             </div>
         </div>
     </div>
@@ -407,6 +907,17 @@
                 this.videoContainer = document.getElementById('videoContainer');
                 this.videoList = document.getElementById('videoList');
                 this.mainVideo = document.getElementById('mainVideo');
+                
+                // 控件引用
+                this.currentControls = {
+                    playPauseBtn: null,
+                    volumeBtn: null,
+                    volumeSlider: null,
+                    fullscreenBtn: null,
+                    timeDisplay: null,
+                    progressContainer: null,
+                    progressBar: null
+                };
                 
                 // 状态管理
                 this.showList = []; // 始终显示3个视频信息
@@ -426,30 +937,51 @@
             }
             
             // 初始化应用
-            init() {
-                // 设置初始状态
+        init() {
+            // 设置初始状态
+            this.videoList.style.transform = `translateY(-${this.viewportHeight}px)`;
+            
+            // 初始化触摸事件
+            this.initTouchEvents();
+            
+            // 初始化鼠标事件（用于桌面调试）
+            this.initMouseEvents();
+            
+            // 加载初始视频数据
+            this.loadInitialVideos();
+            
+            // 监听窗口大小变化
+            window.addEventListener('resize', () => {
+                this.viewportHeight = window.innerHeight;
                 this.videoList.style.transform = `translateY(-${this.viewportHeight}px)`;
-                
-                // 初始化触摸事件
-                this.initTouchEvents();
-                
-                // 初始化鼠标事件（用于桌面调试）
-                this.initMouseEvents();
-                
-                // 加载初始视频数据
-                this.loadInitialVideos();
-                
-                // 监听窗口大小变化
-                window.addEventListener('resize', () => {
-                    this.viewportHeight = window.innerHeight;
-                    this.videoList.style.transform = `translateY(-${this.viewportHeight}px)`;
-                });
-                
-                // 监听视频结束事件
-                this.mainVideo.addEventListener('ended', () => {
-                    this.playNextVideo();
-                });
-            }
+            });
+            
+            // 监听视频事件
+            this.mainVideo.addEventListener('ended', () => {
+                this.playNextVideo();
+            });
+            
+            // 监听视频时间更新
+            this.mainVideo.addEventListener('timeupdate', () => {
+                this.updateTimeDisplay();
+            });
+            
+            // 监听视频元数据加载完成
+            this.mainVideo.addEventListener('loadedmetadata', () => {
+                this.updateTimeDisplay();
+            });
+            
+            // 添加点击屏幕播放/暂停事件，使用事件委托和目标检查
+            this.videoContainer.addEventListener('click', (e) => {
+                // 检查点击目标是否是返回按钮或在控制区域内
+                const isBackButton = e.target.closest('.back-btn');
+                const isControlElement = e.target.closest('.control-buttons, .custom-video-controls, .volume-control, .control-btn, .volume-slider');
+                if (!isBackButton && !isControlElement) {
+                    // 只有点击非返回按钮且非控制区域才切换播放/暂停
+                    this.togglePlayPause();
+                }
+            });
+        }
             
             // 返回上一页
             goBack() {
@@ -547,12 +1079,48 @@
                 videoCover.alt = videoData.title;
                 
                 // 视频信息
-                const videoInfo = document.createElement('div');
-                videoInfo.className = 'video-info';
-                videoInfo.innerHTML = `
-                    <div class="video-title">${videoData.title}</div>
-                    <div class="video-desc">${videoData.desc}</div>
-                `;
+            const videoInfo = document.createElement('div');
+            videoInfo.className = 'video-info';
+            videoInfo.innerHTML = `
+                <div class="video-title">${videoData.title}</div>
+                <div class="video-desc">${videoData.desc}</div>
+                <div class="interaction-buttons">
+                    <button class="interact-btn">
+                        <span>👍</span>
+                        <span>点赞</span>
+                    </button>
+                    <button class="interact-btn">
+                        <span>💬</span>
+                        <span>评论</span>
+                    </button>
+                    <button class="interact-btn">
+                        <span>📤</span>
+                        <span>分享</span>
+                    </button>
+                </div>
+            `;
+            
+            // 右侧垂直互动按钮
+            const rightInteractButtons = document.createElement('div');
+            rightInteractButtons.className = 'right-interact-buttons';
+            rightInteractButtons.innerHTML = `
+                <button class="right-interact-btn">
+                    <span class="right-btn-icon">❤️</span>
+                    <span class="right-btn-text">1.2k</span>
+                </button>
+                <button class="right-interact-btn">
+                    <span class="right-btn-icon">💬</span>
+                    <span class="right-btn-text">128</span>
+                </button>
+                <button class="right-interact-btn">
+                    <span class="right-btn-icon">📤</span>
+                    <span class="right-btn-text">分享</span>
+                </button>
+                <button class="right-interact-btn">
+                    <span class="right-btn-icon">➕</span>
+                    <span class="right-btn-text">关注</span>
+                </button>
+            `;
                 
                 // 加载指示器
                 const loading = document.createElement('div');
@@ -566,9 +1134,84 @@
                     loading.style.display = 'none';
                 }
                 
+                // 自定义视频控件
+                const customControls = document.createElement('div');
+                customControls.className = 'custom-video-controls';
+                customControls.innerHTML = `
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="control-buttons">
+                        <div class="left-controls">
+                            <button class="control-btn play-pause-btn" id="playPauseBtn">▶️</button>
+                            <div class="time-display" id="timeDisplay">00:00 / 00:00</div>
+                        </div>
+                        <div class="right-controls">
+                            <div class="volume-control">
+                                <button class="control-btn volume-btn" id="volumeBtn">🔊</button>
+                                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+                            </div>
+                            <button class="control-btn fullscreen-btn" id="fullscreenBtn">⛶</button>
+                        </div>
+                    </div>
+                `;
+                
+                // 保存当前控件引用
+                this.currentControls.playPauseBtn = customControls.querySelector('.play-pause-btn');
+                this.currentControls.volumeBtn = customControls.querySelector('.volume-btn');
+                this.currentControls.volumeSlider = customControls.querySelector('.volume-slider');
+                this.currentControls.fullscreenBtn = customControls.querySelector('.fullscreen-btn');
+                this.currentControls.timeDisplay = customControls.querySelector('.time-display');
+                this.currentControls.progressContainer = customControls.querySelector('.progress-container');
+                this.currentControls.progressBar = customControls.querySelector('.progress-bar');
+                
+                // 添加控件事件监听器 - 使用事件委托
+                // 播放/暂停按钮
+                if (this.currentControls.playPauseBtn) {
+                    this.currentControls.playPauseBtn.addEventListener('click', () => {
+                        this.togglePlayPause();
+                    });
+                }
+                
+                // 音量按钮
+                if (this.currentControls.volumeBtn) {
+                    this.currentControls.volumeBtn.addEventListener('click', () => {
+                        this.toggleMute();
+                    });
+                }
+                
+                // 音量滑块
+                if (this.currentControls.volumeSlider) {
+                    this.currentControls.volumeSlider.addEventListener('input', (e) => {
+                        this.mainVideo.volume = parseFloat(e.target.value);
+                        this.updateVolumeButton();
+                    });
+                    
+                    this.currentControls.volumeSlider.addEventListener('change', (e) => {
+                        this.mainVideo.volume = parseFloat(e.target.value);
+                        this.updateVolumeButton();
+                    });
+                }
+                
+                // 全屏按钮
+                if (this.currentControls.fullscreenBtn) {
+                    this.currentControls.fullscreenBtn.addEventListener('click', () => {
+                        this.toggleFullscreen();
+                    });
+                }
+                
+                // 进度条点击跳转
+                if (this.currentControls.progressContainer) {
+                    this.currentControls.progressContainer.addEventListener('click', (e) => {
+                        this.seekTo(e);
+                    });
+                }
+                
                 // 组装视频项
                 videoItem.appendChild(videoCover);
                 videoItem.appendChild(videoInfo);
+                videoItem.appendChild(rightInteractButtons);
+                videoItem.appendChild(customControls);
                 videoItem.appendChild(loading);
                 
                 return videoItem;
@@ -584,10 +1227,160 @@
                     await this.mainVideo.play();
                     // 隐藏其他视频的加载指示器
                     this.hideLoadingIndicators();
+                    // 更新控件状态
+                    this.updatePlayButton();
+                    this.updateVolumeButton();
+                    this.updateTimeDisplay();
+                    
+                    // 设置音量滑块值
+                    if (this.currentControls.volumeSlider) {
+                        this.currentControls.volumeSlider.value = this.mainVideo.volume;
+                    }
                 } catch (error) {
                     console.log('自动播放失败，等待用户交互:', error);
                     // 显示播放按钮
                     this.showPlayButton();
+                    // 更新控件状态
+                    this.updatePlayButton();
+                    this.updateVolumeButton();
+                }
+            }
+            
+            // 切换播放/暂停
+            togglePlayPause() {
+                if (this.mainVideo.paused || this.mainVideo.ended) {
+                    this.mainVideo.play();
+                } else {
+                    this.mainVideo.pause();
+                }
+                this.updatePlayButton();
+            }
+            
+            // 更新播放按钮状态
+            updatePlayButton() {
+                if (this.currentControls.playPauseBtn) {
+                    this.currentControls.playPauseBtn.innerHTML = this.mainVideo.paused ? '▶️' : '⏸️';
+                }
+            }
+            
+            // 更新时间显示
+            updateTimeDisplay() {
+                if (this.currentControls.timeDisplay) {
+                    const currentTime = this.formatTime(this.mainVideo.currentTime);
+                    const duration = this.formatTime(this.mainVideo.duration);
+                    this.currentControls.timeDisplay.textContent = `${currentTime} / ${duration}`;
+                    
+                    // 更新进度条
+                    this.updateProgressBar();
+                }
+            }
+            
+            // 格式化时间
+            formatTime(seconds) {
+                if (isNaN(seconds)) return '00:00';
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+            
+            // 更新进度条
+            updateProgressBar() {
+                if (this.currentControls.progressBar && this.currentControls.progressContainer) {
+                    const progress = (this.mainVideo.currentTime / this.mainVideo.duration) * 100;
+                    this.currentControls.progressBar.style.width = `${progress}%`;
+                }
+            }
+            
+            // 添加控件事件监听器
+            addControlEventListeners() {
+                // 简化事件监听器，只处理功能，不再处理事件冒泡
+                // 事件冒泡由videoContainer的click事件通过target.closest()处理
+                
+                // 播放/暂停按钮
+                const playPauseBtn = document.getElementById('playPauseBtn');
+                if (playPauseBtn) {
+                    playPauseBtn.addEventListener('click', (e) => {
+                        this.togglePlayPause();
+                    });
+                }
+                
+                // 音量按钮
+                const volumeBtn = document.getElementById('volumeBtn');
+                if (volumeBtn) {
+                    volumeBtn.addEventListener('click', (e) => {
+                        this.toggleMute();
+                    });
+                }
+                
+                // 音量滑块
+                const volumeSlider = document.getElementById('volumeSlider');
+                if (volumeSlider) {
+                    volumeSlider.addEventListener('input', (e) => {
+                        this.mainVideo.volume = parseFloat(e.target.value);
+                        this.updateVolumeButton();
+                    });
+                    
+                    volumeSlider.addEventListener('change', (e) => {
+                        this.mainVideo.volume = parseFloat(e.target.value);
+                        this.updateVolumeButton();
+                    });
+                }
+                
+                // 全屏按钮
+                const fullscreenBtn = document.getElementById('fullscreenBtn');
+                if (fullscreenBtn) {
+                    fullscreenBtn.addEventListener('click', (e) => {
+                        this.toggleFullscreen();
+                    });
+                }
+                
+                // 进度条点击跳转
+                const progressContainer = document.getElementById('progressContainer');
+                if (progressContainer) {
+                    progressContainer.addEventListener('click', (e) => {
+                        this.seekTo(e);
+                    });
+                }
+            }
+            
+            // 切换静音
+            toggleMute() {
+                this.mainVideo.muted = !this.mainVideo.muted;
+                this.updateVolumeButton();
+            }
+            
+            // 更新音量按钮
+            updateVolumeButton() {
+                if (this.currentControls.volumeBtn) {
+                    if (this.mainVideo.muted) {
+                        this.currentControls.volumeBtn.innerHTML = '🔇';
+                    } else if (this.mainVideo.volume === 0) {
+                        this.currentControls.volumeBtn.innerHTML = '🔇';
+                    } else if (this.mainVideo.volume < 0.5) {
+                        this.currentControls.volumeBtn.innerHTML = '🔉';
+                    } else {
+                        this.currentControls.volumeBtn.innerHTML = '🔊';
+                    }
+                }
+            }
+            
+            // 切换全屏
+            toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    this.videoContainer.requestFullscreen().catch(err => {
+                        console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+            
+            // 进度条点击跳转
+            seekTo(e) {
+                if (this.currentControls.progressContainer && !isNaN(this.mainVideo.duration)) {
+                    const rect = this.currentControls.progressContainer.getBoundingClientRect();
+                    const percent = (e.clientX - rect.left) / rect.width;
+                    this.mainVideo.currentTime = percent * this.mainVideo.duration;
                 }
             }
             
@@ -607,38 +1400,66 @@
             // 初始化触摸事件
             initTouchEvents() {
                 this.videoContainer.addEventListener('touchstart', (e) => {
-                    this.handleTouchStart(e);
+                    // 检查是否是输入控件，如果是则不处理滑动
+                    const isInputControl = e.target.closest('.volume-slider, .volume-control');
+                    if (!isInputControl) {
+                        this.handleTouchStart(e);
+                    }
                 });
                 
                 this.videoContainer.addEventListener('touchmove', (e) => {
-                    this.handleTouchMove(e);
+                    // 检查是否是输入控件，如果是则不处理滑动
+                    const isInputControl = e.target.closest('.volume-slider, .volume-control');
+                    if (!isInputControl) {
+                        this.handleTouchMove(e);
+                    }
                 });
                 
                 this.videoContainer.addEventListener('touchend', (e) => {
-                    this.handleTouchEnd(e);
+                    // 检查是否是输入控件，如果是则不处理滑动
+                    const isInputControl = e.target.closest('.volume-slider, .volume-control');
+                    if (!isInputControl) {
+                        this.handleTouchEnd(e);
+                    }
                 });
             }
             
             // 初始化鼠标事件（用于桌面调试）
             initMouseEvents() {
                 this.videoContainer.addEventListener('mousedown', (e) => {
-                    e.preventDefault();
-                    this.handleMouseDown(e);
+                    // 检查是否是输入控件或返回按钮，如果是则不阻止默认行为
+                    const isInputControl = e.target.closest('.volume-slider, .volume-control, .progress-container, .back-btn');
+                    if (!isInputControl) {
+                        e.preventDefault();
+                        this.handleMouseDown(e);
+                    }
                 });
                 
                 this.videoContainer.addEventListener('mousemove', (e) => {
-                    e.preventDefault();
-                    this.handleMouseMove(e);
+                    // 检查是否是输入控件或返回按钮，如果是则不阻止默认行为
+                    const isInputControl = e.target.closest('.volume-slider, .volume-control, .progress-container, .back-btn');
+                    if (!isInputControl) {
+                        e.preventDefault();
+                        this.handleMouseMove(e);
+                    }
                 });
                 
                 this.videoContainer.addEventListener('mouseup', (e) => {
-                    e.preventDefault();
-                    this.handleMouseUp(e);
+                    // 检查是否是输入控件或返回按钮，如果是则不阻止默认行为
+                    const isInputControl = e.target.closest('.volume-slider, .volume-control, .progress-container, .back-btn');
+                    if (!isInputControl) {
+                        e.preventDefault();
+                        this.handleMouseUp(e);
+                    }
                 });
                 
                 this.videoContainer.addEventListener('mouseleave', (e) => {
-                    e.preventDefault();
-                    this.handleMouseUp(e);
+                    // 检查是否是输入控件或返回按钮，如果是则不阻止默认行为
+                    const isInputControl = e.target.closest('.volume-slider, .volume-control, .progress-container, .back-btn');
+                    if (!isInputControl) {
+                        e.preventDefault();
+                        this.handleMouseUp(e);
+                    }
                 });
             }
             
